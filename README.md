@@ -1,5 +1,19 @@
 # rtexjp — motor de reels ilustrados 9:16
 
+[![rtexjp](capa/capa.png)](https://inematds.github.io/rtexjp/guia/)
+
+**🇧🇷 [Português](README.md) · 🇺🇸 [English](README.en.md) · 🇪🇸 [Español](README.es.md)**
+
+## O que é
+
+O rtexjp é um motor que monta vídeos curtos verticais (reels) ilustrados, em roxo, a partir de um roteiro escrito num arquivo de texto (`roteiro.json`). É o motor que o Nei usa nos reels do INEMA, aberto para quem quiser estudar ou adaptar: sem gravar a si mesmo e sem pagar serviço de avatar. Ele gera a voz, desenha cada cena quadro a quadro, mistura a trilha e confere sozinho se o vídeo segue o formato. Precisa de um computador com placa de vídeo (GPU), Python, Node, ffmpeg e dois servidores locais: o de voz ([inemavox](https://github.com/inematds/inemavox)) e o de imagem ([inemaimg](https://github.com/inematds/inemaimg), flux2-klein).
+
+Vem configurado com a voz e o avatar do Nei. Para usar os seus, troque a gravação de referência da voz (`VOZ_REF` no `rtexjp.py`) e a foto do avatar (`REF` no `motor/gerar_avatar.py`) e gere as poses de novo; esses dois arquivos não vêm no repositório.
+
+## 📖 Guia de uso
+
+Guia completo (landing + passo a passo): **https://inematds.github.io/rtexjp/guia/** · vídeo exemplo: https://www.youtube.com/watch?v=AZEZK1YgF98
+
 **v1.0.0** · motor local e grátis que transforma um `roteiro.json` num reel vertical 1080×1920 no **padrão rtexjp**: um reel ilustrado, fundo quase preto com feixe de luz roxa, avatar ilustrado do Nei (sem lip-sync, em poses), mascote robô, legenda-manchete de 2–3 palavras e um único CTA "comenta PALAVRA".
 
 ## O formato (padrão rtexjp)

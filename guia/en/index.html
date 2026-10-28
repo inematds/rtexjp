@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>rtexjp — illustrated 9:16 reels, local and free</title>
+<meta name="description" content="rtexjp: a free local engine that turns a roteiro.json into an illustrated 1080×1920 vertical reel, with Nei’s avatar, a robot mascot, local TTS voice, and the CTA &quot;comment WORD&quot;.">
+<meta name="theme-color" content="#07061a">
+<meta property="og:title" content="rtexjp — illustrated 9:16 reels">
+<meta property="og:description" content="From roteiro.json to a finished vertical reel, all local and free.">
+<meta property="og:image" content="https://inematds.github.io/rtexjp/capa/capa.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎬%3C/text%3E%3C/svg%3E">
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/rtexjp/guia/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/rtexjp/guia/en/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/rtexjp/guia/es/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* Purple/lilac palette: rtexjp project exception (inema-design DECISOES.md, D18). Structure = INEMA standard. */
+  :root{
+    --bg:#07061a; --bg2:#0e0c24; --card:#13102c; --line:#272347;
+    --txt:#ecebf5; --mut:#a29fbb; --amb:#9974f8; --amb2:#b9a1f5; --amb-ink:#12092b; --amb-rgb:153,116,248;
+    --hot:#f59f0c; --sky:#38bdf8; --pro:#cbd5e1; --navbg:rgba(7,6,26,.8);
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f5fb; --bg2:#ecebf4; --card:#ffffff; --line:#e0deec;
+    --txt:#1b1930; --mut:#5c5974; --amb:#5b3fc7; --amb2:#4c35a8; --amb-ink:#ffffff; --amb-rgb:91,63,199;
+    --hot:#b45309; --sky:#0369a1; --pro:#b45309; --navbg:rgba(246,245,251,.85);
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0c1e;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  body.light pre .k{color:#b9a1f5}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)} .hot{color:var(--hot)}
+  .chip{display:inline-block;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:var(--navbg);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:rgba(var(--amb-rgb),.14)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:var(--amb-ink);font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:760px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(var(--amb-rgb),.26),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:40ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0 auto;max-width:300px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(var(--amb-rgb),.16);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0918;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#77738f} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:26px}
+  .step>div,.card{min-width:0}
+  p code,li code,td code{overflow-wrap:anywhere}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:var(--amb-ink);font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .who{display:inline-block;font-size:.75rem;font-family:Sora;font-weight:600;letter-spacing:.06em;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:.1em .6em;margin-left:.5em;vertical-align:middle}
+  .ex{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:880px){.ex{grid-template-columns:repeat(2,1fr)}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;height:auto;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .video{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);gap:36px;align-items:start}
+  @media(max-width:780px){.video{grid-template-columns:1fr}}
+  .yt{position:relative;width:100%;max-width:360px;aspect-ratio:9/16;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#000;margin:0 auto}
+  .yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .qa{width:100%;border-collapse:collapse;font-size:.92rem}
+  .qa td{padding:.45em .3em;border-bottom:1px solid var(--line)} .qa td:last-child{text-align:right;font-family:"JetBrains Mono",monospace;color:var(--amb2)}
+  body.light .qa td:last-child{color:var(--amb)}
+  .wide{margin:0 0 26px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .wide img{width:100%;height:auto;display:block}
+  ol.esq{margin:0;padding-left:1.3em} ol.esq li{margin:.35em 0;color:var(--mut)} ol.esq li b{color:var(--txt)}
+  .note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--hot);border-radius:12px;padding:14px 16px;font-size:.95rem;color:var(--mut)}
+  .note b{color:var(--txt)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:4px}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top"><span class="emoji">🎬</span> rtexjp</a>
+  <span class="sep">|</span>
+  <span class="clubpro">
+    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <span class="sep">-</span>
+    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  </span>
+  <div class="links">
+    <a class="sec" href="#oque">What it is</a>
+    <a class="sec" href="#fluxo">How it works</a>
+    <a class="sec" href="#guia">User guide</a>
+    <a class="sec" href="#exemplos">Example</a>
+    <span class="lang"><a href="../">PT</a><a class="on" href="./">EN</a><a href="../es/">ES</a></span>
+    <button class="tgl" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">🌙</button>
+    <a class="btn" href="https://github.com/inematds/rtexjp" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<main>
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="chip">Reel engine · v1.0.0 · local and free</span>
+      <h1>From script to an <span class="amb">illustrated</span> reel, for free</h1>
+      <p class="lead">Write a <code>roteiro.json</code>; rtexjp returns a 1080×1920 vertical reel with an illustrated avatar of Nei, a robot mascot, Nei’s voice, and one simple prompt: "comment <span class="hot">WORD</span>".</p>
+      <div class="cta">
+        <a class="btn" href="#guia">Start the guide</a>
+        <a class="btn ghost" href="#exemplos">Watch the example video</a>
+      </div>
+    </div>
+    <figure><img src="../assets/q-02.jpg" width="540" height="960" alt="Frame 0 of the example reel: the thesis in uppercase, &quot;5 AI things almost nobody saw&quot;, with five question-mark cards, Nei’s avatar, and the robot mascot"></figure>
+  </div>
+</header>
+
+<section id="resumo" class="resumo"><div class="wrap">
+  <span class="chip">In brief</span>
+  <p>rtexjp is an engine that assembles illustrated short vertical videos (reels) in purple, from a script written in a text file (<code>roteiro.json</code>). It’s the engine Nei uses for INEMA reels, open to anyone who wants to study or adapt it: no need to record yourself or pay for an avatar service. It generates the voice, draws each scene frame by frame, mixes the soundtrack, and automatically checks that the video follows the format. You need a computer with a graphics card (GPU), Python, Node, ffmpeg, and two local servers: one for voice (inemavox) and one for images (flux2-klein).</p>
+  <p class="mut" style="font-size:.98rem">It comes configured with Nei’s voice and avatar. To use your own, replace the voice reference recording (path in <code>VOZ_REF</code>, near the top of <code>rtexjp.py</code>) and the avatar reference photo (path in <code>REF</code>, in <code>motor/gerar_avatar.py</code>), then generate the poses again. These two files are not included in the repository.</p>
+</div></section>
+
+<section id="oque"><div class="wrap">
+  <span class="chip">What it is</span>
+  <h2>A fixed format, checked by a validator</h2>
+  <p class="sub">Every reel follows the same structure: thesis in frame 0, proof with a source, numbered items, an honest caveat, a maxim, and the comment prompt. The engine draws; the validator reports if anything falls outside the format.</p>
+  <figure class="wide"><img src="../assets/triptico.jpg" width="760" height="570" loading="lazy" alt="Three frames from the example reel side by side: the thesis, the phrase &quot;It’s not the model&quot;, and the final card &quot;Comment SETUP and I’ll send it&quot;"></figure>
+  <div class="grid g3">
+    <div class="card"><h3>🎨 Illustrated, no lip sync</h3><p>Nei’s illustrated avatar in six poses (arms crossed, hand on chin, pointing, holding, surprised, showing) and a robot mascot. No one needs to record anything.</p></div>
+    <div class="card"><h3>🎙️ Nei’s voice, local</h3><p>Voice generated with local TTS (inemavox chatterbox), 160–190 words per minute, with local Whisper marking the time of each word for captions and scene triggers.</p></div>
+    <div class="card"><h3>✅ Automatic QA</h3><p>Measures duration, speech pace, volume (−14 LUFS), visual changes per minute, hook word, final card, and silence before the maxim. Produces a <code>qa.md</code> and a <code>contact.jpg</code>.</p></div>
+  </div>
+</div></section>
+
+<section id="formato"><div class="wrap">
+  <span class="chip">The format</span>
+  <h2>The nine rules of the rtexjp standard</h2>
+  <p class="sub">These are the rules the <code>checar</code> command and QA enforce in every edit.</p>
+  <div class="grid g2">
+    <div class="card"><ol class="esq">
+      <li><b>Thesis written in frame 0</b>, in uppercase, with one word in lilac. It serves as the cover for people scrolling with the sound off.</li>
+      <li><b>Proof with a number on screen</b>: a counter lands on the number and the source appears below.</li>
+      <li><b>The hook word is the thesis</b> and is introduced early, always in the video’s only warm color (<span class="hot">orange</span>).</li>
+      <li><b>“N items” with a visible index</b> (01…05) and a pill bar at the top throughout the items.</li>
+      <li><b>One item at a time, one object per sentence</b>: the scene’s object changes every 2–3 s.</li>
+    </ol></div>
+    <div class="card"><ol class="esq" start="6">
+      <li><b>Every number has a written source</b> on screen (<code>fonte: …</code>).</li>
+      <li><b>An honestly spoken caveat</b>, on a warning card (red = problem, green = correct).</li>
+      <li><b>A maxim in antithesis</b>, after 0.8 s of real silence (voice and soundtrack stop).</li>
+      <li><b>“comment WORD”</b>: the comment box types the word, clicks Publish, and confirms. The card stays for ~9–10 s, with no sign-off.</li>
+    </ol></div>
+  </div>
+  <h3 style="margin:34px 0 12px">Quick glossary</h3>
+  <div class="grid g3">
+    <div class="card"><h3>Hook word</h3><p>The word the video asks viewers to comment (here, SETUP). It is the thesis itself, appears early, and is the only thing in orange.</p></div>
+    <div class="card"><h3>Maxim</h3><p>The summary line at the end, in antithesis (“Everyone has the model. Almost no one has the setup.”). It comes after a short silence.</p></div>
+    <div class="card"><h3>Stage</h3><p>The <code>motor/palco.html</code> page that draws each scene. The renderer takes a snapshot of it for each frame.</p></div>
+    <div class="card"><h3>Music bed</h3><p>Quiet soundtrack beneath the voice, which lowers when the voice speaks and stops during the silence before the maxim.</p></div>
+    <div class="card"><h3>LUFS</h3><p>A measure of perceived loudness. −14 LUFS is the volume social networks use as their standard.</p></div>
+    <div class="card"><h3>CTA</h3><p>“Call to action”: the video’s final prompt. Here there is always just one: “comment WORD”.</p></div>
+    <div class="card"><h3>TTS and lip sync</h3><p>TTS is a voice generated from text. Lip sync is the mouth moving along with the speech; rtexjp doesn’t do that—the avatar only changes poses.</p></div>
+    <div class="card"><h3>Whisper and Playwright</h3><p>Whisper transcribes the voice and timestamps each word. Playwright opens the stage in a headless browser and takes a snapshot of each frame.</p></div>
+    <div class="card"><h3>Typographic flash</h3><p>A quick screen with only large text between items, so the video doesn’t feel static.</p></div>
+  </div>
+</div></section>
+
+<section id="fluxo"><div class="wrap">
+  <span class="chip">How it works</span>
+  <h2>Six steps, one command each</h2>
+  <p class="sub"><code>rtexjp.py</code> runs the steps in order. The stage is an HTML page drawn by <code>window.render(t)</code>: the same <code>build/cena.json</code> always produces the same video. The voice does not: TTS output varies a little each time (so the <code>voz</code> step lets you redo just a few blocks).</p>
+  <div class="flow">
+    <span>roteiro.json</span><span class="arr">→</span>
+    <span>checar</span><span class="arr">→</span>
+    <span>voice + Whisper</span><span class="arr">→</span>
+    <span>scene</span><span class="arr">→</span>
+    <span>render (Playwright, 30 fps)</span><span class="arr">→</span>
+    <span>mix (−14 LUFS)</span><span class="arr">→</span>
+    <span>QA</span><span class="arr">→</span>
+    <span>final.mp4</span>
+  </div>
+  <div class="grid g3" style="margin-top:26px">
+    <div class="card"><span class="num">1</span><h3>Script and validation</h3><p><code>checar</code> checks the block order by the <code>tipo</code> field (<code>tese</code> → <code>autoridade</code> → <code>tese</code> → <code>virada</code> → <code>metodo</code> ×2–5 → <code>ressalva</code> → <code>maxima</code> → <code>cta</code>), the number of items, and the hook word.</p></div>
+    <div class="card"><span class="num">2</span><h3>Voice and scene</h3><p><code>voz</code> generates one audio file per block, speeds it up to 1.15×, and joins them; <code>cena</code> combines the script with each word’s timing.</p></div>
+    <div class="card"><span class="num">3</span><h3>Render, mix, and QA</h3><p><code>render</code> captures the stage frame by frame; <code>mix</code> adds the soundtrack (which stops during the silence before the maxim); <code>qa</code> measures everything.</p></div>
+  </div>
+</div></section>
+
+<section id="pre"><div class="wrap">
+  <span class="chip">Prerequisites</span>
+  <h2>What needs to be on your machine</h2>
+  <p class="sub">Everything runs locally. No paid APIs are called. The paths below are hard-coded; if your machine differs, adjust them in the files mentioned.</p>
+  <div class="grid g3">
+    <div class="card"><h3>Voice: inemavox + chatterbox environment</h3><p>Clone the <a href="https://github.com/inematds/inemavox" target="_blank" rel="noopener">inematds/inemavox</a> project into <code>~/projetos/inemavox</code> (the engine calls its <code>tts_direct.py</code> and <code>whisper_daemon.py</code>). Chatterbox TTS and Whisper large-v3 run in a separate Python environment (Nei uses the <code>chatterbox</code> conda env in <code>~/miniconda3/envs/chatterbox</code>); if yours is elsewhere, set the variables below. Whisper large-v3 uses about 10 GB of video memory (NVIDIA GPU), plus chatterbox. Tested on Linux.</p><pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/inemavox</span> ~/projetos/inemavox
+<span class="c"># install chatterbox and faster-whisper in a dedicated environment (see the inemavox README)</span>
+<span class="k">export</span> CHATTERBOX_PYTHON=<span class="s">/caminho/do/env/bin/python3</span>   <span class="c"># TTS</span>
+<span class="k">export</span> CS_WHISPER_PY=<span class="s">/caminho/do/env/bin/python3</span>       <span class="c"># Whisper</span>
+<span class="k">export</span> CS_INEMAVOX=<span class="s">~/projetos/inemavox</span>                <span class="c"># if cloned elsewhere</span></pre></div>
+    <div class="card"><h3>Images: flux2-klein</h3><p>The <a href="https://github.com/inematds/inemaimg" target="_blank" rel="noopener">inematds/inemaimg</a> server running at <code>http://localhost:8000</code> with the flux2-klein model, plus the avatar reference photo (<code>REF</code> in <code>motor/gerar_avatar.py</code>). Only needed for optional steps 4 and 5 (poses and scene images); Nei’s six poses are already included.</p></div>
+    <div class="card"><h3>Node, ffmpeg, Python</h3><p>Node 18 or newer, ffmpeg (with ffprobe, which comes with it), and Python 3 with Pillow and numpy.</p><pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/rtexjp</span>
+<span class="k">cd</span> rtexjp
+<span class="k">npm i</span>
+<span class="k">npx playwright install</span> chromium
+<span class="k">pip install --user</span> pillow numpy   <span class="c"># or inside a venv</span></pre></div>
+  </div>
+</div></section>
+
+<section id="guia"><div class="wrap">
+  <span class="chip">User guide · step by step</span>
+  <h2>From script to final.mp4</h2>
+  <p class="sub">Each edit lives in <code>edicoes/&lt;id&gt;/</code>. Steps 3 and 6 through 9 can also run all at once with the <code>tudo</code> shortcut (step 10).</p>
+
+  <div class="step"><div class="b">1</div><div>
+    <h3>Set your voice reference <span class="who">you</span></h3>
+    <p>The voice step clones a short recording. In the code, it points to Nei’s recording, which is not included in the repository; without changing it, the <code>voz</code> step fails. Record about 10 to 20 seconds of clean speech in WAV format, and change the <code>VOZ_REF</code> path near the top of <code>rtexjp.py</code>. If you’re changing the avatar too, replace <code>REF</code> in <code>motor/gerar_avatar.py</code> with a photo of yourself and run step 4.</p>
+<pre><span class="k">grep -n</span> VOZ_REF rtexjp.py          <span class="c"># line to change</span>
+<span class="k">grep -n</span> <span class="s">"^REF"</span> motor/gerar_avatar.py   <span class="c"># only if changing the avatar</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">2</div><div>
+    <h3>Write the script <span class="who">you</span></h3>
+    <p>Copy the example script and replace its content. The format is summarized just below the guide in <a href="#roteiro">“The roteiro.json file”</a>.</p>
+<pre><span class="k">mkdir -p</span> edicoes/minha-edicao
+<span class="k">cp</span> edicoes/2026-10-28-5-coisas/roteiro.json edicoes/minha-edicao/   <span class="c"># edit it afterward</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">3</div><div>
+    <h3>Validate the format rules</h3>
+    <p>No taste involved, just rules. It rejects: incorrect block order, fewer than 2 or more than 5 items, an index that does not match the number of items, digits or exclamation marks in speech (spell out numbers), a <code>fonte</code> that does not exist in <code>fontes</code>, a word in <code>destaque_fala</code> or a trigger that is not in the speech, an on-screen number without a source, a hook missing from the CTA or not introduced earlier, a hook with an accent or lowercase letters, or silence before the maxim outside 0.5–0.9 s.</p>
+<pre><span class="k">python3 rtexjp.py checar</span> edicoes/minha-edicao</pre>
+  </div></div>
+
+  <div class="step"><div class="b">4</div><div>
+    <h3>Avatar poses <span class="who">optional</span></h3>
+    <p>Nei’s six poses are already in <code>motor/avatar/</code>. Run this only if you replaced the reference photo (<code>REF</code>) with a photo of another character.</p>
+<pre><span class="k">python3 motor/gerar_avatar.py</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">5</div><div>
+    <h3>Scene images <span class="who">optional</span></h3>
+    <p>An image using local flux2-klein (default size 1152×784). Today, only the stage’s <code>carro</code> component uses an image (<code>motor/assets/carro.png</code>); a new image needs a component that loads it in <code>motor/palco.html</code>.</p>
+<pre><span class="k">python3 motor/gerar_imagem.py</span> motor/assets/x.png <span class="s">"&lt;prompt&gt;"</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">6</div><div>
+    <h3>Voice for each block + timing for every word</h3>
+    <p>One audio file per block in Nei’s voice; Whisper marks each word in <code>build/tempos.json</code>. Pass block names to redo only those. If Whisper fails, the log is at <code>~/.cache/whisper_daemon.log</code>.</p>
+<pre><span class="k">python3 rtexjp.py voz</span> edicoes/minha-edicao            <span class="c"># all blocks</span>
+<span class="k">python3 rtexjp.py voz</span> edicoes/minha-edicao p2 ressalva  <span class="c"># only these</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">7</div><div>
+    <h3>Build the scene and inspect individual frames</h3>
+    <p><code>cena</code> writes <code>build/cena.json</code>. Before the full render, capture a few frames (in seconds) to inspect.</p>
+<pre><span class="k">python3 rtexjp.py cena</span> edicoes/minha-edicao
+<span class="k">node motor/render.mjs</span> edicoes/minha-edicao/build --quadros 0,10,20   <span class="c"># -> edicoes/minha-edicao/quadros/</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">8</div><div>
+    <h3>Render at 1080×1920, 30 fps</h3>
+    <p>Playwright captures the stage frame by frame, and ffmpeg combines them into <code>build/video.mp4</code> (no audio).</p>
+<pre><span class="k">python3 rtexjp.py render</span> edicoes/minha-edicao</pre>
+  </div></div>
+
+  <div class="step"><div class="b">9</div><div>
+    <h3>Mix and QA</h3>
+    <p>Voice + quiet soundtrack (which stops during the silence before the maxim), final volume at −14 LUFS; then QA writes <code>qa.md</code>, <code>build/qa.json</code>, and <code>contact.jpg</code>. Any failed criterion appears with ❌ in <code>qa.md</code>, and the command ends with a Python error (<code>CalledProcessError</code>): this means QA failed, not that there is a bug.</p>
+<pre><span class="k">python3 rtexjp.py mix</span> edicoes/minha-edicao   <span class="c"># -> final.mp4</span>
+<span class="k">python3 rtexjp.py qa</span>  edicoes/minha-edicao   <span class="c"># -> qa.md, contact.jpg</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">10</div><div>
+    <h3>Or run everything at once</h3>
+    <p>Runs checar → voz → cena → render → mix → qa. Stops if <code>checar</code> fails.</p>
+<pre><span class="k">python3 rtexjp.py tudo</span> edicoes/minha-edicao</pre>
+  </div></div>
+
+  <div class="step"><div class="b">11</div><div>
+    <h3>Review before publishing <span class="who">you</span></h3>
+    <p>Open <code>contact.jpg</code> and watch the video. The CTA promises something to anyone who comments: that material needs to exist before the video goes live. Publication is outside this repository.</p>
+  </div></div>
+</div></section>
+
+<section id="roteiro"><div class="wrap">
+  <span class="chip">The roteiro.json file</span>
+  <h2>The script format, at a glance</h2>
+  <p class="sub">An object with <code>id</code>, <code>versao</code>, <code>titulo</code>, <code>isca</code>, <code>fontes</code>, and the <code>blocos</code> list. A shortened excerpt from the real example:</p>
+<pre>{
+  <span class="s">"id"</span>: <span class="s">"2026-10-28-5-coisas"</span>, <span class="s">"versao"</span>: <span class="s">"rtexjp/1"</span>,
+  <span class="s">"isca"</span>: { <span class="s">"palavra"</span>: <span class="s">"SETUP"</span>, <span class="s">"entregavel"</span>: <span class="s">"os 5 links e os comandos..."</span> },
+  <span class="s">"fontes"</span>: [ { <span class="s">"id"</span>: <span class="s">"ecc"</span>, <span class="s">"valor"</span>: <span class="s">"291 mil estrelas"</span>, <span class="s">"linha"</span>: <span class="s">"github.com/affaan-m/ECC · 28/10/2026"</span> } ],
+  <span class="s">"blocos"</span>: [
+    { <span class="s">"id"</span>: <span class="s">"tese"</span>, <span class="s">"tipo"</span>: <span class="s">"tese"</span>,
+      <span class="s">"fala"</span>: <span class="s">"Cinco coisas de IA saíram este mês, e quase ninguém percebeu."</span>,
+      <span class="s">"tela"</span>: { <span class="s">"texto"</span>: <span class="s">"5 COISAS DE IA QUE QUASE NINGUÉM VIU"</span>, <span class="s">"destaque"</span>: <span class="s">"NINGUÉM"</span> },
+      <span class="s">"cena"</span>: { <span class="s">"comp"</span>: <span class="s">"titulo"</span> }, <span class="s">"pose"</span>: <span class="s">"queixo"</span>, <span class="s">"destaque_fala"</span>: [<span class="s">"cinco"</span>, <span class="s">"ninguém"</span>] },
+    <span class="c">// ... authority, thesis, turn, method ×5, caveat ...</span>
+    { <span class="s">"id"</span>: <span class="s">"maxima"</span>, <span class="s">"tipo"</span>: <span class="s">"maxima"</span>, <span class="s">"silencio_antes_s"</span>: 0.8, <span class="s">"cena"</span>: { <span class="s">"comp"</span>: <span class="s">"flash"</span> },
+      <span class="s">"fala"</span>: <span class="s">"O modelo, todo mundo tem. O setup, quase ninguém."</span> },
+    { <span class="s">"id"</span>: <span class="s">"cta"</span>, <span class="s">"tipo"</span>: <span class="s">"cta"</span>, <span class="s">"hold_s"</span>: 6, <span class="s">"cena"</span>: { <span class="s">"comp"</span>: <span class="s">"cta"</span> }, 
+      <span class="s">"fala"</span>: <span class="s">"Comenta SETUP que eu te mando os cinco links e os comandos."</span> }
+  ]
+}</pre>
+  <div class="grid g2" style="margin-top:18px">
+    <div class="card"><h3>Fields in each block</h3><p><code>tipo</code> (order shown above) · <code>fala</code> (spelled out, no digits) · <code>fala_tts</code> (optional, spelling for correct TTS pronunciation) · <code>tela</code> (large text and highlighted word) · <code>cena.comp</code> + <code>cena.params</code> (what the stage draws; <code>params.gatilhos</code> links a scene change to a spoken word) · avatar <code>pose</code> · <code>destaque_fala</code> (colored words in the captions) · <code>fonte</code> (id in <code>fontes</code>) · <code>rotulo</code> and <code>n</code> (item number).</p></div>
+    <div class="card"><h3>Stage components (<code>cena.comp</code>)</h3><p><code>titulo</code>, <code>contador</code>, <code>frase</code>, <code>indice</code>, <code>pasta</code>, <code>repo</code>, <code>carro</code>, <code>mapa</code>, <code>equipe</code>, <code>ressalva</code>, <code>flash</code>, <code>cta</code>. The robot mascot is drawn by the stage itself, next to the avatar, and reacts to the scene (question mark, alert, check mark). Poses: <code>bracos</code>, <code>queixo</code>, <code>apontando</code>, <code>segurando</code>, <code>surpreso</code>, <code>mostrando</code>. The parameters for each component are in the example <code>edicoes/2026-10-28-5-coisas/roteiro.json</code>.</p></div>
+  </div>
+</div></section>
+
+<section id="exemplos"><div class="wrap">
+  <span class="chip">Real example</span>
+  <h2>"5 AI things this month that almost nobody noticed"</h2>
+  <p class="sub">The first edition, made entirely with the engine and published on the INEMA Futuros channel. Hook: <span class="hot">SETUP</span>. Files in <code>edicoes/2026-10-28-5-coisas/</code>.</p>
+  <div class="video">
+    <div class="yt"><iframe src="https://www.youtube-nocookie.com/embed/AZEZK1YgF98" title="rtexjp example reel on YouTube" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+    <div>
+      <h3 style="margin-bottom:.6em">What QA measured</h3>
+      <table class="qa">
+        <tr><td>Duration</td><td>87,5 s</td></tr>
+        <tr><td>Resolution</td><td>1080×1920 · 30 fps</td></tr>
+        <tr><td>Speech pace</td><td>164 words/min</td></tr>
+        <tr><td>Volume</td><td>−14,0 LUFS</td></tr>
+        <tr><td>Visual changes</td><td>18,5 per minute</td></tr>
+        <tr><td>Hook appears before the CTA</td><td>68,5 s before</td></tr>
+        <tr><td>Silence before the maxim</td><td>0,83 s</td></tr>
+        <tr><td>Final card</td><td>9,9 s</td></tr>
+      </table>
+      <p class="mut" style="margin-top:1em"><a href="https://www.youtube.com/watch?v=AZEZK1YgF98" target="_blank" rel="noopener">Open on YouTube</a></p>
+    </div>
+  </div>
+
+  <h3 style="margin:46px 0 16px">Frame by frame</h3>
+  <div class="ex">
+    <figure><img src="../assets/q-07.jpg" width="540" height="960" loading="lazy" alt="A GitHub star counter landing on 291 thousand, with the source written below"><figcaption>Proof: the counter lands on the number, with the source below.</figcaption></figure>
+    <figure><img src="../assets/q-12.jpg" width="540" height="960" loading="lazy" alt="The phrase &quot;It’s not the model. It’s the setup.&quot; with SETUP in orange"><figcaption>The hook introduced early, in the only warm color.</figcaption></figure>
+    <figure><img src="../assets/q-22.jpg" width="540" height="960" loading="lazy" alt="Item 01: a robot and a folder with three items: process, what worked, and checklist"><figcaption>Item 01, with the 01–05 pill bar at the top.</figcaption></figure>
+    <figure><img src="../assets/q-37.jpg" width="540" height="960" loading="lazy" alt="Item 03: an illustration of a red sports car jumping off a ramp"><figcaption>Item 03: a scene image generated locally with flux2-klein.</figcaption></figure>
+    <figure><img src="../assets/q-42.jpg" width="540" height="960" loading="lazy" alt="Typographic flash reading &quot;Less than a second&quot;, with the source in small print"><figcaption>Typographic flash between items to keep up the pace.</figcaption></figure>
+    <figure><img src="../assets/q-70.jpg" width="540" height="960" loading="lazy" alt="Warning card reading &quot;Before installing&quot; with two items marked in red"><figcaption>The honest caveat on a warning card.</figcaption></figure>
+    <figure><img src="../assets/q-75.jpg" width="540" height="960" loading="lazy" alt="Maxim in large letters: &quot;Everyone has the model.&quot;"><figcaption>The maxim, after 0.8 s of silence.</figcaption></figure>
+    <figure><img src="../assets/q-82.jpg" width="540" height="960" loading="lazy" alt="Final card reading &quot;Comment SETUP and I’ll send it&quot;, with the comment box typing SETUP and the Publish button"><figcaption>The CTA: the box types the word and publishes it.</figcaption></figure>
+  </div>
+
+  <h3 style="margin:46px 0 16px">The contact sheet generated by QA</h3>
+  <figure class="wide" style="max-width:760px"><img src="../assets/contact.jpg" width="760" height="1150" loading="lazy" alt="Contact sheet of the example reel: one frame every 2.5 seconds, from frame 0 to the final card"></figure>
+</div></section>
+
+<section id="estado"><div class="wrap">
+  <span class="chip">Status</span>
+  <h2>Where the project stands</h2>
+  <p class="sub">What currently exists in the repository.</p>
+  <div class="phase"><div class="tag">v1.0.0</div><div class="d"><strong>Complete engine</strong><span>Pipeline: checar · voz · cena · render · mix · qa; stage with scene components, six avatar poses, and automatic QA.</span></div></div>
+  <div class="phase"><div class="tag">1st edition</div><div class="d"><strong>"5 AI things" published</strong><span>87,5 s, passed every QA criterion.</span></div></div>
+  <div class="note" style="margin-top:18px"><b>Rule before publishing:</b> whatever the CTA promises (links, commands, material) must be available on inema.club before the video goes live.</div>
+</div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="pill">Python</div><div class="pill">Playwright</div><div class="pill">ffmpeg</div><div class="pill">inemavox chatterbox</div><div class="pill">Whisper large-v3</div><div class="pill">flux2-klein</div>
+    <p style="margin-top:18px">rtexjp · illustrated 9:16 reel engine ·
+      <a href="https://github.com/inematds/rtexjp">inematds/rtexjp</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='rtexjp-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    try{ if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; } }catch(e){}
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      try{ localStorage.setItem(KEY, light?'light':'dark'); }catch(e){}
+    });
+  })();
+</script>
+</body>
+</html>

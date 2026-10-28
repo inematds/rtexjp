@@ -227,7 +227,7 @@
     <span>final.mp4</span>
   </div>
   <div class="grid g3" style="margin-top:26px">
-    <div class="card"><span class="num">1</span><h3>Roteiro e validação</h3><p><code>checar</code> confere a ordem dos blocos pelo campo <code>tipo</code> (<code>tese</code> → <code>autoridade</code> → <code>tese</code> → <code>virada</code> → <code>metodo</code> ×2–5 → <code>ressalva</code> → <code>maxima</code> → <code>cta</code>), o número de peças e a isca.</p></div>
+    <div class="card"><span class="num">1</span><h3>Roteiro e validação</h3><p><code>checar</code> confere o esqueleto pelo campo <code>tipo</code>: começa em <code>tese</code>, <code>virada</code> antes do primeiro <code>metodo</code> (2–5 peças), <code>ressalva</code> antes da <code>maxima</code>, <code>maxima</code> logo antes do <code>cta</code> no fim. O exemplo usa <code>tese</code> → <code>autoridade</code> → <code>tese</code> → <code>virada</code> → <code>metodo</code> ×5 → <code>ressalva</code> → <code>maxima</code> → <code>cta</code>.</p></div>
     <div class="card"><span class="num">2</span><h3>Voz e cena</h3><p><code>voz</code> gera um áudio por bloco, acelera até 1,15× e junta; <code>cena</code> cruza o roteiro com o tempo de cada palavra.</p></div>
     <div class="card"><span class="num">3</span><h3>Render, mix e QA</h3><p><code>render</code> fotografa o palco quadro a quadro; <code>mix</code> põe a trilha (que para no silêncio da máxima); <code>qa</code> mede tudo.</p></div>
   </div>
@@ -238,11 +238,13 @@
   <h2>O que precisa estar na máquina</h2>
   <p class="sub">Tudo roda localmente. Nenhuma API paga é chamada. Os caminhos abaixo estão fixos no código; se a sua máquina for diferente, ajuste-os nos arquivos citados.</p>
   <div class="grid g3">
-    <div class="card"><h3>Voz: inemavox + ambiente chatterbox</h3><p>O projeto <a href="https://github.com/inematds/inemavox" target="_blank" rel="noopener">inematds/inemavox</a> clonado em <code>~/projetos/inemavox</code> (o motor chama o <code>tts_direct.py</code> e o <code>whisper_daemon.py</code> dele). O TTS chatterbox e o Whisper large-v3 rodam num ambiente Python à parte (no Nei, o conda env <code>chatterbox</code> em <code>~/miniconda3/envs/chatterbox</code>); se o seu estiver em outro lugar, aponte as variáveis abaixo. O Whisper large-v3 ocupa cerca de 10 GB na placa de vídeo (GPU NVIDIA), mais o chatterbox. Testado em Linux.</p><pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/inemavox</span> ~/projetos/inemavox
-<span class="c"># instale o chatterbox e o faster-whisper num ambiente próprio (ver o README do inemavox)</span>
+    <div class="card"><h3>Voz: inemavox + ambiente chatterbox</h3><p>O projeto <a href="https://github.com/inematds/inemavox" target="_blank" rel="noopener">inematds/inemavox</a> clonado em <code>~/projetos/inemavox</code> (o motor chama o <code>tts_direct.py</code> e o <code>whisper_daemon.py</code> dele). O TTS chatterbox e o Whisper large-v3 rodam num ambiente Python à parte (no Nei, o conda env <code>chatterbox</code> em <code>~/miniconda3/envs/chatterbox</code>); se o seu estiver em outro lugar, aponte as variáveis abaixo. O caminho <code>~/projetos/inemavox</code> é fixo no <code>rtexjp.py</code> (<code>INEMAVOX</code>): clone exatamente ali ou troque essa linha. O Whisper large-v3 ocupa cerca de 10 GB na placa de vídeo (GPU NVIDIA), mais o chatterbox. Testado em Linux.</p><pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/inemavox</span> ~/projetos/inemavox
+<span class="k">cd</span> ~/projetos/inemavox && <span class="k">python3 -m venv</span> venv
+<span class="k">./venv/bin/pip install</span> -r requirements.txt   <span class="c"># o rtexjp chama venv/bin/python tts_direct.py</span>
+<span class="c"># chatterbox + faster-whisper num ambiente próprio (ver o README do inemavox)</span>
 <span class="k">export</span> CHATTERBOX_PYTHON=<span class="s">/caminho/do/env/bin/python3</span>   <span class="c"># TTS</span>
 <span class="k">export</span> CS_WHISPER_PY=<span class="s">/caminho/do/env/bin/python3</span>       <span class="c"># Whisper</span>
-<span class="k">export</span> CS_INEMAVOX=<span class="s">~/projetos/inemavox</span>                <span class="c"># se clonou em outro lugar</span></pre></div>
+</pre></div>
     <div class="card"><h3>Imagem: flux2-klein</h3><p>O servidor <a href="https://github.com/inematds/inemaimg" target="_blank" rel="noopener">inematds/inemaimg</a> rodando em <code>http://localhost:8000</code> com o modelo flux2-klein, mais a foto de referência do avatar (<code>REF</code> no <code>motor/gerar_avatar.py</code>). Só é preciso nos passos opcionais 4 e 5 (poses e imagens de cena); as seis poses do Nei já vêm prontas.</p></div>
     <div class="card"><h3>Node, ffmpeg, Python</h3><p>Node 18 ou mais novo, ffmpeg (com o ffprobe, que vem junto) e Python 3 com Pillow e numpy.</p><pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/rtexjp</span>
 <span class="k">cd</span> rtexjp
@@ -255,7 +257,7 @@
 <section id="guia"><div class="wrap">
   <span class="chip">Guia de uso · passo a passo</span>
   <h2>Do roteiro ao final.mp4</h2>
-  <p class="sub">Cada edição mora em <code>edicoes/&lt;id&gt;/</code>. Os passos 3 e 6 a 9 também saem de uma vez com o atalho <code>tudo</code> (passo 10).</p>
+  <p class="sub">Cada edição mora em <code>edicoes/&lt;id&gt;/</code>. O atalho <code>tudo</code> (passo 10) roda de uma vez checar, voz, cena, render, mix e qa (sem a prévia de quadros do passo 7).</p>
 
   <div class="step"><div class="b">1</div><div>
     <h3>Aponte a sua voz de referência <span class="who">você</span></h3>
@@ -331,7 +333,7 @@
 <section id="roteiro"><div class="wrap">
   <span class="chip">O roteiro.json</span>
   <h2>O formato do roteiro, em uma tela</h2>
-  <p class="sub">Um objeto com <code>id</code>, <code>versao</code>, <code>titulo</code>, <code>isca</code>, <code>fontes</code> e a lista <code>blocos</code>. Trecho real do exemplo, encurtado:</p>
+  <p class="sub">Um objeto com <code>id</code>, <code>versao</code>, <code>titulo</code>, <code>isca</code>, <code>fontes</code> e a lista <code>blocos</code>. Trecho real do exemplo, encurtado (as linhas <code>//</code> não são JSON válido; o arquivo completo está em <code>edicoes/2026-10-28-5-coisas/roteiro.json</code>):</p>
 <pre>{
   <span class="s">"id"</span>: <span class="s">"2026-10-28-5-coisas"</span>, <span class="s">"versao"</span>: <span class="s">"rtexjp/1"</span>,
   <span class="s">"isca"</span>: { <span class="s">"palavra"</span>: <span class="s">"SETUP"</span>, <span class="s">"entregavel"</span>: <span class="s">"os 5 links e os comandos..."</span> },
@@ -349,7 +351,7 @@
   ]
 }</pre>
   <div class="grid g2" style="margin-top:18px">
-    <div class="card"><h3>Campos de cada bloco</h3><p><code>tipo</code> (ordem acima) · <code>fala</code> (por extenso, sem algarismo) · <code>fala_tts</code> (opcional, grafia para o TTS pronunciar certo) · <code>tela</code> (texto grande e a palavra em destaque) · <code>cena.comp</code> + <code>cena.params</code> (o que o palco desenha; <code>params.gatilhos</code> liga uma mudança de cena a uma palavra da fala) · <code>pose</code> do avatar · <code>destaque_fala</code> (palavras coloridas na legenda) · <code>fonte</code> (id em <code>fontes</code>) · <code>rotulo</code> e <code>n</code> (número da peça).</p></div>
+    <div class="card"><h3>Campos de cada bloco</h3><p><code>tipo</code> (ordem acima) · <code>fala</code> (por extenso, sem algarismo) · <code>fala_tts</code> (opcional, grafia para o TTS pronunciar certo) · <code>tela</code> (texto grande e a palavra em destaque) · <code>cena.comp</code> + <code>cena.params</code> (o que o palco desenha; <code>params.gatilhos</code> liga uma mudança de cena a uma palavra da fala) · <code>pose</code> do avatar · <code>destaque_fala</code> (palavras coloridas na legenda) · <code>fonte</code> (id em <code>fontes</code>) · <code>rotulo</code> e <code>n</code> (número da peça). Só na <code>maxima</code>: <code>silencio_antes_s</code> (0,5–0,9). Só no <code>cta</code>: <code>hold_s</code>, quanto o cartão fica depois da última palavra (5–9 s; com a fala, o cartão inteiro dá ~8–10 s).</p></div>
     <div class="card"><h3>Componentes do palco (<code>cena.comp</code>)</h3><p><code>titulo</code>, <code>contador</code>, <code>frase</code>, <code>indice</code>, <code>pasta</code>, <code>repo</code>, <code>carro</code>, <code>mapa</code>, <code>equipe</code>, <code>ressalva</code>, <code>flash</code>, <code>cta</code>. O mascote robô é desenhado pelo próprio palco, ao lado do avatar, e reage à cena (interrogação, alerta, visto). Poses: <code>bracos</code>, <code>queixo</code>, <code>apontando</code>, <code>segurando</code>, <code>surpreso</code>, <code>mostrando</code>. Os parâmetros de cada componente estão no exemplo <code>edicoes/2026-10-28-5-coisas/roteiro.json</code>.</p></div>
   </div>
 </div></section>
@@ -357,7 +359,7 @@
 <section id="exemplos"><div class="wrap">
   <span class="chip">Exemplo real</span>
   <h2>"5 coisas de IA deste mês que quase ninguém percebeu"</h2>
-  <p class="sub">A primeira edição, feita inteira com o motor e publicada no canal INEMA Futuros. Isca: <span class="hot">SETUP</span>. Arquivos em <code>edicoes/2026-10-28-5-coisas/</code>.</p>
+  <p class="sub">A primeira edição, feita inteira com o motor e publicada no YouTube. Isca: <span class="hot">SETUP</span>. Arquivos em <code>edicoes/2026-10-28-5-coisas/</code>.</p>
   <div class="video">
     <div class="yt"><iframe src="https://www.youtube-nocookie.com/embed/AZEZK1YgF98" title="Reel exemplo do rtexjp no YouTube" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
     <div>

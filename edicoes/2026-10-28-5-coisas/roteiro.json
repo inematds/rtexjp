@@ -1,0 +1,423 @@
+{
+ "id": "2026-10-28-5-coisas",
+ "versao": "rtexjp/1",
+ "titulo": "5 coisas de IA deste mês que quase ninguém percebeu",
+ "isca": {
+  "palavra": "SETUP",
+  "entregavel": "os 5 links e os comandos de instalação, num guia no inema.club",
+  "destino": "inema.club/guia (PRECISA EXISTIR ANTES DE PUBLICAR)"
+ },
+ "fontes": [
+  {
+   "id": "ecc",
+   "valor": "291 mil estrelas",
+   "linha": "github.com/affaan-m/ECC · 28/10/2026",
+   "verificado_em": "2026-10-28"
+  },
+  {
+   "id": "ponytail",
+   "valor": "179 mil estrelas",
+   "linha": "github.com/DietrichGebert/ponytail · 28/10/2026",
+   "verificado_em": "2026-10-28"
+  },
+  {
+   "id": "roadster",
+   "valor": "0–60 mph < 1 s (segundo a Tesla)",
+   "linha": "electrek.co · motor1.com · 15/10/2026",
+   "verificado_em": "2026-10-28"
+  },
+  {
+   "id": "ua",
+   "valor": "88,7 mil estrelas",
+   "linha": "github.com/Egonex-AI/Understand-Anything · 28/10/2026",
+   "verificado_em": "2026-10-28"
+  }
+ ],
+ "blocos": [
+  {
+   "id": "tese",
+   "tipo": "tese",
+   "rotulo": null,
+   "fala": "Cinco coisas de IA saíram este mês, e quase ninguém percebeu.",
+   "tela": {
+    "texto": "5 COISAS DE IA QUE QUASE NINGUÉM VIU",
+    "destaque": "NINGUÉM"
+   },
+   "cena": {
+    "comp": "titulo"
+   },
+   "pose": "queixo",
+   "destaque_fala": [
+    "cinco",
+    "ninguém"
+   ]
+  },
+  {
+   "id": "prova",
+   "tipo": "autoridade",
+   "rotulo": "00 / O MÊS",
+   "fonte": "ecc",
+   "fala": "Uma delas já passa de duzentas e noventa mil estrelas no GitHub.",
+   "cena": {
+    "comp": "contador",
+    "params": {
+     "repo": "affaan-m/ECC",
+     "final": 291,
+     "unidade": "MIL",
+     "rotulo": "ESTRELAS NO GITHUB",
+     "stingers": [
+      {
+       "em": "estrelas",
+       "texto": "MAIS DE<br><b>290 MIL</b><br>ESTRELAS.",
+       "sub": "github.com/affaan-m/ECC · 28/10/2026",
+       "dur": 1.2
+      }
+     ]
+    }
+   },
+   "pose": "surpreso",
+   "destaque_fala": [
+    "duzentas",
+    "estrelas"
+   ]
+  },
+  {
+   "id": "planta",
+   "tipo": "tese",
+   "rotulo": "00 / O MÊS",
+   "fala": "E as cinco dizem a mesma coisa: não é o modelo. É o setup.",
+   "fala_tts": "E as cinco dizem a mesma coisa: não é o modelo. É o setup.",
+   "tela": {
+    "texto": "NÃO É O MODELO. É O SETUP.",
+    "destaque": "SETUP"
+   },
+   "cena": {
+    "comp": "frase",
+    "params": {
+     "l1": "NÃO É O MODELO.",
+     "l2": "É O SETUP.",
+     "gatilho_l2": "é"
+    }
+   },
+   "pose": "apontando",
+   "destaque_fala": [
+    "mesma",
+    "modelo",
+    "setup"
+   ]
+  },
+  {
+   "id": "virada",
+   "tipo": "virada",
+   "rotulo": "00 / AS CINCO",
+   "fala": "Anota as cinco.",
+   "cena": {
+    "comp": "indice",
+    "params": {
+     "itens": [
+      "A PASTA",
+      "PONYTAIL",
+      "ROADSTER",
+      "O MAPA",
+      "ECC"
+     ]
+    }
+   },
+   "pose": "segurando",
+   "destaque_fala": [
+    "cinco"
+   ]
+  },
+  {
+   "id": "p1",
+   "tipo": "metodo",
+   "n": 1,
+   "rotulo": "01 / A PASTA",
+   "fala": "Um. Para de montar um agente pra cada coisa. Um agente só, e uma pasta por tarefa: o processo, o que deu certo, e o checklist do pronto.",
+   "cena": {
+    "comp": "pasta",
+    "params": {
+     "robos": [
+      "E-MAIL",
+      "INSTAGRAM",
+      "PROPOSTAS"
+     ],
+     "linhas": [
+      "O PROCESSO",
+      "O QUE DEU CERTO",
+      "O CHECKLIST"
+     ],
+     "gatilhos": {
+      "robos": "montar",
+      "corta": "só",
+      "pasta": "pasta",
+      "l1": "processo",
+      "l2": "certo",
+      "l3": "checklist"
+     },
+     "stingers": [
+      {
+       "em": "só",
+       "texto": "UM AGENTE <b>SÓ.</b>"
+      }
+     ]
+    }
+   },
+   "destaque_fala": [
+    "agente",
+    "só",
+    "pasta",
+    "processo",
+    "certo",
+    "checklist"
+   ]
+  },
+  {
+   "id": "p2",
+   "tipo": "metodo",
+   "n": 2,
+   "rotulo": "02 / O PONYTAIL",
+   "fonte": "ponytail",
+   "fala": "Dois. O ponytail: cento e setenta e nove mil estrelas. Faz a IA pensar como o sênior mais preguiçoso da sala: lê o projeto e reaproveita antes de escrever.",
+   "fala_tts": "Dois. O pônitêil: cento e setenta e nove mil estrelas. Faz a IA pensar como o sênior mais preguiçoso da sala: lê o projeto e reaproveita antes de escrever.",
+   "cena": {
+    "comp": "repo",
+    "params": {
+     "repo": "DietrichGebert/ponytail",
+     "estrelas": "179 mil",
+     "final": 179,
+     "descricao": "O melhor código é o que você nunca escreveu.",
+     "itens": [
+      "LÊ O PROJETO",
+      "REAPROVEITA",
+      "ESCREVE MENOS"
+     ],
+     "gatilhos": {
+      "card": "ponytail",
+      "conta": "ponytail",
+      "carimbo": "sênior",
+      "i1": "lê",
+      "i2": "reaproveita",
+      "i3": "escrever"
+     },
+     "stingers": [
+      {
+       "em": "sênior",
+       "texto": "SÊNIOR<br><b>PREGUIÇOSO.</b>"
+      }
+     ]
+    }
+   },
+   "destaque_fala": [
+    "ponytail",
+    "estrelas",
+    "sênior",
+    "preguiçoso",
+    "reaproveita"
+   ]
+  },
+  {
+   "id": "p3",
+   "tipo": "metodo",
+   "n": 3,
+   "rotulo": "03 / O ROADSTER",
+   "fonte": "roadster",
+   "fala": "Três. A Tesla mostrou o Roadster novo saindo de uma rampa com propulsores. Segundo ela, de zero a sessenta milhas por hora em menos de um segundo.",
+   "fala_tts": "Três. A Tesla mostrou o Roadster novo saindo de uma rampa com propulsores. Segundo ela, de zero a sessenta milhas por hora em menos de um segundo.",
+   "cena": {
+    "comp": "carro",
+    "params": {
+     "stat": "0–60 mph",
+     "stat2": "< 1 s",
+     "nota": "SEGUNDO A TESLA",
+     "gatilhos": {
+      "rampa": "rampa",
+      "jatos": "propulsores",
+      "stat": "zero",
+      "stat2": "menos"
+     },
+     "stingers": [
+      {
+       "em": "menos",
+       "texto": "MENOS DE<br><b>UM SEGUNDO.</b>",
+       "dur": 1.3,
+       "sub": "SEGUNDO A TESLA · 0–60 MPH"
+      }
+     ]
+    }
+   },
+   "destaque_fala": [
+    "Tesla",
+    "rampa",
+    "propulsores",
+    "segundo"
+   ]
+  },
+  {
+   "id": "p4",
+   "tipo": "metodo",
+   "n": 4,
+   "rotulo": "04 / O MAPA",
+   "fonte": "ua",
+   "fala": "Quatro. Se o Claude Code sumisse amanhã, você saberia mexer no teu sistema? O Understand Anything lê o projeto e desenha o mapa.",
+   "cena": {
+    "comp": "mapa",
+    "params": {
+     "repo": "Egonex-AI/Understand-Anything",
+     "estrelas": "88,7 mil",
+     "gatilhos": {
+      "some": "sumisse",
+      "pergunta": "saberia",
+      "card": "Understand",
+      "mapa": "mapa"
+     },
+     "stingers": [
+      {
+       "em": "sumisse",
+       "texto": "<b>SUMIU.</b>"
+      }
+     ]
+    }
+   },
+   "destaque_fala": [
+    "sumisse",
+    "saberia",
+    "Understand",
+    "mapa"
+   ]
+  },
+  {
+   "id": "p5",
+   "tipo": "metodo",
+   "n": 5,
+   "rotulo": "05 / O SETUP",
+   "fonte": "ecc",
+   "fala": "Cinco. O ECC, o setup que venceu um hackathon. Dezenas de agentes: um planeja, outro revisa, outro cuida da segurança. E instala com dois comandos.",
+   "fala_tts": "Cinco. O é cê cê, o setup que venceu um hackathon. Dezenas de agentes: um planeja, outro revisa, outro cuida da segurança. E instala com dois comandos.",
+   "cena": {
+    "comp": "equipe",
+    "params": {
+     "agentes": [
+      "PLANEJA",
+      "REVISA",
+      "SEGURANÇA"
+     ],
+     "comandos": [
+      "/plugin marketplace add affaan-m/E",
+      "/plugin install ecc@e"
+     ],
+     "gatilhos": {
+      "titulo": "ECC",
+      "a1": "planeja",
+      "a2": "revisa",
+      "a3": "segurança",
+      "term": "instala",
+      "c2": "comandos"
+     },
+     "stingers": [
+      {
+       "em": "hackathon",
+       "texto": "VENCEU UM<br><b>HACKATHON.</b>"
+      }
+     ]
+    }
+   },
+   "destaque_fala": [
+    "setup",
+    "hackathon",
+    "planeja",
+    "revisa",
+    "segurança",
+    "dois"
+   ]
+  },
+  {
+   "id": "ressalva",
+   "tipo": "ressalva",
+   "rotulo": "06 / A PARTE HONESTA",
+   "fala": "A parte honesta: o Roadster ainda não dá pra comprar. O mapa gasta muito token no começo. E quem decide é você.",
+   "fala_tts": "A parte honesta: o Roadster ainda não dá pra comprar. O mapa gasta muito tôken no começo. E quem decide é você.",
+   "cena": {
+    "comp": "ressalva",
+    "params": {
+     "itens": [
+      "ROADSTER: SÓ NA DEMONSTRAÇÃO",
+      "O MAPA GASTA TOKEN",
+      "QUEM DECIDE É VOCÊ"
+     ],
+     "gatilhos": {
+      "i1": "Roadster",
+      "i2": "mapa",
+      "i3": "decide"
+     },
+     "stingers": [
+      {
+       "em": "comprar",
+       "texto": "AINDA <b>NÃO.</b>"
+      }
+     ]
+    }
+   },
+   "pose": "queixo",
+   "destaque_fala": [
+    "honesta",
+    "comprar",
+    "token",
+    "você"
+   ]
+  },
+  {
+   "id": "maxima",
+   "tipo": "maxima",
+   "rotulo": null,
+   "silencio_antes_s": 0.8,
+   "fala": "O modelo, todo mundo tem. O setup, quase ninguém.",
+   "fala_tts": "O modelo, todo mundo tem. O setup, quase ninguém.",
+   "cena": {
+    "comp": "flash",
+    "params": {
+     "l1": "O MODELO, TODO MUNDO TEM.",
+     "l2": "O SETUP, QUASE NINGUÉM.",
+     "gatilho_l2": "quase"
+    }
+   },
+   "destaque_fala": [
+    "todo",
+    "setup",
+    "ninguém"
+   ]
+  },
+  {
+   "id": "cta",
+   "tipo": "cta",
+   "rotulo": null,
+   "hold_s": 6.0,
+   "fala": "Comenta SETUP que eu te mando os cinco links e os comandos.",
+   "fala_tts": "Comenta setup que eu te mando os cinco links e os comandos.",
+   "tela": {
+    "texto": "COMENTA SETUP QUE EU MANDO",
+    "destaque": "SETUP"
+   },
+   "cena": {
+    "comp": "cta",
+    "params": {
+     "palavra": "SETUP",
+     "pacote": [
+      "01 A PASTA",
+      "02 PONYTAIL",
+      "03 ROADSTER",
+      "04 O MAPA",
+      "05 ECC"
+     ],
+     "confirmacao": "links enviados"
+    }
+   },
+   "pose": "mostrando",
+   "destaque_fala": [
+    "SETUP",
+    "links",
+    "comandos"
+   ]
+  }
+ ]
+}

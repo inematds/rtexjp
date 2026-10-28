@@ -1,0 +1,7 @@
+node_modules/
+edicoes/*/voz/
+edicoes/*/build/
+edicoes/*/quadros/
+*.pyc
+__pycache__/
+motor/avatar/brutos/

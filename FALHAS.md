@@ -2,6 +2,8 @@
 
 | data | o que quebrou | menor correção | prompt \| infra |
 |---|---|---|---|
+| 2026-10-29 | `rm edicoes/2026-10-28-*/prova/pagina-2026-10-28.png` apagou o print do mapa-v2 (mesmo nome de arquivo) | apagar só por caminho explícito da própria edição; restaurado com git checkout | prompt |
+| 2026-10-29 | contador da prova parado no meio ("US$ 1 MIL") na amostra do QA/revisor; print largo saiu pequeno ou cortado | número fixo na manchete em vez de contador de 0 a 5; print recortado no trecho e com margem branca de 50 px | prompt |
 | 2026-10-28 | sombra do objeto sobre o verde virou oliva escuro e escapou do recorte (mapa_pinos) | `tirar_sombra` no `gerar_objeto.py` + prompt sem sombra projetada | infra |
 | 2026-10-28 | legenda branca de contorno preto pesada no papel azul-gelo (revisor) | no tema claro, legenda marinho com contorno branco | prompt |
 | 2026-10-28 | v1.1 com ~1 s de tela vazia antes da máxima (o bloco `maxima` herda o silêncio e o `flash` não desenhava nada) | no silêncio, congelar o último quadro do bloco anterior com o avatar pensativo | prompt |

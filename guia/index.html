@@ -150,7 +150,7 @@
   <div class="glow"></div>
   <div class="wrap">
     <div>
-      <span class="chip">Motor de reels · v1.1.0 · local e grátis</span>
+      <span class="chip">Motor de reels · v1.2.0 · local e grátis</span>
       <h1>Do roteiro ao reel <span class="amb">ilustrado</span>, sem pagar nada</h1>
       <p class="lead">Você escreve um <code>roteiro.json</code>; o rtexjp devolve um reel vertical 1080×1920 em azul-marinho, com avatar ilustrado do Nei, mascote robô, voz do Nei (ou a sua) e um único pedido de opinião: "comenta <span class="hot">DONO</span> ou <span class="hot">REFÉM</span>".</p>
       <div class="cta">
@@ -158,7 +158,7 @@
         <a class="btn ghost" href="#exemplos">Ver os vídeos exemplo</a>
       </div>
     </div>
-    <figure><img src="assets/m-00-0.jpg" width="540" height="960" alt="Quadro 0 do 2º reel exemplo, em azul-marinho: a manchete &quot;O Claude sumiu. E agora?&quot; com SUMIU em amarelo, um terminal riscado de vermelho, o avatar do Nei com as mãos no rosto e o mascote robô"></figure>
+    <figure><img src="assets/m-00-0.jpg" width="540" height="960" alt="Quadro 0 do 2º reel exemplo no visual v1.2, em azul-marinho: a manchete &quot;O Claude sumiu. E agora?&quot; centrada, com SUMIU em amarelo, um laptop de tela rachada e, embaixo, o avatar grande do Nei com as mãos no rosto, assustado"></figure>
   </div>
 </header>
 
@@ -172,9 +172,9 @@
   <span class="chip">O que é</span>
   <h2>Um formato fixo, conferido por um validador</h2>
   <p class="sub">Todo reel segue o mesmo esqueleto: gancho no quadro 0, prova com fonte, o problema de quem assiste, peças numeradas, ressalva honesta, máxima e uma pergunta de opinião. O motor desenha; o validador reclama se algo sair do formato.</p>
-  <figure class="wide"><img src="assets/triptico-2.jpg" width="760" height="447" loading="lazy" alt="Três quadros do 2º reel exemplo lado a lado: o gancho &quot;O Claude sumiu. E agora?&quot;, o problema com as opções DONO e REFÉM em amarelo, e o cartão final com a pergunta e a caixa de comentário digitando DONO"></figure>
+  <figure class="wide"><img src="assets/triptico-2.jpg" width="760" height="440" loading="lazy" alt="Três quadros do 2º reel exemplo (visual v1.2) lado a lado: o gancho com o laptop rachado, o problema em papel azul-gelo com a chave, o cadeado e as opções DONO e REFÉM em amarelo, e o cartão final com a caixa de comentário digitando DONO"></figure>
   <div class="grid g3">
-    <div class="card"><h3>🎨 Ilustrado, sem lip-sync</h3><p>Avatar ilustrado do Nei em seis poses (braços cruzados, mão no queixo, apontando, segurando, surpreso, mostrando) e um mascote robô. Ninguém precisa gravar nada.</p></div>
+    <div class="card"><h3>🎨 Ilustrado, sem lip-sync</h3><p>Avatar ilustrado do Nei grande, embaixo (≈ 43 % da altura), em 11 poses ligadas à emoção da fala (susto, dúvida, aponta, explica, polegar…), um desenho-herói por cena e um mascote robô. Ninguém precisa gravar nada.</p></div>
     <div class="card"><h3>🎙️ Voz do Nei, local</h3><p>Voz por TTS local (inemavox chatterbox), 160–190 palavras por minuto, Whisper local marcando o tempo de cada palavra para a legenda e os gatilhos de cena.</p></div>
     <div class="card"><h3>✅ QA automático</h3><p>Mede duração, ritmo da fala, volume (−14 LUFS), trocas visuais por minuto, prova até 20 s, opções da isca plantadas antes, CTA sem promessa de entrega, cartão final e silêncio antes da máxima. Sai um <code>qa.md</code> e um <code>contact.jpg</code>.</p></div>
   </div>
@@ -188,7 +188,7 @@
     <div class="card"><ol class="esq">
       <li><b>Gancho no quadro 0</b>, de um destes tipos: <b>contrário</b> (manda parar algo que todo mundo faz), <b>perda</b> (e se X sumisse?), <b>estatística de medo</b> com fonte, ou <b>história de terceiro</b> com número. Proibido: lista ("5 coisas…"), "você sabia que…", "eu fiz…".</li>
       <li><b>Manchete do quadro 0</b> com até ~6 palavras, caixa alta, <b>uma</b> palavra em <span class="hot">amarelo</span>, mais agressiva que a fala. Um objeto com dano desenhado (riscado de vermelho, quebrado), o avatar reage no 1º segundo e algo muda a cada ~1 s nos 3 primeiros segundos. O quadro 0 serve de capa.</li>
-      <li><b>Prova até 20 s</b>: um contador pousa no número e a fonte aparece embaixo.</li>
+      <li><b>Prova até 20 s</b>: o print real da página da fonte, o número na manchete e a linha <code>fonte:</code> embaixo.</li>
       <li><b>O problema de quem assiste, com absolvição</b> ("não é culpa sua, ninguém te deu o mapa"). Aqui a pergunta final já é plantada: as opções aparecem em <span class="hot">amarelo</span>.</li>
       <li><b>Um tema por vídeo</b>, em 2–5 peças com índice visível e barra de pílulas no topo; um objeto por frase, mudando a cada 2–3 s.</li>
     </ol></div>
@@ -210,6 +210,22 @@
     <div class="card"><h3>TTS e lip-sync</h3><p>TTS é a voz gerada a partir do texto. Lip-sync é a boca mexendo junto com a fala; o rtexjp não faz, o avatar só muda de pose.</p></div>
     <div class="card"><h3>Whisper e Playwright</h3><p>Whisper transcreve a voz e dá o tempo de cada palavra. Playwright abre o palco num navegador sem janela e tira a foto de cada quadro.</p></div>
     <div class="card"><h3>Flash tipográfico</h3><p>Uma tela rápida só com texto grande entre as peças, para o vídeo não ficar parado.</p></div>
+    <div class="card"><h3>Tipos de bloco</h3><p><code>tese</code> = afirmação (o gancho, o problema); <code>autoridade</code> = a prova com fonte; <code>virada</code> = o índice que anuncia as peças; <code>metodo</code> = cada peça; <code>planta</code> é só o <code>id</code> do bloco que planta as opções da pergunta final.</p></div>
+    <div class="card"><h3>Batida</h3><p>Um trecho do bloco que troca manchete, desenho e pose na palavra marcada em <code>em</code>. É o que faz algo mudar a cada 2–3 s.</p></div>
+    <div class="card"><h3>Desenho-herói</h3><p>O objeto ilustrado grande no meio da tela (terminal quebrado, mapa, cadeado), tirado da biblioteca <code>motor/assets/objetos/</code>.</p></div>
+  </div>
+
+  <h3 style="margin:34px 0 12px">O visual v1.2, de cima para baixo</h3>
+  <div class="grid g2">
+    <div class="card"><ol class="esq">
+      <li><b>Rótulo</b> em monoespaçada (≥ 30 px) e, nas peças, as pílulas 01–03.</li>
+      <li><b>Manchete</b> em Sora ExtraBold, centrada, 2–3 linhas, ≥ 96 px, quase branca, com uma palavra em azul-aço claro (amarela só no quadro 0).</li>
+      <li><b>Desenho-herói</b> ou <b>print real</b>, grande, entre a manchete e o avatar.</li>
+      <li><b>Legenda karaokê</b> numa faixa própria, com a palavra dita destacada.</li>
+      <li><b>Avatar grande</b>, embaixo e centralizado, na pose da batida; o rosto fica acima dos 80 % da altura.</li>
+    </ol></div>
+    <div class="card"><p>O fundo tem holofote e grão leve e alterna entre o marinho e um <b>papel azul-gelo</b> (<code>"tema": "claro"</code> na cena), com letras marinho. No silêncio antes da máxima o último quadro fica congelado com o avatar pensativo: nunca tela vazia.</p>
+    <p style="margin-top:.8em"><b>Portão de beleza</b>: o QA mede no próprio palco, em duas amostras por bloco, a manchete (≥ 96 px), todo texto (≥ 30 px), a área ocupada (≥ 55 % do quadro útil), o contraste do texto (≥ 4,5:1) e a altura do avatar (≥ 38 %). Vale para roteiros com <code>"versao": "rtexjp/3"</code>.</p></div>
   </div>
 </div></section>
 
@@ -246,7 +262,7 @@
 <span class="k">export</span> CHATTERBOX_PYTHON=<span class="s">/caminho/do/env/bin/python3</span>   <span class="c"># TTS</span>
 <span class="k">export</span> CS_WHISPER_PY=<span class="s">/caminho/do/env/bin/python3</span>       <span class="c"># Whisper</span>
 </pre></div>
-    <div class="card"><h3>Imagem: flux2-klein</h3><p>O servidor <a href="https://github.com/inematds/inemaimg" target="_blank" rel="noopener">inematds/inemaimg</a> com o modelo flux2-klein (padrão <code>http://localhost:8000/generate</code>, ou o endereço em <code>RTEXJP_IMG_URL</code>), mais a foto de referência do avatar (<code>RTEXJP_AVATAR_REF</code>). Só é preciso nos passos opcionais 4 e 5 (poses e imagens de cena); as seis poses do Nei já vêm prontas.</p></div>
+    <div class="card"><h3>Imagem: flux2-klein</h3><p>O servidor <a href="https://github.com/inematds/inemaimg" target="_blank" rel="noopener">inematds/inemaimg</a> com o modelo flux2-klein (padrão <code>http://localhost:8000/generate</code>, ou o endereço em <code>RTEXJP_IMG_URL</code>), mais a foto de referência do avatar (<code>RTEXJP_AVATAR_REF</code>). Só é preciso nos passos opcionais 4 e 5 (poses e desenhos de cena); as poses do Nei e a biblioteca de desenhos já vêm prontas.</p></div>
     <div class="card"><h3>Node, ffmpeg, Python</h3><p>Node 18 ou mais novo, ffmpeg (com o ffprobe, que vem junto) e Python 3 com Pillow e numpy.</p><pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/rtexjp</span>
 <span class="k">cd</span> rtexjp
 <span class="k">npm i</span>
@@ -262,6 +278,7 @@
     <tr><td><code>RTEXJP_AVATAR_DESC</code> · traços e roupa do personagem no pedido de imagem (em inglês)</td><td>boné preto, óculos, barba grisalha, camiseta azul-aço (o Nei)</td></tr>
     <tr><td><code>RTEXJP_TRILHA</code> · cama musical do mix</td><td>motor/assets/trilha.mp3</td></tr>
     <tr><td><code>CS_WHISPER_PY</code> · Python do ambiente com faster-whisper (servidor do Whisper e plano B)</td><td>~/miniconda3/envs/chatterbox/bin/python3</td></tr>
+    <tr><td><code>CHATTERBOX_PYTHON</code> · Python do ambiente do chatterbox, exigido pelo <code>tts_direct.py</code> do inemavox</td><td>o do ambiente chatterbox</td></tr>
   </table>
 <pre><span class="c"># exemplo: tudo em outros caminhos, sem editar o código</span>
 <span class="k">export</span> RTEXJP_INEMAVOX=<span class="s">~/inemavox</span>
@@ -298,14 +315,16 @@
 
   <div class="step"><div class="b">4</div><div>
     <h3>Poses do avatar <span class="who">opcional</span></h3>
-    <p>As seis poses do Nei (camiseta azul-aço) já vêm em <code>motor/avatar/</code>. Rode só se trocou o personagem: a foto (<code>RTEXJP_AVATAR_REF</code>) e a descrição de traços e roupa (<code>RTEXJP_AVATAR_DESC</code>, em inglês, que vai no pedido ao flux2-klein). Confira as seis poses antes de seguir: o fundo verde é recortado sozinho.</p>
-<pre><span class="k">python3 motor/gerar_avatar.py</span></pre>
+    <p>As 11 poses do Nei (camiseta azul-aço) já vêm em <code>motor/avatar/</code>: <code>susto</code>, <code>surpreso</code>, <code>duvida</code>, <code>queixo</code>, <code>apontando</code>, <code>olha</code>, <code>explica</code>, <code>polegar</code>, <code>bracos</code>, <code>segurando</code>, <code>mostrando</code>. Rode só se trocou o personagem: a foto (<code>RTEXJP_AVATAR_REF</code>) e a descrição de traços e roupa (<code>RTEXJP_AVATAR_DESC</code>, em inglês, que vai no pedido ao flux2-klein). Passe nomes para refazer só essas. Olhe cada pose antes de seguir: o fundo verde é recortado sozinho, mas mão torta ou fundo escuro pedem outra tentativa.</p>
+<pre><span class="k">python3 motor/gerar_avatar.py</span>              <span class="c"># todas</span>
+<span class="k">python3 motor/gerar_avatar.py</span> susto duvida  <span class="c"># só essas</span></pre>
   </div></div>
 
   <div class="step"><div class="b">5</div><div>
-    <h3>Imagens de cena <span class="who">opcional</span></h3>
-    <p>Uma imagem no flux2-klein local (tamanho padrão 1152×784). Hoje só o componente <code>carro</code> do palco usa imagem (<code>motor/assets/carro.png</code>); uma imagem nova precisa de um componente que a carregue em <code>motor/palco.html</code>.</p>
-<pre><span class="k">python3 motor/gerar_imagem.py</span> motor/assets/x.png <span class="s">"&lt;prompt&gt;"</span></pre>
+    <h3>Desenhos-herói e print da prova <span class="who">opcional</span></h3>
+    <p>Cada batida do roteiro mostra um objeto ilustrado grande entre a manchete e o avatar, no mesmo estilo flat. Eles ficam numa biblioteca reaproveitável, <code>motor/assets/objetos/&lt;nome&gt;.png</code>, com o pedido e a seed em <code>indice.json</code>. Já vêm 10 (terminal quebrado, mapa com pinos, mapa rasgado, lupa sobre arquivos, balão de explicação, dominós, alerta de custo, pasta, chave, cadeado). Para um novo, descreva o objeto em inglês; se sair torto ou manchado, troque a seed. A prova usa um <b>print real</b> da página da fonte, guardado em <code>edicoes/&lt;id&gt;/prova/</code> e citado no campo <code>print</code> da batida.</p>
+<pre><span class="k">python3 motor/gerar_objeto.py</span> foguete <span class="s">"a small blue rocket taking off"</span> 11
+<span class="k">python3 motor/gerar_objeto.py</span> --lista</pre>
   </div></div>
 
   <div class="step"><div class="b">6</div><div>
@@ -380,12 +399,12 @@
 <section id="exemplos"><div class="wrap">
   <span class="chip">Exemplos reais</span>
   <h2>Dois vídeos feitos com o motor</h2>
-  <p class="sub">O 2º vídeo segue o formato atual (azul-marinho, gancho de perda, isca de opinião). O 1º, já publicado, ficou como estava: paleta antiga, roxa, gancho de lista e isca com entregável, regras que o formato atual não aceita mais.</p>
+  <p class="sub">O 2º vídeo segue o formato atual (azul-marinho, gancho de perda, isca de opinião) e foi refeito no visual v1.2. O 1º, já publicado, ficou como estava: paleta antiga, roxa, gancho de lista e isca com entregável, regras que o formato atual não aceita mais.</p>
 
-  <h3 style="margin:10px 0 8px">2º vídeo · "O Claude sumiu. E agora?" <span class="who">formato atual</span></h3>
-  <p class="mut" style="margin:0 0 18px">Um tema só (o plugin Understand Anything), gancho de <b>perda</b>, três peças e a pergunta <span class="hot">DONO</span> ou <span class="hot">REFÉM</span>. Arquivos em <code>edicoes/2026-10-28-mapa/</code> (o bloco <code>publicar</code> do roteiro traz título, descrição e comentário fixado).</p>
+  <h3 style="margin:10px 0 8px">2º vídeo · "O Claude sumiu. E agora?" <span class="who">visual v1.2</span></h3>
+  <p class="mut" style="margin:0 0 18px">Um tema só (o plugin Understand Anything), gancho de <b>perda</b>, três peças e a pergunta <span class="hot">DONO</span> ou <span class="hot">REFÉM</span>. Arquivos em <code>edicoes/2026-10-28-mapa-v2/</code> (o bloco <code>publicar</code> do roteiro traz título, descrição e comentário fixado). A versão anterior, no visual v1.1, ficou em <code>edicoes/2026-10-28-mapa/</code> para comparar.</p>
   <div class="video">
-    <div class="yt"><video controls playsinline preload="none" poster="assets/m-00-0.jpg" style="position:absolute;inset:0;width:100%;height:100%;background:#000" aria-label="2º reel do rtexjp: O Claude sumiu. E agora?"><source src="../edicoes/2026-10-28-mapa/final.mp4" type="video/mp4"></video></div>
+    <div class="yt"><video controls playsinline preload="none" poster="assets/m-00-0.jpg" style="position:absolute;inset:0;width:100%;height:100%;background:#000" aria-label="2º reel do rtexjp no visual v1.2: O Claude sumiu. E agora?"><source src="../edicoes/2026-10-28-mapa-v2/final.mp4" type="video/mp4"></video></div>
     <div>
       <h3 style="margin-bottom:.6em">O que o QA mediu</h3>
       <table class="qa">
@@ -393,30 +412,36 @@
         <tr><td>Resolução</td><td>1080×1920 · 30 fps</td></tr>
         <tr><td>Ritmo da fala</td><td>173 palavras/min</td></tr>
         <tr><td>Volume</td><td>−14,0 LUFS</td></tr>
-        <tr><td>Trocas visuais</td><td>22,5 por minuto</td></tr>
+        <tr><td>Trocas visuais</td><td>25,9 por minuto</td></tr>
+        <tr><td>Manchete / menor texto</td><td>≥ 98 px / ≥ 30 px</td></tr>
+        <tr><td>Área ocupada / avatar</td><td>≥ 55 % / 43 % da altura</td></tr>
+        <tr><td>Contraste do texto</td><td>≥ 5,2:1</td></tr>
         <tr><td>Prova (número com fonte)</td><td>aos 5,6 s</td></tr>
         <tr><td>Opções da isca antes do CTA</td><td>45,2 s antes</td></tr>
         <tr><td>CTA sem promessa de entrega</td><td>sim</td></tr>
         <tr><td>Silêncio antes da máxima</td><td>0,88 s</td></tr>
         <tr><td>Cartão final (fala + 7,5 s segurado)</td><td>14,6 s</td></tr>
       </table>
-      <p class="mut" style="margin-top:1em">Ainda não publicado nas redes: o player toca o <code>edicoes/2026-10-28-mapa/final.mp4</code> do repositório. <a href="../edicoes/2026-10-28-mapa/final.mp4" download>Baixar o final.mp4</a> (7,8 MB)</p>
+      <p class="mut" style="margin-top:1em">Ainda não publicado nas redes: o player toca o <code>edicoes/2026-10-28-mapa-v2/final.mp4</code> do repositório. <a href="../edicoes/2026-10-28-mapa-v2/final.mp4" download>Baixar o final.mp4</a> (20 MB) · <a href="../edicoes/2026-10-28-mapa/final.mp4" download>versão v1.1</a> (7,8 MB)</p>
     </div>
   </div>
 
-  <h3 style="margin:40px 0 16px">Quadro a quadro (2º vídeo)</h3>
+  <h3 style="margin:40px 0 16px">Antes e depois: v1.1 em cima, v1.2 embaixo</h3>
+  <figure class="wide" style="max-width:760px"><img src="assets/comparativo.jpg" width="760" height="665" loading="lazy" alt="Comparativo de quatro quadros do 2º vídeo (gancho, prova, método e cartão final): em cima a v1.1, com avatar pequeno no canto, manchete estreita à esquerda e cartões finos; embaixo a v1.2, com manchete centrada, desenho grande no meio, print real do GitHub e o avatar grande embaixo"></figure>
+
+  <h3 style="margin:40px 0 16px">Quadro a quadro (2º vídeo, v1.2)</h3>
   <div class="ex">
-    <figure><img src="assets/m-02-6.jpg" width="540" height="960" loading="lazy" alt="Gancho aos 2,6 s: carimbo vermelho FORA DO AR sobre o terminal e arquivos soltos com interrogação"><figcaption>Gancho: algo muda a cada ~1 s (carimbo, arquivos soltos, robô em dúvida).</figcaption></figure>
-    <figure><img src="assets/m-07-5.jpg" width="540" height="960" loading="lazy" alt="Contador de estrelas no GitHub em 88,7 mil, com a fonte escrita embaixo"><figcaption>Prova aos 5,6 s: o contador pousa em 88,7 mil, com a fonte embaixo.</figcaption></figure>
-    <figure><img src="assets/m-17-5.jpg" width="540" height="960" loading="lazy" alt="&quot;Não é culpa sua. Ninguém te deu o mapa.&quot; com dois cartões, DONO e REFÉM, em amarelo"><figcaption>O problema com absolvição; as opções da pergunta final já aparecem.</figcaption></figure>
-    <figure><img src="assets/m-25-0.jpg" width="540" height="960" loading="lazy" alt="Peça 01: card do repositório e um mapa de pontos ligados, um deles com a etiqueta checkout.ts"><figcaption>Peça 01: o mapa se desenha, com a barra de pílulas 01–03 no topo.</figcaption></figure>
-    <figure><img src="assets/m-33-0.jpg" width="540" height="960" loading="lazy" alt="Peça 02: um ponto clicado no mapa e o balão com a explicação do arquivo, em inglês"><figcaption>Peça 02: o clique e a explicação (em inglês, como a ressalva avisa).</figcaption></figure>
-    <figure><img src="assets/m-40-5.jpg" width="540" height="960" loading="lazy" alt="Peça 03: a mudança em pagamento.ts e os arquivos atingidos em vermelho, &quot;Atinge 3 arquivos&quot;"><figcaption>Peça 03: tudo o que a mudança atinge, antes de confirmar.</figcaption></figure>
-    <figure><img src="assets/m-48-0.jpg" width="540" height="960" loading="lazy" alt="Cartão de alerta com dois itens em vermelho: primeira leitura gasta token, explica em inglês"><figcaption>A ressalva honesta, em cartão de alerta.</figcaption></figure>
-    <figure><img src="assets/m-66-0.jpg" width="540" height="960" loading="lazy" alt="Cartão final: &quot;E você, hoje: dono ou refém?&quot;, botões DONO e REFÉM em amarelo e a caixa de comentário com DONO publicado"><figcaption>O CTA de opinião: pergunta, opções e a caixa digitando uma delas.</figcaption></figure>
+    <figure><img src="assets/m-02-6.jpg" width="540" height="960" loading="lazy" alt="Gancho aos 2,6 s: &quot;Você saberia mexer nele?&quot;, o laptop rachado, arquivos soltos com interrogação e o avatar em dúvida"><figcaption>Gancho: algo muda a cada ~1 s (carimbo, arquivos soltos, nova manchete, pose de dúvida).</figcaption></figure>
+    <figure><img src="assets/m-07-5.jpg" width="540" height="960" loading="lazy" alt="Prova: manchete 88,8 mil estrelas e o print real do repositório no GitHub com o botão Star 88.8k, a fonte escrita embaixo"><figcaption>Prova aos 5,6 s: print real da página, depois o recorte do contador; a manchete conta até 88,8 mil.</figcaption></figure>
+    <figure><img src="assets/m-17-5.jpg" width="540" height="960" loading="lazy" alt="Em papel azul-gelo: &quot;Dono ou refém?&quot;, uma chave e um cadeado com as opções DONO e REFÉM em amarelo, e o avatar em dúvida"><figcaption>O problema com absolvição, em papel azul-gelo; as opções da pergunta final já aparecem.</figcaption></figure>
+    <figure><img src="assets/m-25-0.jpg" width="540" height="960" loading="lazy" alt="Peça 01: &quot;Cada arquivo, um ponto.&quot; e um mapa ilustrado com pinos azuis ligados"><figcaption>Peça 01: o mapa, com as pílulas 01–03 no topo.</figcaption></figure>
+    <figure><img src="assets/m-33-0.jpg" width="540" height="960" loading="lazy" alt="Peça 02 em papel azul-gelo: &quot;O que o arquivo faz&quot;, uma lupa sobre arquivos e o avatar apontando"><figcaption>Peça 02: o clique e a explicação de cada arquivo.</figcaption></figure>
+    <figure><img src="assets/m-40-5.jpg" width="540" height="960" loading="lazy" alt="Peça 03: &quot;Antes de quebrar.&quot;, o laptop rachado e o avatar assustado"><figcaption>Peça 03: tudo o que a mudança atinge, antes de quebrar.</figcaption></figure>
+    <figure><img src="assets/m-48-0.jpg" width="540" height="960" loading="lazy" alt="Ressalva: &quot;A explicação sai em inglês&quot;, um balão com lâmpada sobre um livro aberto e o avatar explicando"><figcaption>A ressalva honesta, uma batida por frase.</figcaption></figure>
+    <figure><img src="assets/m-66-0.jpg" width="540" height="960" loading="lazy" alt="Cartão final: &quot;E você, hoje: dono ou refém?&quot;, chave e cadeado, botões DONO e REFÉM em amarelo e a caixa de comentário com DONO publicado"><figcaption>O CTA de opinião: pergunta, opções que se alternam e a caixa digitando uma delas.</figcaption></figure>
   </div>
   <h3 style="margin:40px 0 16px">A folha de contato do 2º vídeo</h3>
-  <figure class="wide" style="max-width:760px"><img src="assets/contact-2.jpg" width="760" height="958" loading="lazy" alt="Folha de contato do 2º vídeo: um quadro a cada 2,5 segundos, do gancho ao cartão final"></figure>
+  <figure class="wide" style="max-width:760px"><img src="assets/contact-2.jpg" width="760" height="957" loading="lazy" alt="Folha de contato do 2º vídeo: um quadro a cada 2,5 segundos, do gancho ao cartão final"></figure>
 
   <h3 style="margin:56px 0 8px">1º vídeo · "5 coisas de IA deste mês que quase ninguém percebeu" <span class="who">paleta antiga, roxa</span></h3>
   <p class="mut" style="margin:0 0 18px">A primeira edição, publicada no YouTube. Formato antigo: paleta roxa, gancho de lista e isca SETUP com entregável. Arquivos em <code>edicoes/2026-10-28-5-coisas/</code>.</p>
@@ -454,6 +479,7 @@
   <div class="phase"><div class="tag">1ª edição</div><div class="d"><strong>"5 coisas de IA" publicada</strong><span>87,5 s, formato antigo (roxo, gancho de lista, isca com entregável).</span></div></div>
   <div class="phase"><div class="tag">v1.1.0</div><div class="d"><strong>Azul-marinho, gancho e isca de opinião</strong><span>Paleta marinho + azul-aço com amarelo como única cor quente, avatar com camiseta azul-aço, regras de gancho no <code>checar</code>, isca de opinião sem entregável, caminhos por variável de ambiente.</span></div></div>
   <div class="phase"><div class="tag">2ª edição</div><div class="d"><strong>"O Claude sumiu. E agora?"</strong><span>71,9 s, aprovada em todos os critérios do QA; aguardando publicação.</span></div></div>
+  <div class="phase"><div class="tag">v1.2.0</div><div class="d"><strong>Visual novo</strong><span>Avatar grande embaixo em 11 poses, desenho-herói por batida (biblioteca <code>motor/assets/objetos/</code>), print real na prova, manchete Sora centrada, legenda karaokê, papel azul-gelo alternando com o marinho, grão e holofote, e o portão de beleza no QA. A 2ª edição foi refeita nesse visual (<code>edicoes/2026-10-28-mapa-v2/</code>).</span></div></div>
   <div class="note" style="margin-top:18px"><b>Regra antes de publicar:</b> o CTA pede opinião e não promete nada a quem comentar. Link e fonte ficam parados no comentário fixado e na descrição.</div>
 </div></section>
 </main>

@@ -63,6 +63,7 @@ medir.py               QA automático (duração, wpm, LUFS, trocas/min, isca, c
 motor/palco.html       o palco: casca v1.2 (manchete, herói, avatar, legenda) desenhada por window.render(t) + window.medidas(t) (portão de beleza)
 motor/render.mjs       Playwright quadro a quadro -> ffmpeg (30 fps)
 motor/gerar_avatar.py  poses do avatar no flux2-klein local com a foto de referência (fundo verde recortado)
+motor/capturar_prova.mjs print real da fonte para a prova (Playwright, tema escuro, 2x)
 motor/gerar_objeto.py  desenho-herói no flux2-klein local -> motor/assets/objetos/<nome>.png + indice.json
 motor/gerar_imagem.py  imagem de cena no flux2-klein local
 motor/whisper.py       Whisper large-v3 local (inemavox) com tempo por palavra
@@ -85,7 +86,7 @@ edicoes/<id>/          roteiro.json · final.mp4 · contact.jpg · qa.md · prov
 | 4 | Aprovar o roteiro (gancho, pergunta da isca, números) | — | 🧠 |
 | 5 | Poses do avatar (uma vez; refazer só se mudar o personagem) — olhar cada uma e refazer as deformadas | `python3 motor/gerar_avatar.py [pose …]` | ⚙️ |
 | 6 | Desenho-herói que faltar na biblioteca (olhar e refazer com outra seed se sair torto) | `python3 motor/gerar_objeto.py <nome> "<objeto em inglês>" [seed]` | ⚙️ |
-| 6b | Print real da fonte (página do repositório, recortada no nome e no contador) em `edicoes/<id>/prova/` | Playwright (navegador sem janela) | ⚙️ |
+| 6b | Print real da fonte (página do repositório, recortada no nome e no contador) em `edicoes/<id>/prova/` | `node motor/capturar_prova.mjs <url> edicoes/<id>/prova/x.png [--clip x,y,w,h]` | ⚙️ |
 | 7 | Voz por bloco + Whisper (tempo por palavra) | `python3 rtexjp.py voz edicoes/<id> [bloco …]` (com nomes, refaz só esses TTS) | ⚙️ |
 | 8 | Cena (roteiro + tempos) | `python3 rtexjp.py cena edicoes/<id>` | ⚙️ |
 | 9 | Prévia de quadros (+ `quadros/medidas.json` do portão de beleza) | `node motor/render.mjs edicoes/<id>/build --quadros 0,10,20` → `edicoes/<id>/quadros/` | ⚙️ |

@@ -324,7 +324,9 @@
     <h3>Dibujos protagonistas y captura de la prueba <span class="who">opcional</span></h3>
     <p>Cada golpe del guion muestra un objeto ilustrado grande entre el titular y el avatar, con el mismo estilo plano. Se guardan en una biblioteca reutilizable, <code>motor/assets/objetos/&lt;nome&gt;.png</code>, junto con la solicitud y la semilla en <code>indice.json</code>. Ya hay 10 (terminal roto, mapa con chinchetas, mapa rasgado, lupa sobre archivos, globo explicativo, dominós, aviso de coste, carpeta, llave, candado). Para crear otro, describe el objeto en inglés; si sale torcido o manchado, cambia la semilla. La prueba usa una <b>captura real</b> de la página de la fuente, guardada en <code>edicoes/&lt;id&gt;/prova/</code> y citada en el campo <code>print</code> del golpe.</p>
 <pre><span class="k">python3 motor/gerar_objeto.py</span> foguete <span class="s">"a small blue rocket taking off"</span> 11
-<span class="k">python3 motor/gerar_objeto.py</span> --lista</pre>
+<span class="k">python3 motor/gerar_objeto.py</span> --lista
+<span class="k">node motor/capturar_prova.mjs</span> https://github.com/dono/repo edicoes/minha-edicao/prova/pagina.png
+<span class="k">node motor/capturar_prova.mjs</span> https://github.com/dono/repo edicoes/minha-edicao/prova/estrelas.png --clip 1130,180,130,44</pre>
   </div></div>
 
   <div class="step"><div class="b">6</div><div>

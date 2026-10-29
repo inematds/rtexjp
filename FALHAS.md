@@ -2,6 +2,8 @@
 
 | data | o que quebrou | menor correção | prompt \| infra |
 |---|---|---|---|
+| 2026-10-28 | sombra do objeto sobre o verde virou oliva escuro e escapou do recorte (mapa_pinos) | `tirar_sombra` no `gerar_objeto.py` + prompt sem sombra projetada | infra |
+| 2026-10-28 | legenda branca de contorno preto pesada no papel azul-gelo (revisor) | no tema claro, legenda marinho com contorno branco | prompt |
 | 2026-10-28 | v1.1 com ~1 s de tela vazia antes da máxima (o bloco `maxima` herda o silêncio e o `flash` não desenhava nada) | no silêncio, congelar o último quadro do bloco anterior com o avatar pensativo | prompt |
 | 2026-10-28 | legenda da casca v1.2 caiu sobre a boca do avatar grande (y 1420) e depois sobre o pé do herói | faixa própria da legenda (y 985) entre o herói (até 975) e o boné (1100) | prompt |
 | 2026-10-28 | objetos-herói `chave_dono`/`pasta_unica` com manchas vermelhas ("vermelho só para dano" virou respingo) | prompt com "no red, no damage, no stains" + outra seed | prompt |

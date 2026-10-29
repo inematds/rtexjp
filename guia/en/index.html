@@ -324,7 +324,9 @@
     <h3>Hero illustrations and proof screenshot <span class="who">optional</span></h3>
     <p>Each beat in the script shows a large illustrated object in the same flat style, between the headline and avatar. They live in a reusable library, <code>motor/assets/objetos/&lt;nome&gt;.png</code>, with the prompt and seed in <code>indice.json</code>. Ten are already included (broken terminal, map with pins, torn map, magnifying glass over files, explanation bubble, dominoes, cost alert, folder, key, padlock). To create a new one, describe the object in English; if it comes out distorted or blotchy, change the seed. Proof uses a <b>real screenshot</b> of the source page, stored in <code>edicoes/&lt;id&gt;/prova/</code> and referenced in the beat’s <code>print</code> field.</p>
 <pre><span class="k">python3 motor/gerar_objeto.py</span> foguete <span class="s">"a small blue rocket taking off"</span> 11
-<span class="k">python3 motor/gerar_objeto.py</span> --lista</pre>
+<span class="k">python3 motor/gerar_objeto.py</span> --lista
+<span class="k">node motor/capturar_prova.mjs</span> https://github.com/dono/repo edicoes/minha-edicao/prova/pagina.png
+<span class="k">node motor/capturar_prova.mjs</span> https://github.com/dono/repo edicoes/minha-edicao/prova/estrelas.png --clip 1130,180,130,44</pre>
   </div></div>
 
   <div class="step"><div class="b">6</div><div>

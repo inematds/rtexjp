@@ -63,6 +63,7 @@ medir.py               QA automático (duración, wpm, LUFS, cambios/min, anzuel
 motor/palco.html       el escenario: estructura v1.2 (titular, protagonista, avatar, subtítulo) dibujada por window.render(t) + window.medidas(t) (control de calidad visual)
 motor/render.mjs       Playwright fotograma a fotograma -> ffmpeg (30 fps)
 motor/gerar_avatar.py  poses del avatar en flux2-klein local con la foto de referencia (fondo verde recortado)
+motor/capturar_prova.mjs print real da fonte para a prova (Playwright, tema escuro, 2x)
 motor/gerar_objeto.py  dibujo protagonista en flux2-klein local -> motor/assets/objetos/<nome>.png + indice.json
 motor/gerar_imagem.py  imagen de escena en flux2-klein local
 motor/whisper.py       Whisper large-v3 local (inemavox) con tiempo por palabra
@@ -85,7 +86,7 @@ edicoes/<id>/          roteiro.json · final.mp4 · contact.jpg · qa.md · prov
 | 4 | Aprobar el guion (gancho, pregunta del anzuelo, cifras) | — | 🧠 |
 | 5 | Poses del avatar (una vez; volver a generarlas solo si cambia el personaje): revisar cada una y rehacer las deformadas | `python3 motor/gerar_avatar.py [pose …]` | ⚙️ |
 | 6 | Dibujo protagonista que falte en la biblioteca (revisar y volver a generarlo con otra seed si sale torcido) | `python3 motor/gerar_objeto.py <nome> "<objeto em inglês>" [seed]` | ⚙️ |
-| 6b | Captura real de la fuente (página del repositorio, recortada para mostrar el nombre y el contador) en `edicoes/<id>/prova/` | Playwright (navegador sin ventana) | ⚙️ |
+| 6b | Captura real de la fuente (página del repositorio, recortada para mostrar el nombre y el contador) en `edicoes/<id>/prova/` | `node motor/capturar_prova.mjs <url> edicoes/<id>/prova/x.png [--clip x,y,w,h]` | ⚙️ |
 | 7 | Voz por bloque + Whisper (tiempo por palabra) | `python3 rtexjp.py voz edicoes/<id> [bloco …]` (con nombres, vuelve a generar solo esos TTS) | ⚙️ |
 | 8 | Escena (guion + tiempos) | `python3 rtexjp.py cena edicoes/<id>` | ⚙️ |
 | 9 | Vista previa de fotogramas (+ `quadros/medidas.json` del control de calidad visual) | `node motor/render.mjs edicoes/<id>/build --quadros 0,10,20` → `edicoes/<id>/quadros/` | ⚙️ |

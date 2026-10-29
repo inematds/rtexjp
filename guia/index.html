@@ -324,7 +324,9 @@
     <h3>Desenhos-herói e print da prova <span class="who">opcional</span></h3>
     <p>Cada batida do roteiro mostra um objeto ilustrado grande entre a manchete e o avatar, no mesmo estilo flat. Eles ficam numa biblioteca reaproveitável, <code>motor/assets/objetos/&lt;nome&gt;.png</code>, com o pedido e a seed em <code>indice.json</code>. Já vêm 10 (terminal quebrado, mapa com pinos, mapa rasgado, lupa sobre arquivos, balão de explicação, dominós, alerta de custo, pasta, chave, cadeado). Para um novo, descreva o objeto em inglês; se sair torto ou manchado, troque a seed. A prova usa um <b>print real</b> da página da fonte, guardado em <code>edicoes/&lt;id&gt;/prova/</code> e citado no campo <code>print</code> da batida.</p>
 <pre><span class="k">python3 motor/gerar_objeto.py</span> foguete <span class="s">"a small blue rocket taking off"</span> 11
-<span class="k">python3 motor/gerar_objeto.py</span> --lista</pre>
+<span class="k">python3 motor/gerar_objeto.py</span> --lista
+<span class="k">node motor/capturar_prova.mjs</span> https://github.com/dono/repo edicoes/minha-edicao/prova/pagina.png
+<span class="k">node motor/capturar_prova.mjs</span> https://github.com/dono/repo edicoes/minha-edicao/prova/estrelas.png --clip 1130,180,130,44</pre>
   </div></div>
 
   <div class="step"><div class="b">6</div><div>

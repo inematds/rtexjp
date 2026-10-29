@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""rtexjp — motor de reels 9:16 no padrão rtexjp (reel ilustrado roxo).
+"""rtexjp — motor de reels 9:16 no padrão rtexjp (reel ilustrado azul-marinho, isca de opinião).
 
 Uso:  python3 rtexjp.py <passo> <pasta-da-edicao>
 Passos (em ordem):  checar · voz · cena · render · mix · qa · tudo
@@ -10,18 +10,31 @@ Passos (em ordem):  checar · voz · cena · render · mix · qa · tudo
   render  palco.html quadro a quadro (Playwright) -> build/video.mp4 (mudo)
   mix     voz + cama musical (para no silêncio da máxima) + loudnorm -14 LUFS -> final.mp4
   qa      medir.py -> build/qa.json + contact.jpg
+
+Caminhos (variáveis de ambiente, com o padrão da máquina do Nei):
+  RTEXJP_INEMAVOX  pasta do inemavox (TTS chatterbox + Whisper)   ~/projetos/inemavox
+  RTEXJP_VOZ_REF   gravação de referência da voz (wav)            ~/projetos/timesmkt3/media/voice-refs/nei.wav
+  RTEXJP_IMG_URL   servidor de imagem flux2-klein (motor/gerar_*) http://localhost:8000/generate
+  RTEXJP_AVATAR_REF foto de referência do avatar (gerar_avatar)    ~/projetos/inema-referencias/nei-avatar.jpg
 """
-import json, re, subprocess, sys, difflib
+import json, os, re, subprocess, sys, difflib
 from pathlib import Path
 
 R = Path(__file__).resolve().parent
 sys.path.insert(0, str(R / "motor"))
-INEMAVOX = Path.home() / "projetos/inemavox"
-VOZ_REF = Path.home() / "projetos/timesmkt3/media/voice-refs/nei.wav"
+INEMAVOX = Path(os.environ.get("RTEXJP_INEMAVOX", os.environ.get("CS_INEMAVOX", Path.home() / "projetos/inemavox"))).expanduser()
+os.environ.setdefault("CS_INEMAVOX", str(INEMAVOX))   # o motor/whisper.py lê esta
+VOZ_REF = Path(os.environ.get("RTEXJP_VOZ_REF", Path.home() / "projetos/timesmkt3/media/voice-refs/nei.wav")).expanduser()
 ALVO_WPM = 178
 RESPIRO = 0.22
 
 ORDEM = ["tese", "autoridade", "tese", "virada", "metodo", "ressalva", "maxima", "cta"]
+# gancho do quadro 0 (Nei, 28/10/2026): um destes tipos; lista, "você sabia" e "eu fiz" são proibidos
+GANCHOS = ["contrario", "perda", "estatistica", "historia"]
+GANCHO_PROIBIDO = [(r"\b(\d+|duas|três|tres|quatro|cinco|seis|sete|oito|nove|dez)\s+(coisas|peças|pecas|dicas|ferramentas|jeitos|formas)\b", "lista"),
+                   (r"voc[êe] sabia", "você sabia"), (r"\beu fiz\b", "eu fiz")]
+# isca de opinião: o CTA pede opinião, nunca promete entrega (Nei não responde comentários)
+PROMESSA = [r"te mando", r"eu mando", r"\bmando\b", r"eu envio", r"te envio", r"manda o link", r"comenta \w+ que", r"link na dm", r"\bdm\b"]
 
 
 def sh(*a, **k):
@@ -37,6 +50,16 @@ def ler(pasta):
 
 
 # ---------------------------------------------------------------- checar
+def _textos(x):
+    if isinstance(x, str):
+        return [x]
+    if isinstance(x, dict):
+        return [t for k, v in x.items() if k not in ("gatilhos", "comp") for t in _textos(v)]
+    if isinstance(x, list):
+        return [t for v in x for t in _textos(v)]
+    return []
+
+
 def checar(pasta):
     r = ler(pasta)
     erros, avisos = [], []
@@ -77,20 +100,82 @@ def checar(pasta):
                 erros.append(f"[{b['id']}] gatilho {k}='{w}' não está na fala")
     # números na tela só com fonte
     for b in bl:
-        p = json.dumps(b.get("cena", {}), ensure_ascii=False) + json.dumps(b.get("tela", {}), ensure_ascii=False)
+        p = " ".join(_textos(b.get("cena", {})) + _textos(b.get("tela", {})))   # só texto que vai à tela (não tamanhos/posições)
         if re.search(r"\d{2,}", re.sub(r"\b0\d\b", "", p)) and not b.get("fonte") and b["tipo"] not in ("cta", "virada", "tese"):
             erros.append(f"[{b['id']}] número na tela sem fonte")
-    # isca = tese, plantada antes, presente no CTA
-    isca = r["isca"]["palavra"]
-    if isca not in bl[-1]["fala"]:
-        erros.append("a palavra-isca não está na fala do CTA")
-    antes = [b for b in bl[:-1] if isca.lower() in (b["fala"] + json.dumps(b.get("tela", {}))).lower()]
-    if not antes:
-        erros.append("a palavra-isca não foi plantada antes do CTA")
-    elif bl.index(antes[0]) > 3:
-        avisos.append("a palavra-isca aparece tarde (plante nos primeiros blocos)")
-    if not isca.isascii() or not isca.isupper():
-        erros.append("palavra-isca: caixa alta, sem acento")
+    # gancho (quadro 0 + 3 primeiros segundos)
+    tese0 = bl[0]
+    tela0 = tese0.get("tela", {})
+    g = r.get("gancho")
+    if not g:
+        avisos.append("LEGADO: sem gancho.tipo (formato antigo; edição nova precisa de gancho)")
+    else:
+        if g.get("tipo") not in GANCHOS:
+            erros.append(f"gancho.tipo '{g.get('tipo')}' (use {', '.join(GANCHOS)})")
+        txt0 = (tela0.get("texto", "") + " " + tese0["fala"]).lower()
+        for pat, nome in GANCHO_PROIBIDO:
+            if re.search(pat, txt0):
+                erros.append(f"gancho proibido ({nome}) no quadro 0: {tela0.get('texto') or tese0['fala']}")
+        nm = len(tela0.get("texto", "").split())
+        if not tela0.get("texto"):
+            erros.append("quadro 0 sem manchete (tela.texto)")
+        elif nm > 7:
+            erros.append(f"manchete do quadro 0 com {nm} palavras (máx. ~6)")
+        elif nm > 6:
+            avisos.append(f"manchete do quadro 0 com {nm} palavras (alvo ≤ 6)")
+        if tela0.get("texto") and tela0["texto"] != tela0["texto"].upper():
+            erros.append("manchete do quadro 0 em caixa alta")
+        if not tela0.get("destaque") or tela0["destaque"] not in tela0.get("texto", ""):
+            erros.append("manchete do quadro 0 precisa de UMA palavra na cor quente (tela.destaque)")
+        if not g.get("objeto"):
+            erros.append("gancho.objeto: o objeto-metáfora com dano desenhado no quadro 0")
+        if tese0.get("pose") not in ("surpreso", "queixo"):
+            avisos.append("no gancho o avatar reage (pose surpreso)")
+    pv = next((b for b in bl if b["tipo"] == "autoridade"), None)
+    if not pv:
+        erros.append("falta a prova (bloco autoridade, até ~20 s)")
+    elif bl.index(pv) > 2:
+        erros.append("a prova (autoridade) vem no 2º ou 3º bloco (até ~20 s)")
+    # isca
+    isca = r["isca"]
+    cta = bl[-1]
+    cta_txt = cta["fala"] + " " + json.dumps(cta.get("tela", {}), ensure_ascii=False) + " " + json.dumps(cta.get("cena", {}), ensure_ascii=False)
+    if isca.get("tipo") == "opiniao":
+        ops = isca.get("opcoes", [])
+        if not isca.get("pergunta", "").strip().endswith("?"):
+            erros.append("isca.pergunta tem que ser uma pergunta (termina em ?)")
+        if not 2 <= len(ops) <= 3 or any(len(o.split()) != 1 or o != o.upper() for o in ops):
+            erros.append("isca.opcoes: 2–3 opções de UMA palavra em caixa alta")
+        for o in ops:
+            if o.lower() not in cta["fala"].lower():
+                erros.append(f"a opção {o} não está na fala do CTA")
+        antes = [b for b in bl[:-1] if any(o.lower() in (b["fala"] + json.dumps(b.get("tela", {}), ensure_ascii=False)).lower() for o in ops)]
+        if not antes:
+            erros.append("a tensão (opções) não foi plantada antes do CTA")
+        elif bl.index(antes[0]) > 3:
+            avisos.append("as opções aparecem tarde (plante nos primeiros blocos)")
+        lado = isca.get("lado", "")
+        fala_ate = " ".join(b["fala"] for b in bl[:-1]) + " " + cta["fala"].split("?")[0]
+        if not lado:
+            erros.append("isca.lado: a posição do Nei, dita antes da pergunta")
+        elif lado.lower().rstrip(".") not in fala_ate.lower():
+            erros.append("o lado do Nei (isca.lado) não é dito antes da pergunta")
+        if r.get("entregavel") or isca.get("entregavel"):
+            erros.append("isca de opinião não tem entregável (o Nei não responde comentários)")
+        if not tela0.get("texto", "").strip().endswith("?") and not (g and g.get("tipo") in ("contrario", "estatistica")):
+            avisos.append("a tensão do quadro 0 costuma ser pergunta (termine a manchete em ?)")
+    else:
+        avisos.append("LEGADO: isca de palavra + entregável (formato antigo; edição nova usa isca de opinião)")
+        palavra = isca["palavra"]
+        if palavra not in cta["fala"]:
+            erros.append("a palavra-isca não está na fala do CTA")
+        antes = [b for b in bl[:-1] if palavra.lower() in (b["fala"] + json.dumps(b.get("tela", {}))).lower()]
+        if not antes:
+            erros.append("a palavra-isca não foi plantada antes do CTA")
+    if isca.get("tipo") == "opiniao":
+        for pat in PROMESSA:
+            if re.search(pat, cta_txt, re.I):
+                erros.append(f"CTA promete entrega ('{pat}'): o pedido é de opinião, sem recompensa")
     mx = bl[-2]
     if not 0.5 <= mx.get("silencio_antes_s", 0) <= 0.9:
         erros.append("a máxima precisa de 0,5–0,9 s de silêncio antes")
@@ -99,7 +184,8 @@ def checar(pasta):
     pal = sum(len(b["fala"].split()) for b in bl)
     if not 160 <= pal <= 270:
         avisos.append(f"{pal} palavras (alvo 60–90 s ≈ 170–260)")
-    print(f"{len(bl)} blocos · {len(met)} peças · {pal} palavras · isca {isca}")
+    rot_isca = "/".join(isca.get("opcoes", [])) if isca.get("tipo") == "opiniao" else isca.get("palavra")
+    print(f"{len(bl)} blocos · {len(met)} peças · {pal} palavras · isca {rot_isca} · gancho {(g or {}).get('tipo', '—')}")
     for a in avisos:
         print("AVISO", a)
     for e in erros:
@@ -238,7 +324,9 @@ def cena(pasta):
         blocos.append({**b, "ini": round(ini[i], 3), "fala_ini": t["ini"], "fala_fim": t["fim"], "fim": round(fim_vis, 3),
                        "palavras": t["palavras"], "g": g})
     fontes = {f["id"]: f for f in r["fontes"]}
-    c = {"duracao": round(blocos[-1]["fim"], 3), "isca": r["isca"]["palavra"], "fontes": fontes, "blocos": blocos}
+    isca = r["isca"]
+    quentes = [o.upper() for o in isca["opcoes"]] if isca.get("tipo") == "opiniao" else [isca["palavra"].upper()]
+    c = {"duracao": round(blocos[-1]["fim"], 3), "isca": quentes, "isca_obj": isca, "fontes": fontes, "blocos": blocos}
     (pasta / "build/cena.json").write_text(json.dumps(c, ensure_ascii=False, indent=1))
     (pasta / "build/cena.js").write_text("window.CENA = " + json.dumps(c, ensure_ascii=False) + ";\n")
     print(f"cena {c['duracao']:.1f} s, {len(blocos)} blocos -> build/cena.js")

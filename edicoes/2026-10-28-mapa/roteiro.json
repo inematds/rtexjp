@@ -1,0 +1,373 @@
+{
+ "id": "2026-10-28-mapa",
+ "versao": "rtexjp/2",
+ "titulo": "O Claude sumiu. Você saberia mexer no teu sistema?",
+ "gancho": {
+  "tipo": "perda",
+  "objeto": "terminal do Claude Code rachado em vermelho, carimbo FORA DO AR e arquivos soltos com interrogação; o avatar leva as mãos ao rosto"
+ },
+ "isca": {
+  "tipo": "opiniao",
+  "pergunta": "Você é dono ou refém do sistema que a IA montou?",
+  "opcoes": [
+   "DONO",
+   "REFÉM"
+  ],
+  "lado": "Eu quero ser dono do meu"
+ },
+ "fontes": [
+  {
+   "id": "ua",
+   "valor": "88,7 mil estrelas",
+   "linha": "github.com/Egonex-AI/Understand-Anything · 28/10/2026",
+   "verificado_em": "2026-10-28"
+  }
+ ],
+ "blocos": [
+  {
+   "id": "tese",
+   "tipo": "tese",
+   "rotulo": null,
+   "fala": "Se o Claude Code sumisse amanhã, você saberia mexer no sistema que ele montou pra você?",
+   "fala_tts": "Se o Clód Côud sumisse amanhã, você saberia mexer no sistema que ele montou pra você?",
+   "tela": {
+    "texto": "O CLAUDE SUMIU. E AGORA?",
+    "destaque": "SUMIU"
+   },
+   "cena": {
+    "comp": "gancho",
+    "params": {
+     "linhas": [
+      "O CLAUDE",
+      "SUMIU.",
+      "E AGORA?"
+     ],
+     "janela": "claude code",
+     "cmd": "ajusta o meu sistema",
+     "erro": "conexão perdida",
+     "carimbo": "FORA DO AR",
+     "arquivos": [
+      "app.py",
+      "banco.sql",
+      "login.js",
+      "api.ts"
+     ],
+     "tam": 150
+    }
+   },
+   "pose": "surpreso",
+   "destaque_fala": [
+    "sumisse",
+    "saberia",
+    "sistema"
+   ]
+  },
+  {
+   "id": "prova",
+   "tipo": "autoridade",
+   "rotulo": "00 / O PLUGIN",
+   "fonte": "ua",
+   "fala": "Tem um plugin grátis pra isso: o Understand Anything. Já passa de oitenta e oito mil estrelas no GitHub.",
+   "fala_tts": "Tem um plugin grátis pra isso: o Ânderstend Énitin. Já passa de oitenta e oito mil estrelas no Guit-Râb.",
+   "cena": {
+    "comp": "contador",
+    "params": {
+     "repo": "Egonex-AI/Understand-Anything",
+     "final": 88.7,
+     "decimais": 1,
+     "unidade": "MIL",
+     "rotulo": "ESTRELAS NO GITHUB",
+     "stingers": [
+      {
+       "em": "estrelas",
+       "texto": "<b>88,7 MIL</b><br>ESTRELAS.",
+       "sub": "github.com/Egonex-AI/Understand-Anything · 28/10/2026",
+       "dur": 1.2
+      }
+     ]
+    }
+   },
+   "pose": "apontando",
+   "destaque_fala": [
+    "grátis",
+    "Understand",
+    "oitenta",
+    "estrelas"
+   ]
+  },
+  {
+   "id": "planta",
+   "tipo": "tese",
+   "rotulo": "00 / O PROBLEMA",
+   "fala": "E não é culpa sua: ninguém te deu o mapa. Sem mapa, você não é dono do teu sistema. É refém dele.",
+   "tela": {
+    "texto": "SEM MAPA: DONO OU REFÉM?",
+    "destaque": "REFÉM"
+   },
+   "cena": {
+    "comp": "duas",
+    "params": {
+     "l1": "NÃO É CULPA SUA.",
+     "l2": "NINGUÉM TE DEU O MAPA.",
+     "tam2": 112,
+     "opcoes": [
+      "DONO",
+      "REFÉM"
+     ],
+     "subs": [
+      "SABE O QUE SEGURA O QUÊ",
+      "DEPENDE DA IA"
+     ],
+     "gatilhos": {
+      "l2": "ninguém",
+      "opcoes": "dono"
+     },
+     "stingers": [
+      {
+       "em": "culpa",
+       "texto": "NÃO É<br><b>CULPA SUA.</b>"
+      }
+     ]
+    }
+   },
+   "pose": "queixo",
+   "destaque_fala": [
+    "culpa",
+    "mapa",
+    "dono",
+    "refém"
+   ]
+  },
+  {
+   "id": "virada",
+   "tipo": "virada",
+   "rotulo": "00 / O QUE ELE FAZ",
+   "fala": "Ele faz três coisas.",
+   "cena": {
+    "comp": "indice",
+    "params": {
+     "aba": "O QUE ELE FAZ",
+     "itens": [
+      "O MAPA",
+      "A EXPLICAÇÃO",
+      "O IMPACTO"
+     ]
+    }
+   },
+   "pose": "segurando",
+   "destaque_fala": [
+    "três"
+   ]
+  },
+  {
+   "id": "p1",
+   "tipo": "metodo",
+   "n": 1,
+   "rotulo": "01 / O MAPA",
+   "fonte": "ua",
+   "fala": "Um. Ele lê o projeto inteiro e desenha o mapa: cada arquivo vira um ponto, ligado a quem conversa com ele.",
+   "cena": {
+    "comp": "mapa",
+    "params": {
+     "repo": "Egonex-AI/Understand-Anything",
+     "estrelas": "88,7 mil",
+     "gatilhos": {
+      "card": "um",
+      "mapa": "mapa"
+     },
+     "stingers": [
+      {
+       "em": "desenha",
+       "texto": "ELE DESENHA<br><b>O MAPA.</b>"
+      },
+      {
+       "em": "ponto",
+       "texto": "CADA ARQUIVO,<br><b>UM PONTO.</b>"
+      }
+     ]
+    }
+   },
+   "destaque_fala": [
+    "inteiro",
+    "mapa",
+    "ponto",
+    "conversa"
+   ]
+  },
+  {
+   "id": "p2",
+   "tipo": "metodo",
+   "n": 2,
+   "rotulo": "02 / A EXPLICAÇÃO",
+   "fala": "Dois. Você clica num ponto. Ele explica, em palavras simples, o que aquele arquivo faz e com quem fala.",
+   "cena": {
+    "comp": "explica",
+    "params": {
+     "arquivo": "checkout.ts",
+     "texto": "Charges the card, then tells stock and e-mail.",
+     "fala_com": [
+      "pagamento.ts",
+      "estoque.ts",
+      "email.ts"
+     ],
+     "gatilhos": {
+      "clique": "clica",
+      "explica": "explica",
+      "fala": "fala"
+     },
+     "stingers": [
+      {
+       "em": "clica",
+       "texto": "UM <b>CLIQUE.</b>"
+      },
+      {
+       "em": "simples",
+       "texto": "EM PALAVRAS<br><b>SIMPLES.</b>"
+      }
+     ]
+    }
+   },
+   "destaque_fala": [
+    "clica",
+    "simples",
+    "faz",
+    "fala"
+   ]
+  },
+  {
+   "id": "p3",
+   "tipo": "metodo",
+   "n": 3,
+   "rotulo": "03 / O IMPACTO",
+   "fala": "Três. Antes de você confirmar uma mudança, ele mostra tudo o que ela vai atingir.",
+   "cena": {
+    "comp": "impacto",
+    "params": {
+     "arquivo": "pagamento.ts",
+     "gatilhos": {
+      "mudanca": "mudança",
+      "confirma": "confirmar",
+      "atinge": "mostra"
+     },
+     "stingers": [
+      {
+       "em": "mudança",
+       "texto": "ANTES DE<br><b>MUDAR.</b>"
+      },
+      {
+       "em": "atingir",
+       "texto": "<b>ANTES</b><br>DE QUEBRAR.",
+       "dur": 1.0
+      }
+     ]
+    }
+   },
+   "destaque_fala": [
+    "confirmar",
+    "mudança",
+    "tudo",
+    "atingir"
+   ],
+   "fala_tts": "Três. Antes de você confirmar uma mudança, ele mostra tudo o que ela vai atingir."
+  },
+  {
+   "id": "ressalva",
+   "tipo": "ressalva",
+   "rotulo": "04 / A PARTE HONESTA",
+   "fala": "A parte honesta: a primeira leitura gasta muito token em projeto grande. A explicação sai em inglês. Então começa por uma pasta só.",
+   "fala_tts": "A parte honesta: a primeira leitura gasta muito tôken em projeto grande. A explicação sai em inglês. Então começa por uma pasta só.",
+   "cena": {
+    "comp": "ressalva",
+    "params": {
+     "itens": [
+      "1ª LEITURA GASTA TOKEN",
+      "EXPLICA EM INGLÊS",
+      "COMECE POR UMA PASTA"
+     ],
+     "gatilhos": {
+      "i1": "primeira",
+      "i2": "inglês",
+      "i3": "pasta"
+     },
+     "stingers": [
+      {
+       "em": "inglês",
+       "texto": "SAI EM<br><b>INGLÊS.</b>"
+      },
+      {
+       "em": "pasta",
+       "texto": "UMA PASTA<br><b>SÓ.</b>"
+      }
+     ]
+    }
+   },
+   "pose": "queixo",
+   "destaque_fala": [
+    "honesta",
+    "token",
+    "inglês",
+    "pasta"
+   ]
+  },
+  {
+   "id": "maxima",
+   "tipo": "maxima",
+   "rotulo": null,
+   "silencio_antes_s": 0.8,
+   "fala": "Ser dono do teu sistema nunca foi saber cada linha. É saber o que segura o quê.",
+   "cena": {
+    "comp": "flash",
+    "params": {
+     "l1h": "SER DONO<br>NUNCA FOI SABER<br>CADA LINHA.",
+     "l2h": "É SABER<br><span class=\"hl\">O QUE SEGURA</span><br>O QUÊ.",
+     "tam": 140,
+     "y": 620,
+     "gatilho_l2": "é"
+    }
+   },
+   "destaque_fala": [
+    "dono",
+    "linha",
+    "segura"
+   ]
+  },
+  {
+   "id": "cta",
+   "tipo": "cta",
+   "rotulo": null,
+   "hold_s": 7.5,
+   "fala": "Eu quero ser dono do meu. E você, hoje: dono ou refém do sistema que a IA montou? Comenta DONO ou REFÉM.",
+   "fala_tts": "Eu quero ser dono do meu. E você, hoje: dono ou refém do sistema que a IA montou? Comenta dono, ou refém.",
+   "tela": {
+    "texto": "E VOCÊ, HOJE: DONO OU REFÉM?",
+    "destaque": "DONO"
+   },
+   "cena": {
+    "comp": "opiniao",
+    "params": {
+     "titulo": "E VOCÊ, HOJE:|DONO OU REFÉM?",
+     "digita": "DONO",
+     "confirmacao": "comentado"
+    }
+   },
+   "pose": "mostrando",
+   "destaque_fala": [
+    "dono",
+    "hoje",
+    "DONO",
+    "REFÉM"
+   ]
+  }
+ ],
+ "publicar": {
+  "titulo": "O Claude sumiu. Você saberia mexer no teu sistema?",
+  "descricao": "Se o Claude Code sumisse amanhã, você saberia mexer no sistema que ele montou pra você? Não é culpa sua: ninguém te deu o mapa. O Understand Anything é um plugin grátis para o Claude Code que lê o projeto e desenha esse mapa: cada arquivo vira um ponto, você clica e ele explica o que aquele arquivo faz e com quem fala, e antes de confirmar uma mudança ele mostra tudo o que ela atinge. A parte honesta: a primeira leitura gasta muito token em projeto grande e a explicação sai em inglês; comece por uma pasta só. Ser dono do teu sistema nunca foi saber cada linha. É saber o que segura o quê. E você, hoje: dono ou refém do sistema que a IA montou?",
+  "comentario_fixado": "Pra quem quiser olhar: github.com/Egonex-AI/Understand-Anything (88,7 mil estrelas no GitHub em 28/10/2026; fonte: a própria página do repositório). E você: DONO ou REFÉM?",
+  "tags": [
+   "claude code",
+   "inteligência artificial",
+   "understand anything",
+   "inema"
+  ]
+ }
+}

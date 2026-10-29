@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>rtexjp — reels ilustrados 9:16, locales y gratis</title>
-<meta name="description" content="rtexjp: motor local y gratis que transforma un roteiro.json en un reel vertical ilustrado 1080×1920, con avatar de Nei, mascota robot, voz con TTS local y CTA &quot;comenta PALABRA&quot;.">
-<meta name="theme-color" content="#07061a">
+<meta name="description" content="rtexjp: motor local y gratis que transforma un roteiro.json en un reel vertical ilustrado de 1080×1920, en azul marino, con avatar de Nei, mascota robot, voz mediante TTS local y un CTA de opinión.">
+<meta name="theme-color" content="#07111f">
 <meta property="og:title" content="rtexjp — reels ilustrados 9:16">
-<meta property="og:description" content="Del roteiro.json al reel vertical terminado, todo local y gratis.">
+<meta property="og:description" content="Del roteiro.json al reel vertical listo, todo local y gratis.">
 <meta property="og:image" content="https://inematds.github.io/rtexjp/capa/capa.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎬%3C/text%3E%3C/svg%3E">
 <link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/rtexjp/guia/">
@@ -17,23 +17,23 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  /* Paleta violeta/lila: excepción del proyecto rtexjp (inema-design DECISOES.md, D18). Estructura = estándar INEMA. */
+  /* Paleta azul-marino de rtexjp (inema-design DECISOES.md, D19); amarillo #FACC15 = único color cálido. Estructura = estándar INEMA. */
   :root{
-    --bg:#07061a; --bg2:#0e0c24; --card:#13102c; --line:#272347;
-    --txt:#ecebf5; --mut:#a29fbb; --amb:#9974f8; --amb2:#b9a1f5; --amb-ink:#12092b; --amb-rgb:153,116,248;
-    --hot:#f59f0c; --sky:#38bdf8; --pro:#cbd5e1; --navbg:rgba(7,6,26,.8);
+    --bg:#07111f; --bg2:#0b1a30; --card:#0f213b; --line:#1f3352;
+    --txt:#e6edf7; --mut:#9fb0c8; --amb:#93c5fd; --amb2:#7aa7e0; --amb-ink:#07111f; --amb-rgb:147,197,253;
+    --hot:#FACC15; --sky:#38bdf8; --pro:#cbd5e1; --navbg:rgba(7,17,31,.8);
     color-scheme:dark;
   }
   body.light{
-    --bg:#f6f5fb; --bg2:#ecebf4; --card:#ffffff; --line:#e0deec;
-    --txt:#1b1930; --mut:#5c5974; --amb:#5b3fc7; --amb2:#4c35a8; --amb-ink:#ffffff; --amb-rgb:91,63,199;
-    --hot:#b45309; --sky:#0369a1; --pro:#b45309; --navbg:rgba(246,245,251,.85);
+    --bg:#f5f8fc; --bg2:#eaf0f8; --card:#ffffff; --line:#d9e2ee;
+    --txt:#0f1d33; --mut:#4f6078; --amb:#1e3a8a; --amb2:#2563eb; --amb-ink:#ffffff; --amb-rgb:30,58,138;
+    --hot:#854d0e; --sky:#0369a1; --pro:#854d0e; --navbg:rgba(245,248,252,.85);
     color-scheme:light;
   }
   body.light .hero .glow{opacity:.5}
-  body.light pre{background:#0e0c1e;color:#d6d6e0}
-  body.light pre .c{color:#8a8a98}
-  body.light pre .k{color:#b9a1f5}
+  body.light pre{background:#0b1a30;color:#d6dfeb}
+  body.light pre .c{color:#8696ad}
+  body.light pre .k{color:#93c5fd}
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
@@ -88,8 +88,8 @@
   .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
   .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
   .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
-  pre{background:#0a0918;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
-  pre .c{color:#77738f} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  pre{background:#060e1a;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6dfeb}
+  pre .c{color:#6f819c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
   .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:26px}
   .step>div,.card{min-width:0}
   p code,li code,td code{overflow-wrap:anywhere}
@@ -107,8 +107,9 @@
   .yt{position:relative;width:100%;max-width:360px;aspect-ratio:9/16;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#000;margin:0 auto}
   .yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
   .qa{width:100%;border-collapse:collapse;font-size:.92rem}
-  .qa td{padding:.45em .3em;border-bottom:1px solid var(--line)} .qa td:last-child{text-align:right;font-family:"JetBrains Mono",monospace;color:var(--amb2)}
+  .qa td{padding:.45em .3em;border-bottom:1px solid var(--line);overflow-wrap:anywhere} .qa td:last-child{text-align:right;font-family:"JetBrains Mono",monospace;color:var(--amb2)}
   body.light .qa td:last-child{color:var(--amb)}
+  @media(max-width:600px){.qa.env td{display:block;text-align:left!important;border:none;padding:.15em .3em} .qa.env tr{display:block;border-bottom:1px solid var(--line);padding:.4em 0}}
   .wide{margin:0 0 26px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
   .wide img{width:100%;height:auto;display:block}
   ol.esq{margin:0;padding-left:1.3em} ol.esq li{margin:.35em 0;color:var(--mut)} ol.esq li b{color:var(--txt)}
@@ -137,9 +138,9 @@
     <a class="sec" href="#oque">Qué es</a>
     <a class="sec" href="#fluxo">Cómo funciona</a>
     <a class="sec" href="#guia">Guía de uso</a>
-    <a class="sec" href="#exemplos">Ejemplo</a>
+    <a class="sec" href="#exemplos">Ejemplos</a>
     <span class="lang"><a href="../">PT</a><a href="../en/">EN</a><a class="on" href="./">ES</a></span>
-    <button class="tgl" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema">🌙</button>
+    <button class="tgl" id="themeToggle" aria-label="Alternar tema" title="Alternar tema">🌙</button>
     <a class="btn" href="https://github.com/inematds/rtexjp" target="_blank" rel="noopener">GitHub</a>
   </div>
 </div></nav>
@@ -149,73 +150,73 @@
   <div class="glow"></div>
   <div class="wrap">
     <div>
-      <span class="chip">Motor de reels · v1.0.0 · local y gratis</span>
-      <h1>Del roteiro al reel <span class="amb">ilustrado</span>, sin pagar nada</h1>
-      <p class="lead">Escribes un <code>roteiro.json</code>; rtexjp te devuelve un reel vertical 1080×1920 con avatar ilustrado de Nei, mascota robot, voz de Nei y una única petición: "comenta <span class="hot">PALABRA</span>".</p>
+      <span class="chip">Motor de reels · v1.1.0 · local y gratis</span>
+      <h1>Del guion al reel <span class="amb">ilustrado</span>, sin pagar nada</h1>
+      <p class="lead">Escribes un <code>roteiro.json</code>; rtexjp te devuelve un reel vertical de 1080×1920 en azul marino, con avatar ilustrado de Nei, mascota robot, voz de Nei y una sola petición de opinión: "comenta <span class="hot">DONO (DUEÑO)</span> o <span class="hot">REFÉM (REHÉN)</span>".</p>
       <div class="cta">
         <a class="btn" href="#guia">Empezar la guía</a>
-        <a class="btn ghost" href="#exemplos">Ver el video de ejemplo</a>
+        <a class="btn ghost" href="#exemplos">Ver los videos de ejemplo</a>
       </div>
     </div>
-    <figure><img src="../assets/q-02.jpg" width="540" height="960" alt="Cuadro 0 del reel de ejemplo: la tesis escrita en mayúsculas, &quot;5 cosas de IA que casi nadie vio&quot;, con cinco tarjetas con signos de interrogación, el avatar de Nei y la mascota robot"></figure>
+    <figure><img src="../assets/m-00-0.jpg" width="540" height="960" alt="Cuadro 0 del segundo reel de ejemplo, en azul marino: el titular &quot;O Claude sumiu. E agora?&quot; (&quot;Claude desapareció. ¿Y ahora?&quot;) con SUMIU (DESAPARECIÓ) en amarillo, una terminal tachada en rojo, el avatar de Nei con las manos en el rostro y la mascota robot"></figure>
   </div>
 </header>
 
 <section id="resumo" class="resumo"><div class="wrap">
   <span class="chip">En resumen</span>
-  <p>rtexjp es un motor que monta videos cortos verticales (reels) ilustrados, en morado, a partir de un guion escrito en un archivo de texto (<code>roteiro.json</code>). Es el motor que Nei usa en los reels de INEMA, abierto a quien quiera estudiar o adaptar: sin grabarse a sí mismo y sin pagar un servicio de avatares. Genera la voz, dibuja cada escena fotograma a fotograma, mezcla la pista musical y comprueba por sí solo si el video sigue el formato. Necesitas una computadora con tarjeta gráfica (GPU), Python, Node, ffmpeg y dos servidores locales: el de voz (inemavox) y el de imagen (flux2-klein).</p>
-  <p class="mut" style="font-size:.98rem">Viene configurado con la voz y el avatar de Nei. Para usar los tuyos, cambia la grabación de referencia de la voz (ruta en <code>VOZ_REF</code>, al inicio de <code>rtexjp.py</code>) y la foto de referencia del avatar (ruta en <code>REF</code>, en <code>motor/gerar_avatar.py</code>), y vuelve a generar las poses. Esos dos archivos no vienen en el repositorio.</p>
+  <p>rtexjp es un motor que monta videos cortos verticales (reels) ilustrados, en azul marino, a partir de un guion escrito en un archivo de texto (<code>roteiro.json</code>). Es el motor que Nei usa en los reels de INEMA, abierto a quien quiera estudiar o adaptar: sin grabarte ni pagar un servicio de avatar. Genera la voz, dibuja cada escena cuadro a cuadro, mezcla la pista musical y comprueba por sí solo si el video sigue el formato. Necesitas una computadora con tarjeta gráfica (GPU), Python, Node, ffmpeg y dos servidores locales: el de voz (inemavox) y el de imágenes (flux2-klein).</p>
+  <p class="mut" style="font-size:.98rem">Viene configurado con la voz y el avatar de Nei. Para usar los tuyos, apunta las variables de entorno <code>RTEXJP_VOZ_REF</code> (grabación de referencia de voz) y <code>RTEXJP_AVATAR_REF</code> (foto del avatar) a tus archivos y vuelve a generar las poses; no hace falta editar nada en el código. Esos dos archivos no vienen en el repositorio (consulta <a href="#pre">Requisitos previos</a>).</p>
 </div></section>
 
 <section id="oque"><div class="wrap">
   <span class="chip">Qué es</span>
   <h2>Un formato fijo, comprobado por un validador</h2>
-  <p class="sub">Cada reel sigue el mismo esqueleto: tesis en el cuadro 0, prueba con fuente, elementos numerados, salvedad honesta, máxima y petición de comentario. El motor dibuja; el validador avisa si algo se sale del formato.</p>
-  <figure class="wide"><img src="../assets/triptico.jpg" width="760" height="570" loading="lazy" alt="Tres cuadros del reel de ejemplo, uno al lado del otro: la tesis, la frase &quot;No es el modelo&quot; y la tarjeta final &quot;Comenta SETUP y te lo envío&quot;"></figure>
+  <p class="sub">Todos los reels siguen el mismo esquema: gancho en el cuadro 0, prueba con fuente, el problema de quien mira, piezas numeradas, una salvedad honesta, una máxima y una pregunta de opinión. El motor dibuja; el validador avisa si algo se sale del formato.</p>
+  <figure class="wide"><img src="../assets/triptico-2.jpg" width="760" height="447" loading="lazy" alt="Tres cuadros del segundo reel de ejemplo, uno al lado del otro: el gancho &quot;O Claude sumiu. E agora?&quot; (&quot;Claude desapareció. ¿Y ahora?&quot;), el problema con las opciones DONO (DUEÑO) y REFÉM (REHÉN) en amarillo, y la tarjeta final con la pregunta y el cuadro de comentarios escribiendo DONO (DUEÑO)"></figure>
   <div class="grid g3">
-    <div class="card"><h3>🎨 Ilustrado, sin sincronización labial</h3><p>Avatar ilustrado de Nei en seis poses (brazos cruzados, mano en la barbilla, señalando, sosteniendo algo, sorprendido, mostrando algo) y una mascota robot. Nadie tiene que grabar nada.</p></div>
+    <div class="card"><h3>🎨 Ilustrado, sin sincronización labial</h3><p>Avatar ilustrado de Nei en seis poses (brazos cruzados, mano en la barbilla, señalando, sosteniendo, sorprendido, mostrando) y una mascota robot. Nadie tiene que grabar nada.</p></div>
     <div class="card"><h3>🎙️ Voz de Nei, local</h3><p>Voz mediante TTS local (inemavox chatterbox), 160–190 palabras por minuto; Whisper local marca el tiempo de cada palabra para los subtítulos y los disparadores de escena.</p></div>
-    <div class="card"><h3>✅ QA automático</h3><p>Mide la duración, el ritmo del habla, el volumen (−14 LUFS), los cambios visuales por minuto, la palabra gancho, la tarjeta final y el silencio antes de la máxima. Genera un <code>qa.md</code> y un <code>contact.jpg</code>.</p></div>
+    <div class="card"><h3>✅ Control de calidad automático</h3><p>Mide duración, ritmo del habla, volumen (−14 LUFS), cambios visuales por minuto, prueba antes de 20 s, opciones de la carnada presentadas de antemano, CTA sin promesa de entrega, tarjeta final y silencio antes de la máxima. Genera un <code>qa.md</code> y un <code>contact.jpg</code>.</p></div>
   </div>
 </div></section>
 
 <section id="formato"><div class="wrap">
   <span class="chip">El formato</span>
   <h2>Las nueve reglas del estándar rtexjp</h2>
-  <p class="sub">Eso es lo que los comandos <code>checar</code> y QA comprueban en cada edición.</p>
+  <p class="sub">Eso es lo que los comandos <code>checar</code> y el QA exigen en cada edición.</p>
   <div class="grid g2">
     <div class="card"><ol class="esq">
-      <li><b>Tesis escrita en el cuadro 0</b>, en mayúsculas, con una palabra en lila. Sirve de portada para quien pasa sin sonido.</li>
-      <li><b>Prueba con cifra en pantalla</b>: un contador se detiene en la cifra y la fuente aparece debajo.</li>
-      <li><b>La palabra gancho es la tesis</b> y se introduce pronto, siempre en el único color cálido del video (<span class="hot">naranja</span>).</li>
-      <li><b>"N elementos" con índice visible</b> (01…05) y una barra de píldoras en la parte superior durante los elementos.</li>
-      <li><b>Un elemento a la vez, un objeto por frase</b>: el objeto de la escena cambia cada 2–3 s.</li>
+      <li><b>Gancho en el cuadro 0</b>, de uno de estos tipos: <b>contrario</b> (ordena dejar de hacer algo que todo el mundo hace), <b>pérdida</b> (¿y si desapareciera X?), <b>estadística de miedo</b> con fuente o <b>historia de terceros</b> con una cifra. Prohibido: listas («5 cosas…»), «¿sabías que…?», «yo hice…».</li>
+      <li><b>Titular del cuadro 0</b> de hasta unas 6 palabras, en mayúsculas, con <b>una</b> palabra en <span class="hot">amarillo</span>, más agresivo que la narración. Un objeto con daño dibujado (tachado en rojo, roto), el avatar reacciona durante el primer segundo y algo cambia aproximadamente cada segundo durante los primeros tres segundos. El cuadro 0 sirve de portada.</li>
+      <li><b>Prueba antes de 20 s</b>: un contador se detiene en la cifra y la fuente aparece debajo.</li>
+      <li><b>El problema de quien mira, con absolución</b> («no es culpa tuya, nadie te dio el mapa»). Aquí ya se plantea la pregunta final: las opciones aparecen en <span class="hot">amarillo</span>.</li>
+      <li><b>Un tema por video</b>, en 2–5 piezas con índice visible y barra de cápsulas en la parte superior; un objeto por frase, que cambia cada 2–3 s.</li>
     </ol></div>
     <div class="card"><ol class="esq" start="6">
-      <li><b>Toda cifra tiene la fuente escrita</b> en pantalla (<code>fonte: …</code>).</li>
-      <li><b>Salvedad honesta hablada</b>, en una tarjeta de alerta (rojo = problema, verde = correcto).</li>
-      <li><b>Máxima en antítesis</b>, después de 0,8 s de silencio real (se detienen la voz y la pista musical).</li>
-      <li><b>"comenta PALABRA"</b>: el cuadro de comentarios escribe la palabra, pulsa Publicar y confirma. La tarjeta permanece ~9–10 s, sin despedida.</li>
+      <li><b>Todo número tiene la fuente escrita</b> en pantalla (<code>fonte: …</code>).</li>
+      <li><b>Salvedad honesta narrada</b> en una tarjeta de alerta (rojo = problema, verde = correcto).</li>
+      <li><b>Máxima en antítesis</b>, después de 0,8 s de silencio real (se detienen la voz y la música).</li>
+      <li><b>CTA de opinión</b>: Nei dice de qué lado está y hace una pregunta contundente, que se responde con una palabra («comenta DONO o REFÉM» («comenta DUEÑO o REHÉN»)). La tarjeta muestra la pregunta y las opciones; el cuadro de comentarios escribe una opción, la publica y lo confirma. Permanece unos 10 s, sin despedida. <b>Nunca promete entregar nada</b> («te lo mando», «te lo envío»): nadie responde los comentarios. El enlace y la fuente quedan fijos en el comentario fijado.</li>
     </ol></div>
   </div>
   <h3 style="margin:34px 0 12px">Glosario rápido</h3>
   <div class="grid g3">
-    <div class="card"><h3>Palabra gancho</h3><p>La palabra que el video pide que comentes (aquí, SETUP). Es la propia tesis, aparece pronto y es lo único que está en naranja.</p></div>
-    <div class="card"><h3>Máxima</h3><p>La frase resumen del final, en antítesis ("El modelo lo tiene todo el mundo. El setup, casi nadie."). Aparece después de un breve silencio.</p></div>
-    <div class="card"><h3>Escenario</h3><p>La página <code>motor/palco.html</code> que dibuja cada escena. El render le toma una foto en cada fotograma.</p></div>
-    <div class="card"><h3>Base musical</h3><p>Pista musical baja bajo la voz, que baja de volumen cuando la voz habla y se detiene en el silencio antes de la máxima.</p></div>
+    <div class="card"><h3>Carnada de opinión</h3><p>La pregunta del final, con dos opciones de una palabra (en el segundo video, DONO (DUEÑO) o REFÉM (REHÉN)). La tensión aparece en el cuadro 0, las opciones se presentan pronto y solo ellas (y la palabra destacada del titular) quedan en amarillo.</p></div>
+    <div class="card"><h3>Máxima</h3><p>La frase que resume el final, en antítesis («Ser dono do teu sistema nunca foi saber cada linha. É saber o que segura o quê.» («Ser dueño de tu sistema nunca significó conocer cada línea. Significa saber qué sostiene qué.»)). Va después de un breve silencio.</p></div>
+    <div class="card"><h3>Escenario</h3><p>La página <code>motor/palco.html</code> que dibuja cada escena. El render toma una foto de ella por cada cuadro.</p></div>
+    <div class="card"><h3>Base musical</h3><p>Pista de fondo a bajo volumen, que baja cuando habla la voz y se detiene en el silencio antes de la máxima.</p></div>
     <div class="card"><h3>LUFS</h3><p>Medida del volumen percibido. −14 LUFS es el volumen que las redes usan como estándar.</p></div>
-    <div class="card"><h3>CTA</h3><p>"Llamada a la acción": la petición final del video. Aquí siempre es una sola: "comenta PALABRA".</p></div>
-    <div class="card"><h3>TTS y sincronización labial</h3><p>TTS es la voz generada a partir del texto. La sincronización labial es el movimiento de la boca al hablar; rtexjp no la hace, el avatar solo cambia de pose.</p></div>
-    <div class="card"><h3>Whisper y Playwright</h3><p>Whisper transcribe la voz y marca el tiempo de cada palabra. Playwright abre el escenario en un navegador sin ventana y toma una foto de cada fotograma.</p></div>
-    <div class="card"><h3>Destello tipográfico</h3><p>Una pantalla rápida solo con texto grande entre los elementos para que el video no se quede quieto.</p></div>
+    <div class="card"><h3>CTA</h3><p>«Llamada a la acción»: la petición final del video. Aquí siempre es una sola, una pregunta de opinión que se responde con una palabra.</p></div>
+    <div class="card"><h3>TTS y sincronización labial</h3><p>TTS es la voz generada a partir del texto. La sincronización labial hace que la boca se mueva al ritmo del habla; rtexjp no lo hace, el avatar solo cambia de pose.</p></div>
+    <div class="card"><h3>Whisper y Playwright</h3><p>Whisper transcribe la voz e indica el tiempo de cada palabra. Playwright abre el escenario en un navegador sin ventana y toma una foto de cada cuadro.</p></div>
+    <div class="card"><h3>Destello tipográfico</h3><p>Una pantalla rápida, solo con texto grande entre las piezas, para que el video no quede estático.</p></div>
   </div>
 </div></section>
 
 <section id="fluxo"><div class="wrap">
   <span class="chip">Cómo funciona</span>
-  <h2>Seis pasos, un comando cada uno</h2>
-  <p class="sub"><code>rtexjp.py</code> ejecuta los pasos en orden. El escenario es una página HTML dibujada por <code>window.render(t)</code>: el mismo <code>build/cena.json</code> siempre genera el mismo video. La voz no: el TTS sale un poco diferente cada vez (por eso el paso <code>voz</code> permite rehacer solo algunos bloques).</p>
+  <h2>Seis pasos, un comando para cada uno</h2>
+  <p class="sub">El <code>rtexjp.py</code> ejecuta los pasos en orden. El escenario es una página HTML dibujada por <code>window.render(t)</code>: el mismo <code>build/cena.json</code> siempre genera el mismo video. La voz no: el TTS sale un poco distinto cada vez (por eso el paso <code>voz</code> permite rehacer solo algunos bloques).</p>
   <div class="flow">
     <span>roteiro.json</span><span class="arr">→</span>
     <span>checar</span><span class="arr">→</span>
@@ -227,67 +228,79 @@
     <span>final.mp4</span>
   </div>
   <div class="grid g3" style="margin-top:26px">
-    <div class="card"><span class="num">1</span><h3>Guion y validación</h3><p><code>checar</code> comprueba la estructura mediante el campo <code>tipo</code>: empieza con <code>tese</code>, <code>virada</code> antes del primer <code>metodo</code> (2–5 elementos), <code>ressalva</code> antes de <code>maxima</code>, <code>maxima</code> justo antes de <code>cta</code> al final. El ejemplo usa <code>tese</code> → <code>autoridade</code> → <code>tese</code> → <code>virada</code> → <code>metodo</code> ×5 → <code>ressalva</code> → <code>maxima</code> → <code>cta</code>.</p></div>
+    <div class="card"><span class="num">1</span><h3>Guion y validación</h3><p><code>checar</code> comprueba el esquema mediante el campo <code>tipo</code>: empieza con <code>tese</code>, <code>virada</code> antes del primer <code>metodo</code> (2–5 piezas), <code>ressalva</code> antes de <code>maxima</code>, <code>maxima</code> justo antes de <code>cta</code> al final. El segundo ejemplo usa <code>tese</code> (gancho) → <code>autoridade</code> (prueba) → <code>tese</code> (problema + opciones) → <code>virada</code> → <code>metodo</code> ×3 → <code>ressalva</code> → <code>maxima</code> → <code>cta</code>.</p></div>
     <div class="card"><span class="num">2</span><h3>Voz y escena</h3><p><code>voz</code> genera un audio por bloque, acelera hasta 1,15× y los une; <code>cena</code> cruza el guion con el tiempo de cada palabra.</p></div>
-    <div class="card"><span class="num">3</span><h3>Render, mezcla y QA</h3><p><code>render</code> fotografía el escenario fotograma a fotograma; <code>mix</code> añade la pista musical (que se detiene durante el silencio de la máxima); <code>qa</code> lo mide todo.</p></div>
+    <div class="card"><span class="num">3</span><h3>Render, mezcla y control de calidad</h3><p><code>render</code> fotografía el escenario cuadro a cuadro; <code>mix</code> añade la pista (que se detiene durante el silencio de la máxima); <code>qa</code> lo mide todo.</p></div>
   </div>
 </div></section>
 
 <section id="pre"><div class="wrap">
   <span class="chip">Requisitos previos</span>
-  <h2>Qué debe haber en la computadora</h2>
-  <p class="sub">Todo se ejecuta localmente. No se llama a ninguna API de pago. Las rutas siguientes están fijadas en el código; si tu computadora es diferente, ajústalas en los archivos indicados.</p>
+  <h2>Qué debe haber en la máquina</h2>
+  <p class="sub">Todo se ejecuta localmente. No se llama a ninguna API de pago. Las rutas provienen de variables de entorno, con los valores predeterminados de la máquina de Nei; si la tuya es distinta, exporta las variables (tabla de abajo) y no tendrás que cambiar nada en el código.</p>
   <div class="grid g3">
-    <div class="card"><h3>Voz: inemavox + entorno chatterbox</h3><p>El proyecto <a href="https://github.com/inematds/inemavox" target="_blank" rel="noopener">inematds/inemavox</a> clonado en <code>~/projetos/inemavox</code> (el motor llama a su <code>tts_direct.py</code> y <code>whisper_daemon.py</code>). El TTS chatterbox y Whisper large-v3 se ejecutan en un entorno Python aparte (en el caso de Nei, el entorno conda <code>chatterbox</code> en <code>~/miniconda3/envs/chatterbox</code>); si el tuyo está en otro lugar, indica las variables de abajo. La ruta <code>~/projetos/inemavox</code> está fijada en <code>rtexjp.py</code> (<code>INEMAVOX</code>): clónalo exactamente ahí o cambia esa línea. Whisper large-v3 ocupa unos 10 GB de la tarjeta gráfica (GPU NVIDIA), además de chatterbox. Probado en Linux.</p><pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/inemavox</span> ~/projetos/inemavox
+    <div class="card"><h3>Voz: inemavox + entorno chatterbox</h3><p>El proyecto <a href="https://github.com/inematds/inemavox" target="_blank" rel="noopener">inematds/inemavox</a> clonado en <code>~/projetos/inemavox</code> (el motor llama a su <code>tts_direct.py</code> y <code>whisper_daemon.py</code>). El TTS chatterbox y Whisper large-v3 se ejecutan en un entorno Python aparte (en la máquina de Nei, el entorno conda <code>chatterbox</code> en <code>~/miniconda3/envs/chatterbox</code>); si el tuyo está en otro lugar, indica las rutas en las variables de abajo. Si lo clonas en otro lugar, exporta <code>RTEXJP_INEMAVOX</code> con la ruta. Whisper large-v3 ocupa unos 10 GB en la tarjeta gráfica (GPU NVIDIA), además de chatterbox. Probado en Linux.</p><pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/inemavox</span> ~/projetos/inemavox
 <span class="k">cd</span> ~/projetos/inemavox && <span class="k">python3 -m venv</span> venv
 <span class="k">./venv/bin/pip install</span> -r requirements.txt   <span class="c"># rtexjp llama a venv/bin/python tts_direct.py</span>
 <span class="c"># chatterbox + faster-whisper en un entorno propio (consulta el README de inemavox)</span>
 <span class="k">export</span> CHATTERBOX_PYTHON=<span class="s">/caminho/do/env/bin/python3</span>   <span class="c"># TTS</span>
 <span class="k">export</span> CS_WHISPER_PY=<span class="s">/caminho/do/env/bin/python3</span>       <span class="c"># Whisper</span>
 </pre></div>
-    <div class="card"><h3>Imagen: flux2-klein</h3><p>El servidor <a href="https://github.com/inematds/inemaimg" target="_blank" rel="noopener">inematds/inemaimg</a> ejecutándose en <code>http://localhost:8000</code> con el modelo flux2-klein, además de la foto de referencia del avatar (<code>REF</code> en <code>motor/gerar_avatar.py</code>). Solo hace falta para los pasos opcionales 4 y 5 (poses e imágenes de escena); las seis poses de Nei ya vienen listas.</p></div>
+    <div class="card"><h3>Imágenes: flux2-klein</h3><p>El servidor <a href="https://github.com/inematds/inemaimg" target="_blank" rel="noopener">inematds/inemaimg</a> con el modelo flux2-klein (por defecto <code>http://localhost:8000/generate</code>, o la dirección indicada en <code>RTEXJP_IMG_URL</code>), además de la foto de referencia del avatar (<code>RTEXJP_AVATAR_REF</code>). Solo se necesita en los pasos opcionales 4 y 5 (poses e imágenes de escena); las seis poses de Nei ya vienen listas.</p></div>
     <div class="card"><h3>Node, ffmpeg, Python</h3><p>Node 18 o posterior, ffmpeg (incluye ffprobe) y Python 3 con Pillow y numpy.</p><pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/rtexjp</span>
 <span class="k">cd</span> rtexjp
 <span class="k">npm i</span>
 <span class="k">npx playwright install</span> chromium
-<span class="k">pip install --user</span> pillow numpy   <span class="c"># o dentro de un entorno virtual</span></pre></div>
+<span class="k">pip install --user</span> pillow numpy   <span class="c"># o dentro de un venv</span></pre></div>
   </div>
+  <h3 style="margin:34px 0 12px">Rutas y variables de entorno</h3>
+  <table class="qa env">
+    <tr><td><code>RTEXJP_INEMAVOX</code> · carpeta de inemavox (TTS + Whisper)</td><td>~/projetos/inemavox</td></tr>
+    <tr><td><code>RTEXJP_VOZ_REF</code> · grabación de referencia de voz (.wav)</td><td>~/projetos/timesmkt3/media/voice-refs/nei.wav</td></tr>
+    <tr><td><code>RTEXJP_IMG_URL</code> · servidor de imágenes flux2-klein</td><td>http://localhost:8000/generate</td></tr>
+    <tr><td><code>RTEXJP_AVATAR_REF</code> · foto de referencia del avatar</td><td>~/projetos/inema-referencias/nei-avatar.jpg</td></tr>
+  </table>
+<pre><span class="c"># ejemplo: todo en otras rutas, sin editar el código</span>
+<span class="k">export</span> RTEXJP_INEMAVOX=<span class="s">~/inemavox</span>
+<span class="k">export</span> RTEXJP_VOZ_REF=<span class="s">~/minha-voz.wav</span>
+<span class="k">export</span> RTEXJP_AVATAR_REF=<span class="s">~/minha-foto.jpg</span>
+<span class="k">export</span> RTEXJP_IMG_URL=<span class="s">http://outra-maquina:8000/generate</span></pre>
 </div></section>
 
 <section id="guia"><div class="wrap">
   <span class="chip">Guía de uso · paso a paso</span>
   <h2>Del guion al final.mp4</h2>
-  <p class="sub">Cada edición vive en <code>edicoes/&lt;id&gt;/</code>. El atajo <code>tudo</code> (paso 10) ejecuta de una vez checar, voz, cena, render, mix y qa (sin la vista previa de fotogramas del paso 7).</p>
+  <p class="sub">Cada edición vive en <code>edicoes/&lt;id&gt;/</code>. El atajo <code>tudo</code> (paso 10) ejecuta de una vez checar, voz, cena, render, mix y qa (sin la vista previa de cuadros del paso 7).</p>
 
   <div class="step"><div class="b">1</div><div>
     <h3>Indica tu voz de referencia <span class="who">tú</span></h3>
-    <p>El paso de voz clona la voz de una grabación corta. En el código apunta a la grabación de Nei, que no viene en el repositorio; si no la cambias, el paso <code>voz</code> falla. Graba entre 10 y 20 segundos de voz limpia en WAV y cambia la ruta de <code>VOZ_REF</code> al inicio de <code>rtexjp.py</code>. Si también vas a cambiar el avatar, sustituye <code>REF</code> en <code>motor/gerar_avatar.py</code> por una foto tuya y ejecuta el paso 4.</p>
-<pre><span class="k">grep -n</span> VOZ_REF rtexjp.py          <span class="c"># línea que hay que cambiar</span>
-<span class="k">grep -n</span> <span class="s">"^REF"</span> motor/gerar_avatar.py   <span class="c"># solo si vas a cambiar el avatar</span></pre>
+    <p>El paso de voz clona la voz de una grabación corta. Por defecto apunta a la grabación de Nei, que no viene en el repositorio; si no indicas la tuya, el paso <code>voz</code> falla. Graba entre 10 y 20 segundos de voz limpia, en WAV, y exporta <code>RTEXJP_VOZ_REF</code>. Si también vas a cambiar el avatar, exporta <code>RTEXJP_AVATAR_REF</code> con una foto tuya y ejecuta el paso 4.</p>
+<pre><span class="k">export</span> RTEXJP_VOZ_REF=<span class="s">~/minha-voz.wav</span>
+<span class="k">export</span> RTEXJP_AVATAR_REF=<span class="s">~/minha-foto.jpg</span>   <span class="c"># solo si vas a cambiar el avatar</span></pre>
   </div></div>
 
   <div class="step"><div class="b">2</div><div>
     <h3>Escribe el guion <span class="who">tú</span></h3>
-    <p>Copia el guion de ejemplo y cambia el contenido. El formato se resume justo debajo de la guía, en <a href="#roteiro">"El roteiro.json"</a>.</p>
+    <p>Copia el guion del ejemplo y cambia el contenido. El formato se resume justo debajo de la guía, en <a href="#roteiro">«El roteiro.json»</a>.</p>
 <pre><span class="k">mkdir -p</span> edicoes/minha-edicao
-<span class="k">cp</span> edicoes/2026-10-28-5-coisas/roteiro.json edicoes/minha-edicao/   <span class="c"># edítalo después</span></pre>
+<span class="k">cp</span> edicoes/2026-10-28-mapa/roteiro.json edicoes/minha-edicao/   <span class="c"># después edita</span></pre>
   </div></div>
 
   <div class="step"><div class="b">3</div><div>
     <h3>Valida las reglas del formato</h3>
-    <p>Sin preferencias, solo reglas. Rechaza: orden incorrecto de los bloques, menos de 2 o más de 5 elementos, índice distinto del número de elementos, cifra o signo de exclamación en el texto hablado (escribe los números con letras), <code>fonte</code> que no existe en <code>fontes</code>, palabra de <code>destaque_fala</code> o de disparador que no esté en el texto hablado, cifra en pantalla sin fuente, gancho ausente del CTA o que no se haya introducido antes, gancho con tilde o minúscula, silencio antes de la máxima fuera de 0,5–0,9 s.</p>
+    <p>Sin opiniones, solo reglas. Rechaza: orden incorrecto de los bloques, menos de 2 o más de 5 piezas, índice distinto del número de piezas, cifras o signos de exclamación en la narración (escribe los números con palabras), <code>fonte</code> que no existe en <code>fontes</code>, palabra de <code>destaque_fala</code> o de un disparador que no aparezca en la narración, cifra en pantalla sin fuente, silencio antes de la máxima fuera del intervalo de 0,5–0,9 s. Gancho: <code>gancho.tipo</code> fuera de la lista, gancho de lista/«¿sabías?»/«yo hice», titular del cuadro 0 con más de unas 6 palabras, sin mayúsculas o sin la palabra destacada, sin objeto dañado, prueba después del tercer bloque. Carnada: pregunta sin «?», opciones que no sean una palabra en mayúsculas, opción fuera de la narración del CTA o que no se haya presentado antes, lado de Nei no expresado antes de la pregunta, recurso para entregar o CTA que prometa una entrega («te lo mando», «te lo envío», «comenta X y…»). Un guion en el formato antiguo (palabra + recurso para entregar, sin gancho) pasa solo con aviso de LEGADO.</p>
 <pre><span class="k">python3 rtexjp.py checar</span> edicoes/minha-edicao</pre>
   </div></div>
 
   <div class="step"><div class="b">4</div><div>
     <h3>Poses del avatar <span class="who">opcional</span></h3>
-    <p>Las seis poses de Nei ya vienen en <code>motor/avatar/</code>. Ejecuta este paso solo si cambiaste la foto de referencia (<code>REF</code>) por la de otro personaje.</p>
+    <p>Las seis poses de Nei (camiseta azul acero) ya vienen en <code>motor/avatar/</code>. Ejecútalo solo si cambiaste la foto de referencia (<code>RTEXJP_AVATAR_REF</code>) o la ropa del personaje.</p>
 <pre><span class="k">python3 motor/gerar_avatar.py</span></pre>
   </div></div>
 
   <div class="step"><div class="b">5</div><div>
     <h3>Imágenes de escena <span class="who">opcional</span></h3>
-    <p>Una imagen en flux2-klein local (tamaño predeterminado 1152×784). Hoy solo el componente <code>carro</code> del escenario usa una imagen (<code>motor/assets/carro.png</code>); para usar una imagen nueva, hace falta un componente que la cargue en <code>motor/palco.html</code>.</p>
+    <p>Una imagen en flux2-klein local (tamaño predeterminado 1152×784). Hoy solo el componente <code>carro</code> del escenario usa una imagen (<code>motor/assets/carro.png</code>); para una imagen nueva hace falta un componente que la cargue en <code>motor/palco.html</code>.</p>
 <pre><span class="k">python3 motor/gerar_imagem.py</span> motor/assets/x.png <span class="s">"&lt;prompt&gt;"</span></pre>
   </div></div>
 
@@ -295,25 +308,25 @@
     <h3>Voz por bloque + tiempo de cada palabra</h3>
     <p>Un audio por bloque con la voz de Nei; Whisper marca cada palabra en <code>build/tempos.json</code>. Pasa los nombres de los bloques para rehacer solo esos. Si Whisper falla, el registro queda en <code>~/.cache/whisper_daemon.log</code>.</p>
 <pre><span class="k">python3 rtexjp.py voz</span> edicoes/minha-edicao            <span class="c"># todos los bloques</span>
-<span class="k">python3 rtexjp.py voz</span> edicoes/minha-edicao p2 ressalva  <span class="c"># solo estos</span></pre>
+<span class="k">python3 rtexjp.py voz</span> edicoes/minha-edicao p2 ressalva  <span class="c"># solo esos</span></pre>
   </div></div>
 
   <div class="step"><div class="b">7</div><div>
-    <h3>Monta la escena y revisa fotogramas sueltos</h3>
-    <p><code>cena</code> guarda <code>build/cena.json</code>. Antes del render completo, extrae algunos fotogramas (en segundos) para revisarlos.</p>
+    <h3>Monta la escena y revisa cuadros sueltos</h3>
+    <p><code>cena</code> guarda <code>build/cena.json</code>. Antes del render completo, extrae algunos cuadros (en segundos) para revisarlos.</p>
 <pre><span class="k">python3 rtexjp.py cena</span> edicoes/minha-edicao
 <span class="k">node motor/render.mjs</span> edicoes/minha-edicao/build --quadros 0,10,20   <span class="c"># -> edicoes/minha-edicao/quadros/</span></pre>
   </div></div>
 
   <div class="step"><div class="b">8</div><div>
     <h3>Render a 1080×1920 y 30 fps</h3>
-    <p>Playwright fotografía el escenario fotograma a fotograma y ffmpeg los une en <code>build/video.mp4</code> (sin sonido).</p>
+    <p>Playwright fotografía el escenario cuadro a cuadro y ffmpeg los une en <code>build/video.mp4</code> (sin sonido).</p>
 <pre><span class="k">python3 rtexjp.py render</span> edicoes/minha-edicao</pre>
   </div></div>
 
   <div class="step"><div class="b">9</div><div>
-    <h3>Mezcla y QA</h3>
-    <p>Voz + pista musical baja (que se detiene durante el silencio de la máxima), volumen final de −14 LUFS; después QA genera <code>qa.md</code>, <code>build/qa.json</code> y <code>contact.jpg</code>. Los criterios que no se cumplen aparecen con ❌ en <code>qa.md</code> y el comando termina con un error de Python (<code>CalledProcessError</code>): indica que QA lo rechazó, no que haya un error en el código.</p>
+    <h3>Mezcla y control de calidad</h3>
+    <p>Voz + pista de fondo a bajo volumen (que se detiene durante el silencio de la máxima), volumen final de −14 LUFS; después, el control de calidad genera <code>qa.md</code>, <code>build/qa.json</code> y <code>contact.jpg</code>. Si falla un criterio, aparece con ❌ en <code>qa.md</code> y el comando termina con un error de Python (<code>CalledProcessError</code>): es señal de que el control de calidad no se aprobó, no un error del programa.</p>
 <pre><span class="k">python3 rtexjp.py mix</span> edicoes/minha-edicao   <span class="c"># -> final.mp4</span>
 <span class="k">python3 rtexjp.py qa</span>  edicoes/minha-edicao   <span class="c"># -> qa.md, contact.jpg</span></pre>
   </div></div>
@@ -325,82 +338,119 @@
   </div></div>
 
   <div class="step"><div class="b">11</div><div>
-    <h3>Revisa antes de publicar <span class="who">tú</span></h3>
-    <p>Abre <code>contact.jpg</code> y mira el video. El CTA promete algo a quienes comenten: ese material debe existir antes de que el video se publique. La publicación queda fuera de este repositorio.</p>
+    <h3>Revísalo antes de publicar <span class="who">tú</span></h3>
+    <p>Abre <code>contact.jpg</code> y mira el video. El título, la descripción (que termina con la pregunta) y el comentario fijado (con el enlace del repositorio y la fuente, fijos y sin convertirse en recompensa) están en el bloque <code>publicar</code> del guion. La publicación queda fuera de este repositorio.</p>
   </div></div>
 </div></section>
 
 <section id="roteiro"><div class="wrap">
   <span class="chip">El roteiro.json</span>
   <h2>El formato del guion, en una pantalla</h2>
-  <p class="sub">Un objeto con <code>id</code>, <code>versao</code>, <code>titulo</code>, <code>isca</code>, <code>fontes</code> y la lista <code>blocos</code>. Fragmento real del ejemplo, acortado (las líneas <code>//</code> no son JSON válido; el archivo completo está en <code>edicoes/2026-10-28-5-coisas/roteiro.json</code>):</p>
+  <p class="sub">Un objeto con <code>id</code>, <code>versao</code>, <code>titulo</code>, <code>gancho</code>, <code>isca</code>, <code>fontes</code>, la lista <code>blocos</code> y el bloque <code>publicar</code>. Fragmento real del segundo ejemplo, abreviado (las líneas <code>//</code> no son JSON válido; el archivo completo está en <code>edicoes/2026-10-28-mapa/roteiro.json</code>):</p>
 <pre>{
-  <span class="s">"id"</span>: <span class="s">"2026-10-28-5-coisas"</span>, <span class="s">"versao"</span>: <span class="s">"rtexjp/1"</span>,
-  <span class="s">"isca"</span>: { <span class="s">"palavra"</span>: <span class="s">"SETUP"</span>, <span class="s">"entregavel"</span>: <span class="s">"os 5 links e os comandos..."</span> },
-  <span class="s">"fontes"</span>: [ { <span class="s">"id"</span>: <span class="s">"ecc"</span>, <span class="s">"valor"</span>: <span class="s">"291 mil estrelas"</span>, <span class="s">"linha"</span>: <span class="s">"github.com/affaan-m/ECC · 28/10/2026"</span> } ],
+  <span class="s">"id"</span>: <span class="s">"2026-10-28-mapa"</span>, <span class="s">"versao"</span>: <span class="s">"rtexjp/2"</span>,
+  <span class="s">"gancho"</span>: { <span class="s">"tipo"</span>: <span class="s">"perda"</span>, <span class="s">"objeto"</span>: <span class="s">"terminal do Claude Code rachado em vermelho..."</span> },
+  <span class="s">"isca"</span>: { <span class="s">"tipo"</span>: <span class="s">"opiniao"</span>, <span class="s">"pergunta"</span>: <span class="s">"Você é dono ou refém do sistema que a IA montou?"</span>,
+            <span class="s">"opcoes"</span>: [<span class="s">"DONO"</span>, <span class="s">"REFÉM"</span>], <span class="s">"lado"</span>: <span class="s">"Eu quero ser dono do meu"</span> },
+  <span class="s">"fontes"</span>: [ { <span class="s">"id"</span>: <span class="s">"ua"</span>, <span class="s">"valor"</span>: <span class="s">"88,7 mil estrelas"</span>, <span class="s">"linha"</span>: <span class="s">"github.com/Egonex-AI/Understand-Anything · 28/10/2026"</span> } ],
   <span class="s">"blocos"</span>: [
-    { <span class="s">"id"</span>: <span class="s">"tese"</span>, <span class="s">"tipo"</span>: <span class="s">"tese"</span>,
-      <span class="s">"fala"</span>: <span class="s">"Cinco coisas de IA saíram este mês, e quase ninguém percebeu."</span>,
-      <span class="s">"tela"</span>: { <span class="s">"texto"</span>: <span class="s">"5 COISAS DE IA QUE QUASE NINGUÉM VIU"</span>, <span class="s">"destaque"</span>: <span class="s">"NINGUÉM"</span> },
-      <span class="s">"cena"</span>: { <span class="s">"comp"</span>: <span class="s">"titulo"</span> }, <span class="s">"pose"</span>: <span class="s">"queixo"</span>, <span class="s">"destaque_fala"</span>: [<span class="s">"cinco"</span>, <span class="s">"ninguém"</span>] },
-    <span class="c">// ... autoridad, tesis, giro, metodo ×5, salvedad ...</span>
+    { <span class="s">"id"</span>: <span class="s">"tese"</span>, <span class="s">"tipo"</span>: <span class="s">"tese"</span>, <span class="s">"pose"</span>: <span class="s">"surpreso"</span>,
+      <span class="s">"fala"</span>: <span class="s">"Se o Claude Code sumisse amanhã, você saberia mexer no sistema que ele montou pra você?"</span>,
+      <span class="s">"fala_tts"</span>: <span class="s">"Se o Clôud Côud sumisse amanhã, ..."</span>,
+      <span class="s">"tela"</span>: { <span class="s">"texto"</span>: <span class="s">"O CLAUDE SUMIU. E AGORA?"</span>, <span class="s">"destaque"</span>: <span class="s">"SUMIU"</span> },
+      <span class="s">"cena"</span>: { <span class="s">"comp"</span>: <span class="s">"gancho"</span>, <span class="s">"params"</span>: { <span class="s">"carimbo"</span>: <span class="s">"FORA DO AR"</span>, <span class="c">...</span> } } },
+    <span class="c">// ... autoridade (prova), tese (problema + opções), virada, metodo ×3, ressalva ...</span>
     { <span class="s">"id"</span>: <span class="s">"maxima"</span>, <span class="s">"tipo"</span>: <span class="s">"maxima"</span>, <span class="s">"silencio_antes_s"</span>: 0.8, <span class="s">"cena"</span>: { <span class="s">"comp"</span>: <span class="s">"flash"</span> },
-      <span class="s">"fala"</span>: <span class="s">"O modelo, todo mundo tem. O setup, quase ninguém."</span> },
-    { <span class="s">"id"</span>: <span class="s">"cta"</span>, <span class="s">"tipo"</span>: <span class="s">"cta"</span>, <span class="s">"hold_s"</span>: 6, <span class="s">"cena"</span>: { <span class="s">"comp"</span>: <span class="s">"cta"</span> }, 
-      <span class="s">"fala"</span>: <span class="s">"Comenta SETUP que eu te mando os cinco links e os comandos."</span> }
-  ]
+      <span class="s">"fala"</span>: <span class="s">"Ser dono do teu sistema nunca foi saber cada linha. É saber o que segura o quê."</span> },
+    { <span class="s">"id"</span>: <span class="s">"cta"</span>, <span class="s">"tipo"</span>: <span class="s">"cta"</span>, <span class="s">"hold_s"</span>: 7.5, <span class="s">"cena"</span>: { <span class="s">"comp"</span>: <span class="s">"opiniao"</span>, <span class="s">"params"</span>: { <span class="s">"digita"</span>: <span class="s">"DONO"</span> } },
+      <span class="s">"fala"</span>: <span class="s">"Eu quero ser dono do meu. E você, hoje: dono ou refém do sistema que a IA montou? Comenta DONO ou REFÉM."</span> }
+  ],
+  <span class="s">"publicar"</span>: { <span class="s">"titulo"</span>: <span class="s">"..."</span>, <span class="s">"descricao"</span>: <span class="s">"... termina na pergunta?"</span>, <span class="s">"comentario_fixado"</span>: <span class="s">"link do repo + fonte"</span> }
 }</pre>
   <div class="grid g2" style="margin-top:18px">
-    <div class="card"><h3>Campos de cada bloque</h3><p><code>tipo</code> (orden anterior) · <code>fala</code> (con letras, sin cifras) · <code>fala_tts</code> (opcional, escritura para que el TTS pronuncie correctamente) · <code>tela</code> (texto grande y palabra destacada) · <code>cena.comp</code> + <code>cena.params</code> (lo que dibuja el escenario; <code>params.gatilhos</code> vincula un cambio de escena a una palabra del texto hablado) · <code>pose</code> del avatar · <code>destaque_fala</code> (palabras coloreadas en los subtítulos) · <code>fonte</code> (id en <code>fontes</code>) · <code>rotulo</code> y <code>n</code> (número del elemento). Solo para <code>maxima</code>: <code>silencio_antes_s</code> (0,5–0,9). Solo para <code>cta</code>: <code>hold_s</code>, cuánto dura la tarjeta después de la última palabra (5–9 s; con el texto hablado, la tarjeta completa dura ~8–10 s).</p></div>
-    <div class="card"><h3>Componentes del escenario (<code>cena.comp</code>)</h3><p><code>titulo</code>, <code>contador</code>, <code>frase</code>, <code>indice</code>, <code>pasta</code>, <code>repo</code>, <code>carro</code>, <code>mapa</code>, <code>equipe</code>, <code>ressalva</code>, <code>flash</code>, <code>cta</code>. La propia escena dibuja la mascota robot al lado del avatar y reacciona a la escena (interrogación, alerta, visto). Poses: <code>bracos</code>, <code>queixo</code>, <code>apontando</code>, <code>segurando</code>, <code>surpreso</code>, <code>mostrando</code>. Los parámetros de cada componente están en el ejemplo <code>edicoes/2026-10-28-5-coisas/roteiro.json</code>.</p></div>
+    <div class="card"><h3>Campos de cada bloque</h3><p><code>tipo</code> (orden anterior) · <code>fala</code> (en palabras, sin cifras) · <code>fala_tts</code> (opcional, grafía para que el TTS pronuncie correctamente) · <code>tela</code> (texto grande y la palabra destacada) · <code>cena.comp</code> + <code>cena.params</code> (lo que dibuja el escenario; <code>params.gatilhos</code> vincula un cambio de escena a una palabra de la narración) · <code>pose</code> del avatar · <code>destaque_fala</code> (palabras coloreadas en los subtítulos) · <code>fonte</code> (id en <code>fontes</code>) · <code>rotulo</code> y <code>n</code> (número de la pieza). Solo en <code>maxima</code>: <code>silencio_antes_s</code> (0,5–0,9). Solo en <code>cta</code>: <code>hold_s</code>, cuánto dura la tarjeta después de la última palabra (5–9 s; con la narración, la tarjeta completa dura unos 10 s). En la parte superior: <code>gancho.tipo</code> (<code>contrario</code>, <code>perda</code>, <code>estatistica</code>, <code>historia</code>) y <code>gancho.objeto</code>; <code>isca</code> con <code>tipo: "opiniao"</code>, <code>pergunta</code>, <code>opcoes</code> y <code>lado</code>.</p></div>
+    <div class="card"><h3>Componentes del escenario (<code>cena.comp</code>)</h3><p>Formato actual: <code>gancho</code> (cuadro 0 con objeto dañado), <code>contador</code> (acepta <code>decimais</code>), <code>duas</code> (problema + opciones de la carnada), <code>indice</code>, <code>mapa</code>, <code>explica</code>, <code>impacto</code>, <code>ressalva</code>, <code>flash</code>, <code>opiniao</code> (tarjeta de la pregunta). De la primera edición, aún en el escenario: <code>titulo</code>, <code>frase</code>, <code>pasta</code>, <code>repo</code>, <code>carro</code>, <code>equipe</code>, <code>cta</code> (obsoleto). La mascota robot la dibuja el propio escenario, junto al avatar, y reacciona a la escena (interrogación, alerta, visto). Poses: <code>bracos</code>, <code>queixo</code>, <code>apontando</code>, <code>segurando</code>, <code>surpreso</code>, <code>mostrando</code>. Los parámetros de cada componente están en los ejemplos <code>edicoes/2026-10-28-mapa/roteiro.json</code> y <code>edicoes/2026-10-28-5-coisas/roteiro.json</code>.</p></div>
   </div>
 </div></section>
 
 <section id="exemplos"><div class="wrap">
-  <span class="chip">Ejemplo real</span>
-  <h2>"5 cosas de IA de este mes que casi nadie notó"</h2>
-  <p class="sub">La primera edición, hecha íntegramente con el motor y publicada en YouTube. Gancho: <span class="hot">SETUP</span>. Archivos en <code>edicoes/2026-10-28-5-coisas/</code>.</p>
+  <span class="chip">Ejemplos reales</span>
+  <h2>Dos videos hechos con el motor</h2>
+  <p class="sub">El segundo video sigue el formato actual (azul marino, gancho de pérdida, carnada de opinión). El primero, ya publicado, se quedó tal como estaba: paleta antigua, morada, gancho de lista y carnada con recurso para entregar; el formato actual ya no acepta esas reglas.</p>
+
+  <h3 style="margin:10px 0 8px">Segundo video · «O Claude sumiu. E agora?» («Claude desapareció. ¿Y ahora?») <span class="who">formato actual</span></h3>
+  <p class="mut" style="margin:0 0 18px">Un solo tema (el plugin Understand Anything), gancho de <b>pérdida</b>, tres piezas y la pregunta <span class="hot">DONO (DUEÑO)</span> o <span class="hot">REFÉM (REHÉN)</span>. Archivos en <code>edicoes/2026-10-28-mapa/</code> (el bloque <code>publicar</code> del guion incluye el título, la descripción y el comentario fijado).</p>
   <div class="video">
-    <div class="yt"><iframe src="https://www.youtube-nocookie.com/embed/AZEZK1YgF98" title="Reel de ejemplo de rtexjp en YouTube" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+    <figure style="margin:0 auto;max-width:360px;border-radius:16px;overflow:hidden;border:1px solid var(--line)"><img src="../assets/m-00-0.jpg" width="540" height="960" style="width:100%;height:auto;display:block" alt="Cuadro 0 del segundo video: el titular &quot;O Claude sumiu. E agora?&quot; (&quot;Claude desapareció. ¿Y ahora?&quot;), con SUMIU (DESAPARECIÓ) en amarillo y una terminal tachada en rojo"></figure>
     <div>
-      <h3 style="margin-bottom:.6em">Qué midió QA</h3>
+      <h3 style="margin-bottom:.6em">Lo que midió el QA</h3>
+      <table class="qa">
+        <tr><td>Duración</td><td>71,9 s</td></tr>
+        <tr><td>Resolución</td><td>1080×1920 · 30 fps</td></tr>
+        <tr><td>Ritmo del habla</td><td>173 palabras/min</td></tr>
+        <tr><td>Volumen</td><td>−14,0 LUFS</td></tr>
+        <tr><td>Cambios visuales</td><td>22,5 por minuto</td></tr>
+        <tr><td>Prueba (cifra con fuente)</td><td>a los 5,6 s</td></tr>
+        <tr><td>Opciones de la carnada antes del CTA</td><td>45,2 s antes</td></tr>
+        <tr><td>CTA sin promesa de entrega</td><td>sí</td></tr>
+        <tr><td>Silencio antes de la máxima</td><td>0,88 s</td></tr>
+        <tr><td>Tarjeta final (narración + 7,5 s en pantalla)</td><td>14,6 s</td></tr>
+      </table>
+      <p class="mut" style="margin-top:1em">Aún no está publicado: el video y los cuadros de abajo salieron directamente de <code>final.mp4</code>.</p>
+    </div>
+  </div>
+
+  <h3 style="margin:40px 0 16px">Cuadro a cuadro (segundo video)</h3>
+  <div class="ex">
+    <figure><img src="../assets/m-02-6.jpg" width="540" height="960" loading="lazy" alt="Gancho a los 2,6 s: sello rojo FORA DO AR (FUERA DE SERVICIO) sobre la terminal y archivos sueltos con un signo de interrogación"><figcaption>Gancho: algo cambia aproximadamente cada segundo (sello, archivos sueltos, robot con dudas).</figcaption></figure>
+    <figure><img src="../assets/m-07-5.jpg" width="540" height="960" loading="lazy" alt="Contador de estrellas de GitHub en 88,7 mil, con la fuente escrita debajo"><figcaption>Prueba a los 5,6 s: el contador se detiene en 88,7 mil, con la fuente debajo.</figcaption></figure>
+    <figure><img src="../assets/m-17-5.jpg" width="540" height="960" loading="lazy" alt="&quot;Não é culpa sua. Ninguém te deu o mapa.&quot; (&quot;No es culpa tuya. Nadie te dio el mapa.&quot;) con dos tarjetas, DONO (DUEÑO) y REFÉM (REHÉN), en amarillo"><figcaption>El problema con absolución; las opciones de la pregunta final ya aparecen.</figcaption></figure>
+    <figure><img src="../assets/m-25-0.jpg" width="540" height="960" loading="lazy" alt="Pieza 01: tarjeta del repositorio y un mapa de puntos conectados, uno con la etiqueta checkout.ts"><figcaption>Pieza 01: el mapa se dibuja, con la barra de cápsulas 01–03 en la parte superior.</figcaption></figure>
+    <figure><img src="../assets/m-33-0.jpg" width="540" height="960" loading="lazy" alt="Pieza 02: un punto seleccionado en el mapa y el globo con la explicación del archivo, en inglés"><figcaption>Pieza 02: el clic y la explicación (en inglés, como advierte la salvedad).</figcaption></figure>
+    <figure><img src="../assets/m-40-5.jpg" width="540" height="960" loading="lazy" alt="Pieza 03: el cambio en pagamento.ts y los archivos afectados en rojo, &quot;Atinge 3 arquivos&quot; (&quot;Afecta a 3 archivos&quot;)"><figcaption>Pieza 03: todo lo que afecta el cambio, antes de confirmarlo.</figcaption></figure>
+    <figure><img src="../assets/m-48-0.jpg" width="540" height="960" loading="lazy" alt="Tarjeta de alerta con dos elementos en rojo: la primera lectura consume tokens y explica en inglés"><figcaption>La salvedad honesta, en una tarjeta de alerta.</figcaption></figure>
+    <figure><img src="../assets/m-66-0.jpg" width="540" height="960" loading="lazy" alt="Tarjeta final: &quot;E você, hoje: dono ou refém?&quot; (&quot;Y tú, hoy: ¿dueño o rehén?&quot;), botones DONO (DUEÑO) y REFÉM (REHÉN) en amarillo y el cuadro de comentarios con DONO publicado"><figcaption>El CTA de opinión: pregunta, opciones y el cuadro que escribe una de ellas.</figcaption></figure>
+  </div>
+  <h3 style="margin:40px 0 16px">La hoja de contacto del segundo video</h3>
+  <figure class="wide" style="max-width:760px"><img src="../assets/contact-2.jpg" width="760" height="958" loading="lazy" alt="Hoja de contacto del segundo video: un cuadro cada 2,5 segundos, del gancho a la tarjeta final"></figure>
+
+  <h3 style="margin:56px 0 8px">Primer video · «5 coisas de IA deste mês que quase ninguém percebeu» («5 cosas de IA de este mes que casi nadie notó») <span class="who">paleta antigua, morada</span></h3>
+  <p class="mut" style="margin:0 0 18px">La primera edición, publicada en YouTube. Formato antiguo: paleta morada, gancho de lista y carnada SETUP con recurso para entregar. Archivos en <code>edicoes/2026-10-28-5-coisas/</code>.</p>
+  <div class="video">
+    <div class="yt"><iframe src="https://www.youtube-nocookie.com/embed/AZEZK1YgF98" title="Primer reel de rtexjp en YouTube (paleta antigua, morada)" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+    <div>
+      <h3 style="margin-bottom:.6em">Lo que midió el QA</h3>
       <table class="qa">
         <tr><td>Duración</td><td>87,5 s</td></tr>
         <tr><td>Resolución</td><td>1080×1920 · 30 fps</td></tr>
         <tr><td>Ritmo del habla</td><td>164 palabras/min</td></tr>
         <tr><td>Volumen</td><td>−14,0 LUFS</td></tr>
         <tr><td>Cambios visuales</td><td>18,5 por minuto</td></tr>
-        <tr><td>El gancho aparece antes del CTA</td><td>68,5 s antes</td></tr>
+        <tr><td>La carnada aparece antes del CTA</td><td>68,5 s antes</td></tr>
         <tr><td>Silencio antes de la máxima</td><td>0,83 s</td></tr>
         <tr><td>Tarjeta final</td><td>9,9 s</td></tr>
       </table>
       <p class="mut" style="margin-top:1em"><a href="https://www.youtube.com/watch?v=AZEZK1YgF98" target="_blank" rel="noopener">Abrir en YouTube</a></p>
     </div>
   </div>
-
-  <h3 style="margin:46px 0 16px">Fotograma a fotograma</h3>
+  <h3 style="margin:40px 0 16px">Cuadro a cuadro (primer video)</h3>
   <div class="ex">
-    <figure><img src="../assets/q-07.jpg" width="540" height="960" loading="lazy" alt="Contador de estrellas de GitHub que llega a 291 mil, con la fuente escrita debajo"><figcaption>Prueba: el contador llega a la cifra, con la fuente debajo.</figcaption></figure>
-    <figure><img src="../assets/q-12.jpg" width="540" height="960" loading="lazy" alt="Frase &quot;No es el modelo. Es el setup.&quot; con SETUP en naranja"><figcaption>El gancho se introduce pronto, en el único color cálido.</figcaption></figure>
-    <figure><img src="../assets/q-22.jpg" width="540" height="960" loading="lazy" alt="Elemento 01: un robot y una carpeta con tres elementos: proceso, lo que funcionó y lista de verificación"><figcaption>Elemento 01, con la barra de píldoras 01–05 arriba.</figcaption></figure>
-    <figure><img src="../assets/q-37.jpg" width="540" height="960" loading="lazy" alt="Elemento 03: ilustración de un auto deportivo rojo saltando de una rampa"><figcaption>Elemento 03: imagen de escena generada localmente con flux2-klein.</figcaption></figure>
-    <figure><img src="../assets/q-42.jpg" width="540" height="960" loading="lazy" alt="Destello tipográfico &quot;Menos de un segundo&quot;, con la fuente en letra pequeña"><figcaption>Destello tipográfico entre elementos para mantener el ritmo.</figcaption></figure>
-    <figure><img src="../assets/q-70.jpg" width="540" height="960" loading="lazy" alt="Tarjeta de alerta &quot;Antes de instalar&quot; con dos elementos marcados en rojo"><figcaption>La salvedad honesta, en una tarjeta de alerta.</figcaption></figure>
-    <figure><img src="../assets/q-75.jpg" width="540" height="960" loading="lazy" alt="Máxima en letras grandes: &quot;El modelo lo tiene todo el mundo.&quot;"><figcaption>La máxima, después de 0,8 s de silencio.</figcaption></figure>
-    <figure><img src="../assets/q-82.jpg" width="540" height="960" loading="lazy" alt="Tarjeta final &quot;Comenta SETUP y te lo envío&quot;, con el cuadro de comentarios escribiendo SETUP y el botón Publicar"><figcaption>El CTA: el cuadro escribe la palabra y la publica.</figcaption></figure>
+    <figure><img src="../assets/q-02.jpg" width="540" height="960" loading="lazy" alt="Cuadro 0 del primer video, en morado: &quot;5 coisas de IA que quase ninguém viu&quot; (&quot;5 cosas de IA que casi nadie vio&quot;)"><figcaption>Cuadro 0 del formato antiguo (gancho de lista, hoy prohibido).</figcaption></figure>
+    <figure><img src="../assets/q-07.jpg" width="540" height="960" loading="lazy" alt="Contador de estrellas de GitHub que se detiene en 291 mil, con la fuente escrita debajo"><figcaption>Prueba: el contador se detiene en la cifra, con la fuente debajo.</figcaption></figure>
+    <figure><img src="../assets/q-22.jpg" width="540" height="960" loading="lazy" alt="Pieza 01: un robot y una carpeta con tres elementos, proceso, qué salió bien y lista de verificación"><figcaption>Pieza 01, con la barra de cápsulas 01–05 en la parte superior.</figcaption></figure>
+    <figure><img src="../assets/q-82.jpg" width="540" height="960" loading="lazy" alt="Tarjeta final &quot;Comenta SETUP que eu mando&quot; (&quot;Comenta SETUP y te lo mando&quot;), con el cuadro de comentarios escribiendo SETUP"><figcaption>El CTA antiguo, que prometía entregar algo (hoy prohibido).</figcaption></figure>
   </div>
-
-  <h3 style="margin:46px 0 16px">La hoja de contacto que genera QA</h3>
-  <figure class="wide" style="max-width:760px"><img src="../assets/contact.jpg" width="760" height="1150" loading="lazy" alt="Hoja de contacto del reel de ejemplo: un fotograma cada 2,5 segundos, desde el cuadro 0 hasta la tarjeta final"></figure>
 </div></section>
 
 <section id="estado"><div class="wrap">
   <span class="chip">Estado</span>
   <h2>En qué punto está el proyecto</h2>
   <p class="sub">Lo que existe hoy en el repositorio.</p>
-  <div class="phase"><div class="tag">v1.0.0</div><div class="d"><strong>Motor completo</strong><span>Pipeline checar · voz · cena · render · mix · qa, escenario con componentes de escena, seis poses del avatar y QA automático.</span></div></div>
-  <div class="phase"><div class="tag">1.ª edición</div><div class="d"><strong>"5 cosas de IA" publicada</strong><span>87,5 s, aprobada en todos los criterios de QA.</span></div></div>
-  <div class="note" style="margin-top:18px"><b>Regla antes de publicar:</b> lo que promete el CTA (enlaces, comandos, material) debe estar publicado en inema.club antes de que salga el video.</div>
+  <div class="phase"><div class="tag">v1.0.0</div><div class="d"><strong>Motor completo</strong><span>Flujo checar · voz · cena · render · mix · qa, escenario con los componentes de escena, seis poses del avatar y control de calidad automático.</span></div></div>
+  <div class="phase"><div class="tag">Primera edición</div><div class="d"><strong>«5 cosas de IA» publicada</strong><span>87,5 s, formato antiguo (morado, gancho de lista, carnada con recurso para entregar).</span></div></div>
+  <div class="phase"><div class="tag">v1.1.0</div><div class="d"><strong>Azul marino, gancho y carnada de opinión</strong><span>Paleta azul marino + azul acero con amarillo como único color cálido, avatar con camiseta azul acero, reglas del gancho en <code>checar</code>, carnada de opinión sin recurso para entregar, rutas mediante variables de entorno.</span></div></div>
+  <div class="phase"><div class="tag">Segunda edición</div><div class="d"><strong>«O Claude sumiu. E agora?» («Claude desapareció. ¿Y ahora?»)</strong><span>71,9 s, aprobada en todos los criterios del QA; pendiente de publicación.</span></div></div>
+  <div class="note" style="margin-top:18px"><b>Regla antes de publicar:</b> el CTA pide una opinión y no promete nada a quien comente. El enlace y la fuente quedan fijos en el comentario fijado y en la descripción.</div>
 </div></section>
 </main>
 

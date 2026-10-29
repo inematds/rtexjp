@@ -2,17 +2,17 @@
 """Gera as poses do avatar ilustrado do Nei no flux2-klein LOCAL (servidor inemaimg :8000) com a foto de referência,
 em fundo verde chapado, e recorta o fundo (flood fill a partir das bordas) -> motor/avatar/<pose>.png (RGBA).
 Uso: python3 motor/gerar_avatar.py [pose ...]   (sem argumento = todas)"""
-import base64, json, sys, urllib.request
+import base64, json, os, sys, urllib.request
 from pathlib import Path
 from PIL import Image, ImageFilter
 import numpy as np
 from collections import deque
 
 AQUI = Path(__file__).resolve().parent
-REF = Path.home() / "projetos/inema-referencias/nei-avatar.jpg"
-URL = "http://localhost:8000/generate"
+REF = Path(os.environ.get("RTEXJP_AVATAR_REF", Path.home() / "projetos/inema-referencias/nei-avatar.jpg")).expanduser()
+URL = os.environ.get("RTEXJP_IMG_URL", "http://localhost:8000/generate")
 BASE = ("flat 2D vector cartoon illustration of the man from the reference photo: same face, black baseball cap, black rectangular glasses, "
-        "short grey beard, friendly. He wears a plain violet purple t-shirt. Waist-up bust, centered, {pose}. Clean flat colors, soft cel shading, "
+        "short grey beard, friendly. He wears a plain light steel-blue t-shirt (soft sky blue, like #93c5fd). Waist-up bust, centered, {pose}. Clean flat colors, soft cel shading, "
         "smooth outlines, modern explainer-video character style. Solid plain flat bright chroma green background (#00FF00), nothing else, "
         "no text, no letters, no logo.")
 POSES = {
@@ -48,6 +48,7 @@ def recortar(bruto, saida):
         if 0 <= y < h and 0 <= x < w and not fundo[y, x] and verde[y, x]:
             fundo[y, x] = True
             q.extend(((y + 1, x), (y - 1, x), (y, x + 1), (y, x - 1)))
+    fundo |= (g > 90) & (g > r + 45) & (g > b + 45)   # verde preso entre mãos/braços (não ligado à borda)
     alfa = Image.fromarray(np.where(fundo, 0, 255).astype("uint8")).filter(ImageFilter.MinFilter(3)).filter(ImageFilter.GaussianBlur(1.2))
     rgb = im.copy()
     borda = (g > r) & (g > b)  # tira o verde que vaza na borda

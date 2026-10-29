@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """QA automático do rtexjp. Uso: python3 medir.py <pasta-da-edicao>
 Mede no final.mp4: duração, wpm (fala e relógio), LUFS, trocas visuais/min (|Δluminância| médio ≥ 10 entre quadros a 1 fps,
-108x192), isca (CTA + plantada antes), cartão final, silêncio antes da máxima, nada abaixo de 80% na tela (amostra),
+108x192), isca (opinião: opções no CTA + plantadas antes, CTA sem promessa; legado: palavra), prova até 20 s, cartão final, silêncio antes da máxima, nada abaixo de 80% na tela (amostra),
 grep de fonte proibida = 0. Grava build/qa.json + qa.md + contact.jpg."""
 import json, re, subprocess, sys
 from pathlib import Path
@@ -48,13 +48,20 @@ def main(pasta):
     q["trocas_min_10"] = round(int((d >= 10).sum()) / mins, 1)
     q["trocas_min_20"] = round(int((d >= 20).sum()) / mins, 1)
     q["trocas_min_6"] = round(int((d >= 6).sum()) / mins, 1)
-    # isca
-    isca = rot["isca"]["palavra"]
+    # isca: opinião (pergunta + opções) ou legado (palavra + entregável)
+    isca = rot["isca"]
+    opiniao = isca.get("tipo") == "opiniao"
+    quentes = isca["opcoes"] if opiniao else [isca["palavra"]]
     cta = cena["blocos"][-1]
-    plant = next((b for b in cena["blocos"][:-1] if isca.lower() in (b["fala"] + json.dumps(b.get("tela", {}))).lower()), None)
-    q["isca"] = isca
-    q["isca_no_cta"] = isca in cta["fala"]
+    txt = lambda b: (b["fala"] + json.dumps(b.get("tela", {}), ensure_ascii=False)).lower()
+    plant = next((b for b in cena["blocos"][:-1] if any(w.lower() in txt(b) for w in quentes)), None)
+    q["isca"] = ("opinião: " + isca.get("pergunta", "") + " " + "/".join(quentes)) if opiniao else isca["palavra"] + " (legado)"
+    q["isca_no_cta"] = all(w.lower() in cta["fala"].lower() for w in quentes)
     q["isca_plantada_s_antes_do_cta"] = round(cta["fala_ini"] - plant["fala_ini"], 1) if plant else None
+    if opiniao:
+        q["cta_sem_promessa"] = not re.search(r"te mando|eu mando|\bmando\b|envio|manda o link|comenta \w+ que|\bdm\b", cta["fala"] + json.dumps(cta.get("tela", {}), ensure_ascii=False), re.I)
+    pv = next((b for b in cena["blocos"] if b["tipo"] == "autoridade"), None)
+    q["prova_em_s"] = round(pv["fala_ini"], 1) if pv else None
     q["cartao_final_s"] = round(cta["fim"] - cta["ini"], 2)
     q["hold_depois_da_fala_s"] = round(cta["fim"] - cta["fala_fim"], 2)
     # silêncio antes da máxima (na mixagem final)
@@ -80,10 +87,13 @@ def main(pasta):
         "LUFS −14 ±1": abs(q["lufs"] + 14) <= 1,
         "trocas/min ≥ 17 (Δ≥10)": q["trocas_min_10"] >= 17,
         "isca no CTA e plantada antes": q["isca_no_cta"] and bool(q["isca_plantada_s_antes_do_cta"]) and q["isca_plantada_s_antes_do_cta"] >= 10,
+        "prova até 20 s": q["prova_em_s"] is not None and q["prova_em_s"] <= 20,
         "cartão final ≥ 8 s": q["cartao_final_s"] >= 8,
         "silêncio 0,5–0,9 s antes da máxima": 0.45 <= q["silencio_antes_maxima_s"] <= 1.0,
         "grep de fonte = 0": q["grep_fonte"] == 0,
     }
+    if opiniao:
+        crit["CTA sem promessa de entrega"] = q["cta_sem_promessa"]
     q["criterios"] = crit
     q["aprovado"] = all(crit.values())
     (pasta / "build/qa.json").write_text(json.dumps(q, ensure_ascii=False, indent=1))

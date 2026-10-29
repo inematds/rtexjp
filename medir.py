@@ -94,6 +94,8 @@ def main(pasta):
     }
     if opiniao:
         crit["CTA sem promessa de entrega"] = q["cta_sem_promessa"]
+    if str(rot.get("versao", "")).endswith("/3"):
+        crit.update(beleza(pasta, cena, q))
     q["criterios"] = crit
     q["aprovado"] = all(crit.values())
     (pasta / "build/qa.json").write_text(json.dumps(q, ensure_ascii=False, indent=1))
@@ -106,6 +108,36 @@ def main(pasta):
     for k, v in crit.items():
         print(("OK  " if v else "FALHA ") + k)
     return q["aprovado"]
+
+
+LIM = {"manchete_px": 96, "texto_px": 30, "area": 0.55, "contraste": 4.5, "avatar": 0.38}
+
+
+def beleza(pasta, cena, q):
+    """Portão de beleza (visual v1.2): amostra ini+0,6 s e o meio de cada bloco no palco e lê do DOM
+    letra mínima, área ocupada no quadro útil (0–80 %), contraste WCAG do texto e altura do avatar."""
+    ts = sorted({round(min(b["ini"] + 0.6, b["fim"] - 0.05), 2) for b in cena["blocos"]} |
+                {round((b["ini"] + b["fim"]) / 2, 2) for b in cena["blocos"]})
+    run("node", R / "motor/render.mjs", pasta / "build", "--quadros", ",".join(map(str, ts)))
+    med = json.loads((pasta / "quadros/medidas.json").read_text())
+    ruim = lambda f: [m["t"] for m in med if f(m)]
+    falhas = {
+        "manchete": ruim(lambda m: m["manchete_px_min"] is not None and m["manchete_px_min"] < LIM["manchete_px"]),
+        "texto": ruim(lambda m: m["texto_px_min"] is not None and m["texto_px_min"] < LIM["texto_px"]),
+        "area": ruim(lambda m: m["area_frac"] < LIM["area"]),
+        "contraste": ruim(lambda m: m["contraste_min"] is not None and m["contraste_min"] < LIM["contraste"]),
+        "avatar": ruim(lambda m: m["avatar_frac"] < LIM["avatar"]),
+    }
+    q["beleza_amostras"] = len(med)
+    q["beleza_manchete_px_min"] = min((m["manchete_px_min"] for m in med if m["manchete_px_min"]), default=None)
+    q["beleza_texto_px_min"] = min((m["texto_px_min"] for m in med if m["texto_px_min"]), default=None)
+    q["beleza_area_min"] = min(m["area_frac"] for m in med)
+    q["beleza_contraste_min"] = min((m["contraste_min"] for m in med if m["contraste_min"]), default=None)
+    q["beleza_avatar_min"] = min(m["avatar_frac"] for m in med)
+    q["beleza_falhas"] = {k: v for k, v in falhas.items() if v}
+    return {"manchete ≥ 96 px": not falhas["manchete"], "rótulos/texto ≥ 30 px": not falhas["texto"],
+            "área ocupada ≥ 55 % do quadro útil": not falhas["area"], "contraste do texto ≥ 4,5:1": not falhas["contraste"],
+            "avatar ≥ 38 % da altura": not falhas["avatar"]}
 
 
 def so_grep():

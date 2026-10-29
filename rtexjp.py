@@ -53,6 +53,41 @@ def ler(pasta):
 
 
 # ---------------------------------------------------------------- checar
+def poses_disponiveis():
+    return sorted(p.stem for p in (R / "motor/avatar").glob("*.png"))
+
+
+def objetos_disponiveis():
+    return sorted(p.stem for p in (R / "motor/assets/objetos").glob("*.png"))
+
+
+def _checar_visual(r, pasta, erros, avisos):
+    """visual v1.2 (versao rtexjp/3): pose por bloco/batida, objeto da biblioteca, print existente, manchete curta."""
+    poses, objs = set(poses_disponiveis()), set(objetos_disponiveis())
+    for b in r["blocos"]:
+        bts = b.get("cena", {}).get("params", {}).get("beats", [])
+        if b["tipo"] not in ("cta",) and b.get("cena", {}).get("comp") in ("quadro", "maxima") and not bts:
+            erros.append(f"[{b['id']}] sem beats (manchete/objeto/pose por batida)")
+        for p in [b.get("pose")] + [x.get("pose") for x in bts] + [b.get("pose_silencio")]:
+            if p and p not in poses:
+                erros.append(f"[{b['id']}] pose '{p}' não existe em motor/avatar ({', '.join(sorted(poses))})")
+        if not b.get("pose") and not any(x.get("pose") for x in bts):
+            erros.append(f"[{b['id']}] sem pose (o avatar reage à emoção do bloco)")
+        for x in bts:
+            for o in ([x["objeto"]] if x.get("objeto") else []) + x.get("objetos", []):
+                if o not in objs:
+                    erros.append(f"[{b['id']}] objeto '{o}' não está na biblioteca (motor/gerar_objeto.py)")
+            if x.get("print") and not (pasta / x["print"]).exists():
+                erros.append(f"[{b['id']}] print '{x['print']}' não existe na edição")
+            if x.get("em") and x["em"].lower() not in b["fala"].lower():
+                erros.append(f"[{b['id']}] batida em='{x['em']}' não está na fala")
+            m = x.get("manchete") or []
+            if len(m) > 3:
+                erros.append(f"[{b['id']}] manchete com {len(m)} linhas (2–3)")
+            if any(len(l) > 16 for l in m):
+                avisos.append(f"[{b['id']}] linha de manchete longa (> 16 letras) encolhe a letra: {m}")
+
+
 def _textos(x):
     if isinstance(x, str):
         return [x]
@@ -82,7 +117,8 @@ def checar(pasta):
     if not 2 <= len(met) <= 5:
         erros.append(f"método com {len(met)} peças (2–5)")
     vir = next((b for b in bl if b["tipo"] == "virada"), None)
-    if vir and len(vir["cena"]["params"]["itens"]) != len(met):
+    itens = vir and (vir["cena"]["params"].get("itens") or next((x["itens"] for x in vir["cena"]["params"].get("beats", []) if x.get("itens")), []))
+    if vir and len(itens) != len(met):
         erros.append("índice anunciado ≠ número de peças")
     for b in bl:
         f = b["fala"]
@@ -132,8 +168,8 @@ def checar(pasta):
             erros.append("manchete do quadro 0 precisa de UMA palavra na cor quente (tela.destaque)")
         if not g.get("objeto"):
             erros.append("gancho.objeto: o objeto-metáfora com dano desenhado no quadro 0")
-        if tese0.get("pose") not in ("surpreso", "queixo"):
-            avisos.append("no gancho o avatar reage (pose surpreso)")
+        if tese0.get("pose") not in ("surpreso", "susto", "queixo"):
+            avisos.append("no gancho o avatar reage (pose susto ou surpreso)")
     pv = next((b for b in bl if b["tipo"] == "autoridade"), None)
     if not pv:
         erros.append("falta a prova (bloco autoridade, até ~20 s)")
@@ -184,6 +220,8 @@ def checar(pasta):
         erros.append("a máxima precisa de 0,5–0,9 s de silêncio antes")
     if not 5 <= bl[-1].get("hold_s", 0) <= 9:
         avisos.append("hold depois da fala do CTA: 5–9 s (cartão final inteiro fica ~8–10 s)")
+    if str(r.get("versao", "")).endswith("/3"):
+        _checar_visual(r, pasta, erros, avisos)
     pal = sum(len(b["fala"].split()) for b in bl)
     if not 160 <= pal <= 270:
         avisos.append(f"{pal} palavras (alvo 60–90 s ≈ 170–260)")
@@ -324,12 +362,29 @@ def cena(pasta):
         for st in b.get("cena", {}).get("params", {}).get("stingers", []):
             hit = next((p for p in t["palavras"] if re.sub(r"\W", "", p["w"]).lower().startswith(st["em"].lower())), None)
             st["t"] = round((hit["ini"] if hit else t["ini"]) - 0.05, 3)
+        # batidas (visual v1.2): cada uma troca manchete/objeto/pose na palavra "em" (a 1ª entra no início do bloco)
+        ult = ini[i]
+        for k, bt in enumerate(b.get("cena", {}).get("params", {}).get("beats", [])):
+            if k == 0 and not bt.get("em"):
+                bt["t"] = round(ini[i], 3)
+                continue
+            hit = next((p for p in t["palavras"] if p["ini"] >= ult - 0.01 and re.sub(r"\W", "", p["w"]).lower().startswith(bt["em"].lower())), None)
+            bt["t"] = round((hit["ini"] if hit else t["ini"]) - 0.08, 3)
+            ult = bt["t"]
+            for chave in ("carimbo_em", "chips_em", "opcoes_em"):
+                if isinstance(bt.get(chave), str):
+                    h2 = next((p for p in t["palavras"] if re.sub(r"\W", "", p["w"]).lower().startswith(bt[chave].lower())), None)
+                    bt[chave] = h2["ini"] if h2 else bt["t"]
         blocos.append({**b, "ini": round(ini[i], 3), "fala_ini": t["ini"], "fala_fim": t["fim"], "fim": round(fim_vis, 3),
                        "palavras": t["palavras"], "g": g})
     fontes = {f["id"]: f for f in r["fontes"]}
     isca = r["isca"]
     quentes = [o.upper() for o in isca["opcoes"]] if isca.get("tipo") == "opiniao" else [isca["palavra"].upper()]
-    c = {"duracao": round(blocos[-1]["fim"], 3), "isca": quentes, "isca_obj": isca, "fontes": fontes, "blocos": blocos}
+    bts = [bt for b in blocos for bt in b.get("cena", {}).get("params", {}).get("beats", [])]
+    objs = sorted({o for bt in bts for o in ([bt["objeto"]] if bt.get("objeto") else []) + bt.get("objetos", [])})
+    prints = sorted({bt["print"] for bt in bts if bt.get("print")})
+    c = {"duracao": round(blocos[-1]["fim"], 3), "versao": r.get("versao", ""), "poses": poses_disponiveis(),
+         "objetos_usados": objs, "prints_usados": prints, "isca": quentes, "isca_obj": isca, "fontes": fontes, "blocos": blocos}
     (pasta / "build/cena.json").write_text(json.dumps(c, ensure_ascii=False, indent=1))
     (pasta / "build/cena.js").write_text("window.CENA = " + json.dumps(c, ensure_ascii=False) + ";\n")
     print(f"cena {c['duracao']:.1f} s, {len(blocos)} blocos -> build/cena.js")

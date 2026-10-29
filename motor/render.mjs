@@ -16,7 +16,8 @@ const html = fs.readFileSync(path.join(aqui, 'palco.html'), 'utf8')
   .replaceAll('src="cena.js"', `src="file://${path.resolve(pasta, 'cena.js')}"`)
   .replaceAll('url(fontes/', `url(file://${aqui}/fontes/`)
   .replaceAll('"avatar/', `"file://${aqui}/avatar/`)
-  .replaceAll('"assets/', `"file://${aqui}/assets/`);
+  .replaceAll('"assets/', `"file://${aqui}/assets/`)
+  .replaceAll('"edicao/', `"file://${path.resolve(pasta, '..')}/`);
 const tmp = path.resolve(pasta, '.palco.html');
 fs.writeFileSync(tmp, html);
 
@@ -32,12 +33,15 @@ if (saida === '--quadros') {
   const ts = (opt('--quadros') || resto[0]).split(',').map(Number);
   const dir = path.resolve(pasta, '..', 'quadros');
   fs.mkdirSync(dir, { recursive: true });
+  const med = [];
   for (const t of ts) {
+    if (await page.evaluate(() => typeof window.medidas === 'function')) med.push(await page.evaluate(t => window.medidas(t), t));
     await page.evaluate(t => window.render(t), t);
     const f = path.join(dir, `q_${t.toFixed(2).replace('.', '_')}.jpg`);
     await page.screenshot({ path: f, type: 'jpeg', quality: 88 });
     console.log(f);
   }
+  if (med.length) fs.writeFileSync(path.join(dir, 'medidas.json'), JSON.stringify(med, null, 1));
   await browser.close();
   process.exit(0);
 }

@@ -5,3 +5,4 @@ edicoes/*/quadros/
 *.pyc
 __pycache__/
 motor/avatar/brutos/
+motor/assets/objetos/brutos/

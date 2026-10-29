@@ -25,6 +25,12 @@ POSES = {
     "segurando": "holding a closed blue folder against his chest with both hands, smiling",
     "surpreso": "both hands open near his face, surprised, eyebrows raised",
     "mostrando": "pointing down to the bottom of the frame with one hand, inviting, smiling",
+    # v1.2: poses ligadas à emoção do bloco
+    "explica": "one open palm raised to the side at shoulder height, explaining calmly, friendly smile",
+    "olha": "looking up and to the side at something above him, one hand raised pointing at it, curious",
+    "polegar": "big thumbs up with one hand, celebrating, wide happy smile",
+    "duvida": "shrugging with both palms up, doubtful face, one eyebrow raised",
+    "susto": "both hands pressed on his cheeks in shock, mouth wide open in fear, eyebrows raised high, worried, not smiling",
 }
 
 

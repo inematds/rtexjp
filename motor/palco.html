@@ -51,6 +51,40 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--
 .term .bar i { width: 18px; height: 18px; border-radius: 50%; display: block; }
 .term .cmd { font: 700 36px Mono; color: #e6edf7; white-space: nowrap; padding: 0 30px; height: 84px; line-height: 84px; }
 .term .cmd .p { color: var(--aco); }
+
+/* ---------- visual v1.2 (rtexjp/3): Sora centrada, herói ilustrado, avatar grande, tema claro/escuro, grão */
+@font-face { font-family: Sora; src: url(fontes/Sora.ttf); font-weight: 100 800; }
+#palco.v2 { --fg: #f4f7fc; --fg2: #c9d8ee; --dest: #93c5fd; --rotc: #93c5fd; --fundo: #07111f; --card: #0b1a30; }
+#palco.v2[data-tema="claro"] { --fg: #0b1a30; --fg2: #1e3a8a; --dest: #ffffff; --rotc: #1e3a8a; --fundo: #e8eef7; --card: #ffffff; background: #e8eef7; }
+.v2 .fundo2 { position: absolute; inset: 0; background: var(--fundo); }
+.v2 .holo { position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 760px 620px at 50% 46%, rgba(59,130,246,.34), rgba(30,58,138,.16) 50%, transparent 75%),
+              radial-gradient(ellipse 1200px 500px at 50% 112%, rgba(37,99,235,.28), transparent 70%); }
+.v2[data-tema="claro"] .holo { background: radial-gradient(ellipse 760px 640px at 50% 46%, #ffffff, rgba(255,255,255,.4) 55%, transparent 78%),
+              radial-gradient(ellipse 1200px 500px at 50% 112%, rgba(147,197,253,.55), transparent 70%); }
+.v2 .grao { position: absolute; inset: 0; pointer-events: none; background-image: url("assets/grao.png"); opacity: .07; mix-blend-mode: overlay; }
+.v2 .man { position: absolute; left: 40px; right: 40px; text-align: center; font-family: Sora; font-weight: 800; line-height: 1.08;
+  letter-spacing: -2px; text-transform: uppercase; color: var(--fg); }
+.v2 .man .d { color: var(--dest); }
+.v2[data-tema="claro"] .man .d { background: #1e3a8a; padding: 0 .1em; border-radius: .1em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.v2 .man .q { color: var(--isca); }
+.v2 .rot2 { position: absolute; left: 0; right: 0; top: 196px; text-align: center; font: 700 32px Mono; letter-spacing: 6px; color: var(--rotc); }
+.v2 .fonte2 { position: absolute; left: 40px; right: 40px; text-align: center; font: 700 30px Mono; letter-spacing: 1px; color: var(--fg2); }
+.v2 .pill { position: absolute; display: flex; align-items: center; justify-content: center; border-radius: 28px; background: var(--isca); color: var(--isca-txt);
+  font-family: Sora; font-weight: 800; box-shadow: 0 18px 50px rgba(0,0,0,.35); }
+.v2 .chip2 { position: absolute; font: 700 34px Mono; padding: 10px 20px; border-radius: 14px; background: #0b1a30; color: #f4f7fc; border: 3px solid #7aa7e0; }
+.v2 .leg2 { position: absolute; left: 40px; right: 40px; top: 985px; text-align: center; font: 74px/1.08 Leg; color: #fff;
+  -webkit-text-stroke: 12px #000; paint-order: stroke fill; }
+.v2 .leg2 .k { color: #93c5fd; }
+.v2 .leg2 .k.isca { color: var(--isca); }
+.v2[data-tema="claro"] .leg2 { color: #0b1a30; -webkit-text-stroke: 12px #ffffff; }
+.v2[data-tema="claro"] .leg2 .k { color: #1d4ed8; }
+.v2 .heroi { position: absolute; filter: drop-shadow(0 30px 40px rgba(0,0,0,.45)); }
+.v2[data-tema="claro"] .heroi { filter: drop-shadow(0 26px 34px rgba(11,26,48,.28)); }
+.v2 .nav2 { position: absolute; left: 0; right: 0; top: 190px; display: flex; justify-content: center; align-items: center; gap: 14px; }
+.v2 .nav2 i { font: 700 32px Mono; letter-spacing: 4px; color: var(--rotc); font-style: normal; margin-left: 10px; }
+.v2 .nav2 b { font: 700 30px Mono; padding: 6px 18px; border-radius: 10px; border: 2px solid rgba(122,167,224,.5); color: var(--rotc); }
+.v2 .nav2 b.on { background: #2563eb; color: #fff; border-color: #2563eb; }
 </style>
 </head>
 <body>
@@ -59,10 +93,14 @@ html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--
 <script>
 const C = window.CENA;
 const $ = document.getElementById('palco');
-const POSES = ['bracos', 'queixo', 'apontando', 'segurando', 'surpreso', 'mostrando'];
+const POSES = C.poses || ['bracos', 'queixo', 'apontando', 'segurando', 'surpreso', 'mostrando'];
 const IMG = {};
 POSES.forEach(p => { const i = new Image(); i.src = "avatar/" + p + ".png"; IMG[p] = i; });
 const carro = new Image(); carro.src = "assets/carro.png";
+const OBJ = {};
+(C.objetos_usados || []).forEach(n => { const i = new Image(); i.src = "assets/objetos/" + n + ".png"; OBJ[n] = i; });
+(C.prints_usados || []).forEach(n => { const i = new Image(); i.src = "edicao/" + n; OBJ['print:' + n] = i; });
+const V2 = /\/3$/.test(C.versao || '');
 
 // ---------- utilidades
 const cl = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
@@ -467,8 +505,207 @@ function legenda(b, t) {
   }).join(' ')}</div>`;
 }
 
+// ====================================================================== visual v1.2 (rtexjp/3)
+// Casca única: fundo (marinho ou papel azul-gelo) com holofote e grão · rótulo · manchete Sora centrada · herói (objeto
+// ilustrado, print real, índice, opções) entre a manchete e o avatar · avatar grande embaixo, centralizado · legenda karaokê.
+const L = { rot: 196, man: 250, heroiT: 566, heroiB: 955, heroiW: 980, avH: 820, avBase: 1920, leg: 985 };
+const ctx2 = document.createElement('canvas').getContext('2d');
+function larg(txt, px) { ctx2.font = `800 ${px}px Sora`; return ctx2.measureText(txt.toUpperCase()).width + (txt.length * -2); }
+function batida(b, t) {
+  const bs = (b.cena.params || {}).beats || [{}];
+  let cur = bs[0];
+  for (const x of bs) if (t >= (x.t ?? b.ini)) cur = x;
+  return cur;
+}
+function manchete(bt, b, t, { y = L.man, tam = 112, primeiro = false } = {}) {
+  if (!bt.manchete) return '';
+  const linhas = bt.manchete.map(l => bt.contador ? l.replace('{n}', (() => {
+    const K = bt.contador, v = contador(K.final, t, (bt.t ?? b.ini) + .15, K.dur || 1.3);
+    return K.decimais ? v.toFixed(K.decimais).replace('.', ',') : nint(v);
+  })()) : l);
+  let px = bt.tam || (linhas.length >= 3 ? Math.min(tam, 98) : tam);   // 3 linhas cabem acima do herói (y 566)
+  const maxw = 1000;
+  for (const l of linhas) { const w = larg(l, px); if (w > maxw) px = Math.max(96, Math.floor(px * maxw / w)); }
+  const p = ap(t, bt.t ?? b.ini, .3);
+  const dest = bt.destaque, cls = primeiro ? 'q' : 'd';
+  const bg = cls === 'q' ? 'var(--fundo)' : '';
+  const html = linhas.map(l => esc(l).replace(dest && l.includes(dest) ? dest : '\u0000', `<span class="${cls}" data-txt="1">${dest}</span>`)).join('<br>');
+  return `<div class="man" data-txt="1" data-man="1" style="top:${y}px;font-size:${px}px;${primeiro && b.ini === 0 ? '' : ent(p, 30)}">${html}</div>`;
+}
+function caixaHeroi(img, { w = L.heroiW, h = L.heroiB - L.heroiT, top = L.heroiT, cx = 540 } = {}) {
+  if (!img || !img.naturalWidth) return null;
+  const r = Math.min(w / img.naturalWidth, h / img.naturalHeight);
+  const W = img.naturalWidth * r, H = img.naturalHeight * r;
+  return { x: cx - W / 2, y: top + (h - H) / 2, W, H };
+}
+function heroi(bt, b, t) {
+  const t0 = bt.t ?? b.ini, p = b.ini === 0 && t0 === 0 ? 1 : ap(t, t0, .35);
+  const flut = Math.sin(t * 1.6) * 6;
+  let h = '';
+  if (bt.objeto) {
+    const c = caixaHeroi(OBJ[bt.objeto], bt.caixa || {});
+    if (c) h += `<img class="heroi" data-area="1" src="${OBJ[bt.objeto].src}" style="left:${c.x}px;top:${c.y + flut}px;width:${c.W}px;height:${c.H}px;${pop(p)}">`;
+  }
+  if (bt.objetos) {   // dois objetos lado a lado (ex.: opções)
+    bt.objetos.forEach((n, k) => {
+      const c = caixaHeroi(OBJ[n], { w: 440, h: 250, top: L.heroiT, cx: 290 + k * 500 });
+      if (c) h += `<img class="heroi" data-area="1" src="${OBJ[n].src}" style="left:${c.x}px;top:${c.y + flut * (k ? -1 : 1)}px;width:${c.W}px;height:${c.H}px;${pop(cl(p * 1.3 - k * .2))}">`;
+    });
+  }
+  if (bt.print) {
+    const im = OBJ['print:' + bt.print], c = caixaHeroi(im, { w: 980, h: 280, top: L.heroiT + 6 });
+    const z = 1 + .08 * cl((t - t0) / 4);   // aproximação lenta (≤ 1,25 com texto)
+    if (c) h += `<div class="ab" data-area="1" style="left:${c.x}px;top:${c.y}px;width:${c.W}px;height:${c.H}px;border-radius:24px;border:3px solid #30363d;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.5);${ent(p, 40)}">
+      <img src="${im.src}" style="width:100%;height:100%;transform:scale(${z});transform-origin:${bt.foco || '50% 50%'}"></div>`;
+    if (bt.fonte && C.fontes[bt.fonte]) h += `<div class="fonte2" data-txt="1" style="top:${(c ? c.y + c.H : 900) + 24}px;${ent(ap(t, t0 + .3, .3), 12)}">fonte: ${esc(C.fontes[bt.fonte].linha).replace(' · ', '<br>')}</div>`;
+  } else if (bt.fonte && C.fontes[bt.fonte]) h += `<div class="fonte2" data-txt="1" style="top:${L.heroiB - 40}px">fonte: ${esc(C.fontes[bt.fonte].linha)}</div>`;
+  if (bt.carimbo) {
+    const f = ap(t, bt.carimbo_em ?? .9, .3);
+    h += `<div class="stk" data-txt="1" style="left:520px;top:${L.heroiT + 10}px;font-family:Sora;font-weight:800;font-size:60px;white-space:nowrap;background:#c81e3a;color:#fff;transform:rotate(8deg) scale(${.6 + .4 * eb(f)});opacity:${cl(f * 2)}">${esc(bt.carimbo)}</div>`;
+  }
+  if (bt.chips) bt.chips.forEach((a, k) => {
+    const pk = ap(t, (bt.chips_em ?? 1.9) + k * .12, .3), xs = [60, 760, 90, 740][k], ys = [700, 690, 850, 840][k];
+    h += `<div class="chip2" data-txt="1" style="left:${xs}px;top:${ys + Math.sin(t * 2 + k) * 6}px;${pop(pk)}">${esc(a)} <b style="color:var(--isca)">?</b></div>`;
+  });
+  if (bt.itens) bt.itens.forEach((it, k) => {
+    const pk = ap(t, t0 + .1 + k * .16, .3);
+    h += `<div class="ab" data-area="1" style="left:90px;width:900px;top:${L.heroiT + 10 + k * 126}px;height:112px;border-radius:26px;background:${k === 0 ? '#2563eb' : 'var(--card)'};
+      border:3px solid #7aa7e0;display:flex;align-items:center;gap:30px;padding-left:40px;box-shadow:0 20px 50px rgba(0,0,0,.35);${ent(pk, 30)}">
+      <span data-txt="1" style="font:700 54px Mono;color:${k === 0 ? '#fff' : 'var(--fg2)'}">0${k + 1}</span><span data-txt="1" style="font:800 72px Sora;letter-spacing:-1px;color:${k === 0 ? '#fff' : 'var(--fg)'}">${esc(it)}</span></div>`;
+  });
+  if (bt.opcoes) bt.opcoes.forEach((o, k) => {
+    const pk = ap(t, (bt.opcoes_em ?? t0) + k * .2, .3);
+    h += `<div class="pill" data-txt="1" data-area="1" style="left:${70 + k * 500}px;top:${L.heroiT + 250}px;width:440px;height:130px;font-size:92px;${pop(pk)}">${esc(o)}</div>`;
+  });
+  return h;
+}
+function avatar2(pose, t, b) {
+  const im = IMG[pose] || IMG.bracos; if (!im || !im.naturalWidth) return '';
+  const H = L.avH, W = H * im.naturalWidth / im.naturalHeight;
+  const resp = 1 + Math.sin(t * 2.1) * .006 + (b.ini === 0 && t < 1 ? .03 * Math.sin(t * 30) * (1 - t) : 0);
+  return `<img class="ab av" data-area="1" src="${im.src}" style="left:${540 - W / 2}px;top:${L.avBase - H}px;height:${H}px;width:${W}px;transform-origin:50% 100%;
+    transform:scale(${resp});filter:drop-shadow(0 18px 30px rgba(0,0,0,.45))">`;
+}
+function legenda2(b, t) {
+  if (t < b.fala_ini - .05 || t > b.fala_fim + .35) return '';
+  const ch = chunks(b);
+  let c = ch[0];
+  for (const x of ch) if (t >= x[0].ini - .05) c = x;
+  const isca = [].concat(C.isca);
+  const dest = (b.destaque_fala || []).map(s => s.toLowerCase());
+  const lbg = $.dataset.tema === 'claro' ? '#ffffff' : '#000000';
+  return `<div class="leg2" data-txt="1" data-bg="${lbg}">${c.map(x => {
+    const w = esc(x.w.replace(/[.,:;]$/, ''));
+    const fala = t >= x.ini - .03 && t < x.fim + .08;   // a palavra dita agora
+    const q = isca.some(s => w.toUpperCase().includes(s));
+    return fala ? `<span class="k ${q ? 'isca' : ''}" data-txt="1" data-bg="${lbg}">${w}</span>` : w;
+  }).join(' ')}</div>`;
+}
+function stinger2(b, t) {
+  const Ls = (b.cena.params || {}).stingers || [];
+  const st = Ls.find(x => t >= x.t && t < x.t + (x.dur || 1.1));
+  if (!st) return '';
+  const p = ap(t, st.t, .18), sai = cl((st.t + (st.dur || 1.1) - t) / .12);
+  const txt = st.texto.replace(/<b>/g, '<span class="d" data-txt="1" data-bg="#0b1a30" style="color:#93c5fd">').replace(/<\/b>/g, '</span>');
+  return `<div class="ab" style="left:0;right:0;top:0;height:${L.avBase - L.avH + 120}px;background:radial-gradient(ellipse 760px 640px at 50% 48%, #12285a, #07111f 75%);opacity:${Math.min(cl(p * 1.6), sai)}"></div>
+    <div class="man" data-txt="1" data-man="1" data-bg="#07111f" style="top:${L.man + 120}px;font-size:${st.tam || 140}px;color:#f4f7fc;${pop(p)};opacity:${Math.min(cl(p * 2), sai)}">${txt}
+    ${st.sub ? `<div class="mono" data-txt="1" data-bg="#07111f" style="font-size:32px;letter-spacing:2px;color:#c9d8ee;margin-top:34px;text-transform:none">${esc(st.sub)}</div>` : ''}</div>`;
+}
+const COMP2 = {
+  quadro(b, t) {
+    const bt = batida(b, t);
+    const primeiro = b.ini === 0 && bt === ((b.cena.params || {}).beats || [])[0];
+    return manchete(bt, b, t, { primeiro }) + heroi(bt, b, t);
+  },
+  maxima(b, t) {
+    if (t < b.fala_ini - .05) return '';   // silêncio: só o avatar (nunca tela vazia)
+    const bt = batida(b, t);
+    return manchete(bt, b, t) + heroi(bt, b, t);
+  },
+  opiniao(b, t) {
+    const P = b.cena.params, I = C.isca_obj, ops = I.opcoes, w = P.digita || ops[0];
+    const hit = [...b.palavras].reverse().find(x => x.w.replace(/[^\wÀ-ú]/g, '').toUpperCase() === ops[ops.length - 1]) || b.palavras[b.palavras.length - 1];
+    const tt = hit.fim + .3, n = cl(Math.floor((t - tt) / .16) + 1, 0, w.length);
+    const pub = tt + w.length * .16 + .5, conf = pub + .45;
+    const po = ap(t, b.ini + .25);
+    const q = (P.titulo || I.pergunta).split('|');
+    let h = manchete({ manchete: q, destaque: P.destaque, t: b.ini }, b, t, { tam: 104 });
+    (P.objetos || []).forEach((nm, k) => {
+      const c = caixaHeroi(OBJ[nm], { w: 400, h: 170, top: L.heroiT - 66, cx: 290 + k * 500 });
+      const vez = Math.floor((t - b.ini) * 1.1) % 2 === k;   // chave e cadeado se alternam até o fim do cartão   // antes de digitar, as opções se alternam
+      if (c) h += `<img class="heroi" data-area="1" src="${OBJ[nm].src}" style="left:${c.x}px;top:${c.y + Math.sin(t * 1.6 + k) * 5}px;width:${c.W}px;height:${c.H}px;${pop(cl(po * 1.3 - k * .25))};rotate:${vez ? Math.sin(t * 9) * 6 : 0}deg;scale:${vez ? 1.12 : 1}">`;
+    });
+    h += ops.map((o, k) => `<div class="pill" data-txt="1" data-area="1" style="left:${70 + k * 500}px;top:${L.heroiT + 110}px;width:440px;height:170px;font-size:110px;
+        box-shadow:0 0 ${(t > pub && o === w) || (t < tt && Math.floor((t - b.ini) * 1.1) % 2 === k) ? 70 : 0}px rgba(250,204,21,.7);${pop(cl(po * 1.3 - k * .25))};scale:${t < tt && Math.floor((t - b.ini) * 1.1) % 2 === k ? 1.06 : 1}">${esc(o)}</div>`).join('');
+    h += `<div class="ab" data-area="1" style="left:70px;top:${L.heroiT + 300}px;width:940px;height:124px;border-radius:62px;background:#0e1c33;border:3px solid ${n ? 'var(--isca)' : 'rgba(122,167,224,.5)'};
+        display:flex;align-items:center;padding:0 30px;gap:24px;${ent(ap(t, tt - .5))}">
+        <span style="width:64px;height:64px;border-radius:50%;background:var(--az2)"></span>
+        <span data-txt="1" data-bg="#0e1c33" style="font:64px Leg;color:var(--isca)">${w.slice(0, n)}<span style="color:#fff">${n < w.length || (t * 2 % 1) < .5 ? '|' : ' '}</span></span>
+        <span data-txt="1" data-bg="${t > pub ? '#2563eb' : '#0e1c33'}" style="margin-left:auto;font:800 38px Sora;padding:16px 30px;border-radius:34px;background:${t > pub ? '#2563eb' : 'transparent'};color:${t > pub ? '#fff' : '#93c5fd'}">Publicar</span></div>
+      <div class="ab" data-txt="1" data-bg="#07111f" style="left:0;right:0;text-align:center;top:${L.heroiT + 438}px;font:800 40px Sora;color:#93c5fd;${ent(ap(t, conf, .3), 16)}">✓ ${esc(P.confirmacao || 'comentado')}</div>`;
+    return h;
+  },
+};
+function render2(t) {
+  const b = C.blocos.find(x => t >= x.ini && t < x.fim) || C.blocos[C.blocos.length - 1];
+  const bt = batida(b, t);
+  const tema = bt.tema || b.cena.tema || 'escuro';
+  $.className = 'v2'; $.dataset.tema = tema;
+  let h = `<div class="fundo2"></div><div class="holo"></div><div class="grao"></div>`;
+  if (b.tipo === 'metodo') h += `<div class="nav2">${Array.from({ length: NPECAS }, (_, k) => k + 1).map(i => `<b class="${i === b.n ? 'on' : ''}" data-txt="1" ${i === b.n ? 'data-bg="#2563eb"' : ''}>0${i}</b>`).join('')}<i data-txt="1">${esc((b.rotulo || '').replace(/^\d+ \/ /, ''))}</i></div>`;
+  else if (b.rotulo) h += `<div class="rot2" data-txt="1">${esc(b.rotulo)}</div>`;
+  const silencio = b.tipo === 'maxima' && t < b.fala_ini - .05;
+  if (silencio) {
+    const ant = C.blocos[C.blocos.indexOf(b) - 1];
+    h += (COMP2[ant.cena.comp] || COMP2.quadro)(ant, ant.fim - .01);
+  } else h += (COMP2[b.cena.comp] || COMP2.quadro)(b, t);
+  const pose = (b.tipo === 'maxima' && t < b.fala_ini - .05) ? (b.pose_silencio || 'queixo') : (bt.pose || b.pose || 'bracos');
+  h += robo({ x: 30, y: 1290, s: .72, t, tela: bt.robo || (b.tipo === 'cta' ? 'ok' : b.ini === 0 ? (t > 2.9 ? '?' : 'x') : 'sorri') });
+  h += avatar2(pose, t, b);
+  h += stinger2(b, t);
+  h += legenda2(b, t);
+  $.innerHTML = h;
+}
+// ---------- medidas para o portão de beleza (lidas do DOM, determinísticas)
+function lum(rgb) { const f = v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }; return .2126 * f(rgb[0]) + .7152 * f(rgb[1]) + .0722 * f(rgb[2]); }
+function rgbDe(s) { if (s.startsWith('#')) { const n = parseInt(s.slice(1), 16); return [n >> 16 & 255, n >> 8 & 255, n & 255]; } const m = s.match(/[\d.]+/g).map(Number); return m.slice(0, 3); }
+function fundoDe(el) {
+  for (let e = el; e && e !== $; e = e.parentElement) {
+    if (e.dataset && e.dataset.bg) return e.dataset.bg;
+    const bg = getComputedStyle(e).backgroundColor;
+    if (bg && !/rgba\(.*,\s*0\)$/.test(bg) && bg !== 'transparent' && !getComputedStyle(e).backgroundImage.includes('gradient')) return bg;
+  }
+  return getComputedStyle($).getPropertyValue('--fundo').trim() || '#07111f';
+}
+window.medidas = function (t) {
+  window.render(t);
+  const r = { t, manchete_px_min: null, texto_px_min: null, avatar_frac: 0, area_frac: 0, contraste_min: null, pior: null };
+  $.querySelectorAll('[data-man]').forEach(e => { const op = +getComputedStyle(e).opacity; if (op > .5) { const px = parseFloat(getComputedStyle(e).fontSize); r.manchete_px_min = Math.min(r.manchete_px_min ?? 1e9, px); } });
+  $.querySelectorAll('[data-txt]').forEach(e => {
+    if (!e.textContent.trim()) return;
+    const cs = getComputedStyle(e); let op = 1; for (let x = e; x && x !== $; x = x.parentElement) op *= +getComputedStyle(x).opacity;
+    if (op < .6) return;
+    const px = parseFloat(cs.fontSize); r.texto_px_min = Math.min(r.texto_px_min ?? 1e9, px);
+    const a = lum(rgbDe(cs.color)), z = lum(rgbDe(fundoDe(e)));
+    const cr = (Math.max(a, z) + .05) / (Math.min(a, z) + .05);
+    if (r.contraste_min === null || cr < r.contraste_min) { r.contraste_min = +cr.toFixed(2); r.pior = e.textContent.trim().slice(0, 30); }
+  });
+  const av = $.querySelector('.av'); if (av) r.avatar_frac = +(av.getBoundingClientRect().height / 1920).toFixed(3);
+  // área ocupada no quadro útil (0–1536): grade de 20 px, união das caixas com conteúdo
+  const G = 20, X0 = 60, Y0 = 190, cols = 48, rows = 67, g = new Uint8Array(cols * rows);   // x 60–1020, y 190–1530
+  $.querySelectorAll('[data-area],[data-man],.leg2,.av').forEach(e => {
+    if (+getComputedStyle(e).opacity < .3) return;
+    const b = e.getBoundingClientRect();
+    for (let y = Math.max(0, Math.floor((b.top - Y0) / G)); y < Math.min(rows, Math.ceil((b.bottom - Y0) / G)); y++)
+      for (let x = Math.max(0, Math.floor((b.left - X0) / G)); x < Math.min(cols, Math.ceil((b.right - X0) / G)); x++) g[y * cols + x] = 1;
+  });
+  r.area_frac = +(g.reduce((s, v) => s + v, 0) / g.length).toFixed(3);
+  return r;
+};
+
 // ---------- quadro
 window.render = function (t) {
+  if (V2) return render2(t);
   const b = C.blocos.find(x => t >= x.ini && t < x.fim) || C.blocos[C.blocos.length - 1];
   let h = `<div class="luz"></div>`;
   if (b.rotulo) h += `<div class="rot">${esc(b.rotulo)}</div>`;
@@ -478,8 +715,8 @@ window.render = function (t) {
   h += legenda(b, t);
   $.innerHTML = h;
 };
-Promise.all([document.fonts.ready, ...Object.values(IMG).map(i => i.decode().catch(() => 0)), carro.decode().catch(() => 0)])
-  .then(() => Promise.all(['40px Anton', '700 30px Mono', '400 30px Mono', '40px Leg', '700 30px Inter'].map(f => document.fonts.load(f))))
+Promise.all([document.fonts.ready, ...Object.values(IMG).map(i => i.decode().catch(() => 0)), ...Object.values(OBJ).map(i => i.decode().catch(() => 0)), carro.decode().catch(() => 0)])
+  .then(() => Promise.all(['40px Anton', '700 30px Mono', '400 30px Mono', '40px Leg', '700 30px Inter', '800 40px Sora'].map(f => document.fonts.load(f))))
   .then(() => { window.render(0); window.pronto = true; });
 </script>
 </body>

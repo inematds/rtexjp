@@ -2,6 +2,9 @@
 
 | data | o que quebrou | menor correção | prompt \| infra |
 |---|---|---|---|
+| 2026-10-28 | v1.1 com ~1 s de tela vazia antes da máxima (o bloco `maxima` herda o silêncio e o `flash` não desenhava nada) | no silêncio, congelar o último quadro do bloco anterior com o avatar pensativo | prompt |
+| 2026-10-28 | legenda da casca v1.2 caiu sobre a boca do avatar grande (y 1420) e depois sobre o pé do herói | faixa própria da legenda (y 985) entre o herói (até 975) e o boné (1100) | prompt |
+| 2026-10-28 | objetos-herói `chave_dono`/`pasta_unica` com manchas vermelhas ("vermelho só para dano" virou respingo) | prompt com "no red, no damage, no stains" + outra seed | prompt |
 | 2026-10-28 | guia reprovado pelo revisor (7/10): 2º vídeo sem player e troca de avatar exigindo editar o prompt fixo do Nei | `<video>` apontando para o final.mp4 do repo + `RTEXJP_AVATAR_DESC` (e `RTEXJP_TRILHA`, `CS_WHISPER_PY` no plano B do Whisper) | prompt |
 | 2026-10-28 | pose `surpreso` com verde do fundo preso entre as mãos (o flood fill só tira o verde ligado à borda) | `recortar` também zera verde forte isolado | infra |
 | 2026-10-28 | `checar` acusou "número na tela sem fonte" na máxima por causa de tamanho/posição (`tam: 140`, `y: 620`) | conferir só os textos de `cena`/`tela`, não números de layout | prompt |

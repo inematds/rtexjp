@@ -1,0 +1,52 @@
+{
+ "alerta_token": {
+  "data": "2026-10-28",
+  "prompt": "a big red warning triangle sign with an exclamation shape, in front of a pile of blue coins melting away",
+  "seed": 11
+ },
+ "balao_explica": {
+  "data": "2026-10-28",
+  "prompt": "a big round white speech bubble floating above an open blue document page, with a small glowing light bulb inside the bubble, simple friendly explanation",
+  "seed": 23
+ },
+ "cadeado_refem": {
+  "data": "2026-10-28",
+  "prompt": "a big closed steel padlock wrapped in heavy grey chains",
+  "seed": 11
+ },
+ "chave_dono": {
+  "data": "2026-10-28",
+  "prompt": "a big clean shiny steel blue metal key with a round bow, perfectly intact and new, no red, no damage, no stains",
+  "seed": 31
+ },
+ "dominos": {
+  "data": "2026-10-28",
+  "prompt": "a row of tall blue domino tiles falling one after another in a chain reaction, the first one tipped by a hand",
+  "seed": 11
+ },
+ "lupa_arquivos": {
+  "data": "2026-10-28",
+  "prompt": "a big magnifying glass hovering over a fanned stack of paper documents and code files",
+  "seed": 11
+ },
+ "mapa_pinos": {
+  "data": "2026-10-28",
+  "prompt": "a big clean unfolded paper city map with light blue roads, and several round blue location pins connected by dotted lines, tidy and intact, no red, no stains, no damage",
+  "seed": 11
+ },
+ "mapa_sumiu": {
+  "data": "2026-10-28",
+  "prompt": "a folded paper map torn in half with a big red question mark floating above it, lost",
+  "seed": 11
+ },
+ "pasta_unica": {
+  "data": "2026-10-28",
+  "prompt": "one single big clean blue file folder, slightly open with white papers inside, perfectly intact and tidy, no red, no damage, no stains",
+  "seed": 31
+ },
+ "terminal_quebrado": {
+  "data": "2026-10-28",
+  "prompt": "an open laptop whose dark screen shows a terminal window with a big red jagged crack across the glass and a red error cross, small sparks, broken and offline",
+  "seed": 11
+ }
+}

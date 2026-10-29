@@ -2,6 +2,7 @@
 
 | data | o que quebrou | menor correção | prompt \| infra |
 |---|---|---|---|
+| 2026-10-28 | guia reprovado pelo revisor (7/10): 2º vídeo sem player e troca de avatar exigindo editar o prompt fixo do Nei | `<video>` apontando para o final.mp4 do repo + `RTEXJP_AVATAR_DESC` (e `RTEXJP_TRILHA`, `CS_WHISPER_PY` no plano B do Whisper) | prompt |
 | 2026-10-28 | pose `surpreso` com verde do fundo preso entre as mãos (o flood fill só tira o verde ligado à borda) | `recortar` também zera verde forte isolado | infra |
 | 2026-10-28 | `checar` acusou "número na tela sem fonte" na máxima por causa de tamanho/posição (`tam: 140`, `y: 620`) | conferir só os textos de `cena`/`tela`, não números de layout | prompt |
 | 2026-10-28 | Mono e sans saíram em serifa no palco (woff2 do JetBrains com 11 KB = subconjunto sem os glifos) | trocar por TTF completo (JetBrains Mono, Montserrat) | infra |

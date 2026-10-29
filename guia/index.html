@@ -152,7 +152,7 @@
     <div>
       <span class="chip">Motor de reels · v1.1.0 · local e grátis</span>
       <h1>Do roteiro ao reel <span class="amb">ilustrado</span>, sem pagar nada</h1>
-      <p class="lead">Você escreve um <code>roteiro.json</code>; o rtexjp devolve um reel vertical 1080×1920 em azul-marinho, com avatar ilustrado do Nei, mascote robô, voz do Nei e um único pedido de opinião: "comenta <span class="hot">DONO</span> ou <span class="hot">REFÉM</span>".</p>
+      <p class="lead">Você escreve um <code>roteiro.json</code>; o rtexjp devolve um reel vertical 1080×1920 em azul-marinho, com avatar ilustrado do Nei, mascote robô, voz do Nei (ou a sua) e um único pedido de opinião: "comenta <span class="hot">DONO</span> ou <span class="hot">REFÉM</span>".</p>
       <div class="cta">
         <a class="btn" href="#guia">Começar o guia</a>
         <a class="btn ghost" href="#exemplos">Ver os vídeos exemplo</a>
@@ -165,7 +165,7 @@
 <section id="resumo" class="resumo"><div class="wrap">
   <span class="chip">Em resumo</span>
   <p>O rtexjp é um motor que monta vídeos curtos verticais (reels) ilustrados, em azul-marinho, a partir de um roteiro escrito num arquivo de texto (<code>roteiro.json</code>). É o motor que o Nei usa nos reels do INEMA, aberto para quem quiser estudar ou adaptar: sem gravar a si mesmo e sem pagar serviço de avatar. Ele gera a voz, desenha cada cena quadro a quadro, mistura a trilha e confere sozinho se o vídeo segue o formato. Precisa de um computador com placa de vídeo (GPU), Python, Node, ffmpeg e dois servidores locais: o de voz (inemavox) e o de imagem (flux2-klein).</p>
-  <p class="mut" style="font-size:.98rem">Vem configurado com a voz e o avatar do Nei. Para usar os seus, aponte as variáveis de ambiente <code>RTEXJP_VOZ_REF</code> (gravação de referência da voz) e <code>RTEXJP_AVATAR_REF</code> (foto do avatar) para os seus arquivos e gere as poses de novo; nada no código precisa ser editado. Esses dois arquivos não vêm no repositório (veja <a href="#pre">Pré-requisitos</a>).</p>
+  <p class="mut" style="font-size:.98rem">Vem configurado com a voz e o avatar do Nei. Para usar os seus, aponte as variáveis de ambiente <code>RTEXJP_VOZ_REF</code> (gravação de referência da voz) e <code>RTEXJP_AVATAR_REF</code> (foto do avatar) para os seus arquivos, descreva o seu personagem em <code>RTEXJP_AVATAR_DESC</code> (sem isso as poses saem com o boné, os óculos e a barba do Nei) e gere as poses de novo; nada no código precisa ser editado. Esses dois arquivos não vêm no repositório (veja <a href="#pre">Pré-requisitos</a>).</p>
 </div></section>
 
 <section id="oque"><div class="wrap">
@@ -259,11 +259,15 @@
     <tr><td><code>RTEXJP_VOZ_REF</code> · gravação de referência da voz (.wav)</td><td>~/projetos/timesmkt3/media/voice-refs/nei.wav</td></tr>
     <tr><td><code>RTEXJP_IMG_URL</code> · servidor de imagem flux2-klein</td><td>http://localhost:8000/generate</td></tr>
     <tr><td><code>RTEXJP_AVATAR_REF</code> · foto de referência do avatar</td><td>~/projetos/inema-referencias/nei-avatar.jpg</td></tr>
+    <tr><td><code>RTEXJP_AVATAR_DESC</code> · traços e roupa do personagem no pedido de imagem (em inglês)</td><td>boné preto, óculos, barba grisalha, camiseta azul-aço (o Nei)</td></tr>
+    <tr><td><code>RTEXJP_TRILHA</code> · cama musical do mix</td><td>motor/assets/trilha.mp3</td></tr>
+    <tr><td><code>CS_WHISPER_PY</code> · Python do ambiente com faster-whisper (servidor do Whisper e plano B)</td><td>~/miniconda3/envs/chatterbox/bin/python3</td></tr>
   </table>
 <pre><span class="c"># exemplo: tudo em outros caminhos, sem editar o código</span>
 <span class="k">export</span> RTEXJP_INEMAVOX=<span class="s">~/inemavox</span>
 <span class="k">export</span> RTEXJP_VOZ_REF=<span class="s">~/minha-voz.wav</span>
 <span class="k">export</span> RTEXJP_AVATAR_REF=<span class="s">~/minha-foto.jpg</span>
+<span class="k">export</span> RTEXJP_AVATAR_DESC=<span class="s">"same face, short brown hair, no glasses. She wears a plain navy blazer"</span>
 <span class="k">export</span> RTEXJP_IMG_URL=<span class="s">http://outra-maquina:8000/generate</span></pre>
 </div></section>
 
@@ -274,7 +278,7 @@
 
   <div class="step"><div class="b">1</div><div>
     <h3>Aponte a sua voz de referência <span class="who">você</span></h3>
-    <p>O passo da voz clona a voz de uma gravação curta. O padrão aponta para a gravação do Nei, que não vem no repositório; sem apontar a sua, o passo <code>voz</code> falha. Grave uns 10 a 20 segundos da sua fala limpa, em WAV, e exporte <code>RTEXJP_VOZ_REF</code>. Se for trocar o avatar também, exporte <code>RTEXJP_AVATAR_REF</code> com uma foto sua e rode o passo 4.</p>
+    <p>O passo da voz clona a voz de uma gravação curta. O padrão aponta para a gravação do Nei, que não vem no repositório; sem apontar a sua, o passo <code>voz</code> falha. Grave uns 10 a 20 segundos da sua fala limpa, em WAV, e exporte <code>RTEXJP_VOZ_REF</code>. Se for trocar o avatar também, exporte <code>RTEXJP_AVATAR_REF</code> com uma foto sua e <code>RTEXJP_AVATAR_DESC</code> com os seus traços e a roupa, e rode o passo 4.</p>
 <pre><span class="k">export</span> RTEXJP_VOZ_REF=<span class="s">~/minha-voz.wav</span>
 <span class="k">export</span> RTEXJP_AVATAR_REF=<span class="s">~/minha-foto.jpg</span>   <span class="c"># só se for trocar o avatar</span></pre>
   </div></div>
@@ -294,7 +298,7 @@
 
   <div class="step"><div class="b">4</div><div>
     <h3>Poses do avatar <span class="who">opcional</span></h3>
-    <p>As seis poses do Nei (camiseta azul-aço) já vêm em <code>motor/avatar/</code>. Rode só se trocou a foto de referência (<code>RTEXJP_AVATAR_REF</code>) ou a roupa do personagem.</p>
+    <p>As seis poses do Nei (camiseta azul-aço) já vêm em <code>motor/avatar/</code>. Rode só se trocou o personagem: a foto (<code>RTEXJP_AVATAR_REF</code>) e a descrição de traços e roupa (<code>RTEXJP_AVATAR_DESC</code>, em inglês, que vai no pedido ao flux2-klein). Confira as seis poses antes de seguir: o fundo verde é recortado sozinho.</p>
 <pre><span class="k">python3 motor/gerar_avatar.py</span></pre>
   </div></div>
 
@@ -306,7 +310,7 @@
 
   <div class="step"><div class="b">6</div><div>
     <h3>Voz por bloco + tempo de cada palavra</h3>
-    <p>Um áudio por bloco com a voz do Nei; o Whisper marca cada palavra em <code>build/tempos.json</code>. Passe nomes de bloco para refazer só esses. Se o Whisper falhar, o log fica em <code>~/.cache/whisper_daemon.log</code>.</p>
+    <p>Um áudio por bloco com a voz do Nei; o Whisper marca cada palavra em <code>build/tempos.json</code>. Passe nomes de bloco para refazer só esses. O Whisper roda como servidor do inemavox (<code>whisper_daemon.py</code>, com o Python de <code>CS_WHISPER_PY</code>); se ele não subir, o motor usa o <code>transcrever_v1.py</code> do inemavox com esse mesmo Python. O log fica em <code>~/.cache/whisper_daemon.log</code>.</p>
 <pre><span class="k">python3 rtexjp.py voz</span> edicoes/minha-edicao            <span class="c"># todos os blocos</span>
 <span class="k">python3 rtexjp.py voz</span> edicoes/minha-edicao p2 ressalva  <span class="c"># só esses</span></pre>
   </div></div>
@@ -326,7 +330,7 @@
 
   <div class="step"><div class="b">9</div><div>
     <h3>Mixagem e QA</h3>
-    <p>Voz + trilha baixa (que para no silêncio da máxima), volume final em −14 LUFS; depois o QA grava <code>qa.md</code>, <code>build/qa.json</code> e <code>contact.jpg</code>. Critério que falhar aparece com ❌ no <code>qa.md</code> e o comando termina com um erro do Python (<code>CalledProcessError</code>): é o sinal de QA reprovado, não um bug.</p>
+    <p>Voz + trilha baixa (que para no silêncio da máxima), volume final em −14 LUFS. A trilha que vem em <code>motor/assets/trilha.mp3</code> é a cama dos reels do Nei: para publicar os seus, aponte <code>RTEXJP_TRILHA</code> para uma música cuja licença você conheça; depois o QA grava <code>qa.md</code>, <code>build/qa.json</code> e <code>contact.jpg</code>. Critério que falhar aparece com ❌ no <code>qa.md</code> e o comando termina com um erro do Python (<code>CalledProcessError</code>): é o sinal de QA reprovado, não um bug.</p>
 <pre><span class="k">python3 rtexjp.py mix</span> edicoes/minha-edicao   <span class="c"># -> final.mp4</span>
 <span class="k">python3 rtexjp.py qa</span>  edicoes/minha-edicao   <span class="c"># -> qa.md, contact.jpg</span></pre>
   </div></div>
@@ -381,7 +385,7 @@
   <h3 style="margin:10px 0 8px">2º vídeo · "O Claude sumiu. E agora?" <span class="who">formato atual</span></h3>
   <p class="mut" style="margin:0 0 18px">Um tema só (o plugin Understand Anything), gancho de <b>perda</b>, três peças e a pergunta <span class="hot">DONO</span> ou <span class="hot">REFÉM</span>. Arquivos em <code>edicoes/2026-10-28-mapa/</code> (o bloco <code>publicar</code> do roteiro traz título, descrição e comentário fixado).</p>
   <div class="video">
-    <figure style="margin:0 auto;max-width:360px;border-radius:16px;overflow:hidden;border:1px solid var(--line)"><img src="assets/m-00-0.jpg" width="540" height="960" style="width:100%;height:auto;display:block" alt="Quadro 0 do 2º vídeo: a manchete &quot;O Claude sumiu. E agora?&quot;, com SUMIU em amarelo, e um terminal riscado de vermelho"></figure>
+    <div class="yt"><video controls playsinline preload="none" poster="assets/m-00-0.jpg" style="position:absolute;inset:0;width:100%;height:100%;background:#000" aria-label="2º reel do rtexjp: O Claude sumiu. E agora?"><source src="../edicoes/2026-10-28-mapa/final.mp4" type="video/mp4"></video></div>
     <div>
       <h3 style="margin-bottom:.6em">O que o QA mediu</h3>
       <table class="qa">
@@ -396,7 +400,7 @@
         <tr><td>Silêncio antes da máxima</td><td>0,88 s</td></tr>
         <tr><td>Cartão final (fala + 7,5 s segurado)</td><td>14,6 s</td></tr>
       </table>
-      <p class="mut" style="margin-top:1em">Ainda não publicado: o vídeo e os quadros abaixo saíram direto do <code>final.mp4</code>.</p>
+      <p class="mut" style="margin-top:1em">Ainda não publicado nas redes: o player toca o <code>edicoes/2026-10-28-mapa/final.mp4</code> do repositório. <a href="../edicoes/2026-10-28-mapa/final.mp4" download>Baixar o final.mp4</a> (7,8 MB)</p>
     </div>
   </div>
 

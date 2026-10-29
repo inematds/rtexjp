@@ -16,6 +16,8 @@ Caminhos (variáveis de ambiente, com o padrão da máquina do Nei):
   RTEXJP_VOZ_REF   gravação de referência da voz (wav)            ~/projetos/timesmkt3/media/voice-refs/nei.wav
   RTEXJP_IMG_URL   servidor de imagem flux2-klein (motor/gerar_*) http://localhost:8000/generate
   RTEXJP_AVATAR_REF foto de referência do avatar (gerar_avatar)    ~/projetos/inema-referencias/nei-avatar.jpg
+  RTEXJP_AVATAR_DESC traços e roupa do personagem no prompt (gerar_avatar)   boné preto, óculos, barba grisalha, camiseta azul-aço
+  RTEXJP_TRILHA    cama musical do mix                            motor/assets/trilha.mp3
 """
 import json, os, re, subprocess, sys, difflib
 from pathlib import Path
@@ -24,6 +26,7 @@ R = Path(__file__).resolve().parent
 sys.path.insert(0, str(R / "motor"))
 INEMAVOX = Path(os.environ.get("RTEXJP_INEMAVOX", os.environ.get("CS_INEMAVOX", Path.home() / "projetos/inemavox"))).expanduser()
 os.environ.setdefault("CS_INEMAVOX", str(INEMAVOX))   # o motor/whisper.py lê esta
+TRILHA = Path(os.environ.get("RTEXJP_TRILHA", R / "motor/assets/trilha.mp3")).expanduser()
 VOZ_REF = Path(os.environ.get("RTEXJP_VOZ_REF", Path.home() / "projetos/timesmkt3/media/voice-refs/nei.wav")).expanduser()
 ALVO_WPM = 178
 RESPIRO = 0.22
@@ -351,7 +354,7 @@ def mix(pasta):
          f"[vz][bd]amix=inputs=2:duration=first:normalize=0[a]")
     bruto = pasta / "build/mix_bruto.wav"
     pre = pasta / "build/mix_pre.wav"
-    sh("ffmpeg", "-y", "-loglevel", "error", "-i", pasta / "build/voz.wav", "-i", R / "motor/assets/trilha.mp3", "-filter_complex", f,
+    sh("ffmpeg", "-y", "-loglevel", "error", "-i", pasta / "build/voz.wav", "-i", TRILHA, "-filter_complex", f,
        "-map", "[a]", "-ar", "48000", "-ac", "2", bruto)
     # loudnorm em duas passadas (uma passada fica ~1 LU abaixo)
     ln = "loudnorm=I=-14:TP=-1.5:LRA=7"

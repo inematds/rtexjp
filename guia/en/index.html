@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  /* rtexjp navy palette (inema-design DECISOES.md, D19); yellow #FACC15 = the only warm color. Structure = INEMA standard. */
+  /* rtexjp navy palette (inema-design DECISOES.md, D19); yellow #FACC15 = only warm color. Structure = INEMA standard. */
   :root{
     --bg:#07111f; --bg2:#0b1a30; --card:#0f213b; --line:#1f3352;
     --txt:#e6edf7; --mut:#9fb0c8; --amb:#93c5fd; --amb2:#7aa7e0; --amb-ink:#07111f; --amb-rgb:147,197,253;
@@ -152,102 +152,102 @@
     <div>
       <span class="chip">Reel engine · v1.1.0 · local and free</span>
       <h1>From script to an <span class="amb">illustrated</span> reel, at no cost</h1>
-      <p class="lead">You write a <code>roteiro.json</code>; rtexjp returns a 1080×1920 vertical reel in navy blue, with Nei's illustrated avatar, a robot mascot, Nei's voice, and a single request for an opinion: "comenta DONO ou REFÉM" (comment DONO [OWNER] or REFÉM [HOSTAGE]).</p>
+      <p class="lead">Write a <code>roteiro.json</code>; rtexjp returns a 1080×1920 vertical reel in navy blue, with Nei's illustrated avatar, a robot mascot, Nei's voice (or yours), and one request for an opinion: "comenta DONO ou REFÉM" (comment OWNER or DEPENDENT).</p>
       <div class="cta">
         <a class="btn" href="#guia">Start the guide</a>
         <a class="btn ghost" href="#exemplos">Watch the example videos</a>
       </div>
     </div>
-    <figure><img src="../assets/m-00-0.jpg" width="540" height="960" alt="Frame 0 of the second example reel, in navy blue: the headline &quot;O Claude sumiu. E agora?&quot; (Claude disappeared. Now what?), with SUMIU (DISAPPEARED) in yellow, a terminal crossed out in red, Nei's avatar with hands on his face, and the robot mascot"></figure>
+    <figure><img src="../assets/m-00-0.jpg" width="540" height="960" alt="Frame 0 of the second example reel, in navy blue: the headline &quot;O Claude sumiu. E agora?&quot; (Claude is gone. Now what?) with SUMIU (GONE) in yellow, a terminal crossed out in red, Nei's avatar with his hands on his face, and the robot mascot"></figure>
   </div>
 </header>
 
 <section id="resumo" class="resumo"><div class="wrap">
-  <span class="chip">In short</span>
-  <p>rtexjp is an engine that assembles short illustrated vertical videos (reels) in navy blue from a script written in a text file (<code>roteiro.json</code>). It's the engine Nei uses for INEMA reels, open to anyone who wants to study or adapt it: no need to film yourself or pay for an avatar service. It generates the voice, draws each scene frame by frame, mixes in the soundtrack, and checks that the video follows the format. It requires a computer with a graphics card (GPU), Python, Node, ffmpeg, and two local servers: one for voice (inemavox) and one for images (flux2-klein).</p>
-  <p class="mut" style="font-size:.98rem">It comes configured with Nei's voice and avatar. To use your own, point the <code>RTEXJP_VOZ_REF</code> environment variable (voice reference recording) and <code>RTEXJP_AVATAR_REF</code> (avatar photo) to your files and regenerate the poses; no code edits are needed. These two files are not included in the repository (see <a href="#pre">Prerequisites</a>).</p>
+  <span class="chip">In brief</span>
+  <p>rtexjp is an engine that assembles short, illustrated vertical videos (reels) in navy blue from a script written in a text file (<code>roteiro.json</code>). It's the engine Nei uses for INEMA reels, open to anyone who wants to study or adapt it: no need to record yourself or pay for an avatar service. It generates the voice, draws each scene frame by frame, mixes the soundtrack, and checks by itself whether the video follows the format. It requires a computer with a graphics card (GPU), Python, Node, ffmpeg, and two local servers: one for voice (inemavox) and one for images (flux2-klein).</p>
+  <p class="mut" style="font-size:.98rem">It comes configured with Nei's voice and avatar. To use your own, point the environment variables <code>RTEXJP_VOZ_REF</code> (voice reference recording) and <code>RTEXJP_AVATAR_REF</code> (avatar photo) to your files, describe your character in <code>RTEXJP_AVATAR_DESC</code> (otherwise the poses will have Nei's cap, glasses, and beard), and generate the poses again; no code needs to be edited. These two files aren't included in the repository (see <a href="#pre">Prerequisites</a>).</p>
 </div></section>
 
 <section id="oque"><div class="wrap">
   <span class="chip">What it is</span>
   <h2>A fixed format checked by a validator</h2>
-  <p class="sub">Every reel follows the same structure: a hook in frame 0, evidence with a source, the viewer's problem, numbered pieces, an honest caveat, a maxim, and an opinion question. The engine draws it; the validator flags anything that falls outside the format.</p>
-  <figure class="wide"><img src="../assets/triptico-2.jpg" width="760" height="447" loading="lazy" alt="Three frames from the second example reel, side by side: the hook &quot;O Claude sumiu. E agora?&quot; (Claude disappeared. Now what?), the problem with DONO (OWNER) and REFÉM (HOSTAGE) options in yellow, and the final card with the question and a comment box typing DONO"></figure>
+  <p class="sub">Every reel follows the same structure: a hook in frame 0, proof with a source, the viewer's problem, numbered pieces, an honest caveat, a maxim, and an opinion question. The engine draws; the validator reports anything that falls outside the format.</p>
+  <figure class="wide"><img src="../assets/triptico-2.jpg" width="760" height="447" loading="lazy" alt="Three frames from the second example reel side by side: the hook &quot;O Claude sumiu. E agora?&quot; (Claude is gone. Now what?), the problem with the DONO (OWNER) and REFÉM (DEPENDENT) options in yellow, and the final card with the question and the comment box typing DONO"></figure>
   <div class="grid g3">
-    <div class="card"><h3>🎨 Illustrated, no lip-sync</h3><p>Nei's illustrated avatar in six poses (arms crossed, hand on chin, pointing, holding, surprised, showing) and a robot mascot. No one needs to record anything.</p></div>
-    <div class="card"><h3>🎙️ Nei's local voice</h3><p>Voice generated locally with TTS (inemavox chatterbox), at 160–190 words per minute, with local Whisper timestamping every word for captions and scene triggers.</p></div>
-    <div class="card"><h3>✅ Automatic QA</h3><p>Measures duration, speech pace, volume (−14 LUFS), visual changes per minute, evidence by 20 s, options planted before the CTA, a CTA with no delivery promise, the final card, and silence before the maxim. Produces a <code>qa.md</code> and a <code>contact.jpg</code>.</p></div>
+    <div class="card"><h3>🎨 Illustrated, no lip-sync</h3><p>Nei's illustrated avatar in six poses (arms crossed, hand on chin, pointing, holding, surprised, presenting) and a robot mascot. Nobody needs to record anything.</p></div>
+    <div class="card"><h3>🎙️ Nei's voice, local</h3><p>Voice generated with local TTS (inemavox chatterbox), 160–190 words per minute, with local Whisper marking the timing of each word for captions and scene triggers.</p></div>
+    <div class="card"><h3>✅ Automatic QA</h3><p>Measures duration, speech pace, loudness (−14 LUFS), visual changes per minute, proof by 20 s, options introduced before the prompt, CTA without a delivery promise, final card, and silence before the maxim. It outputs a <code>qa.md</code> and a <code>contact.jpg</code>.</p></div>
   </div>
 </div></section>
 
 <section id="formato"><div class="wrap">
   <span class="chip">The format</span>
   <h2>The nine rules of the rtexjp standard</h2>
-  <p class="sub">These are the checks enforced by the <code>checar</code> command and QA for every edit.</p>
+  <p class="sub">These are the rules the <code>checar</code> command and QA enforce on every edit.</p>
   <div class="grid g2">
     <div class="card"><ol class="esq">
-      <li><b>Hook in frame 0</b>, of one of these types: <b>contrarian</b> (tells viewers to stop doing something everyone does), <b>loss</b> (what if X disappeared?), <b>fear statistic</b> with a source, or a <b>third-party story</b> with a number. Forbidden: lists ("5 things…"), "did you know…", "I did…".</li>
-      <li><b>Headline in frame 0</b> with about 6 words max, uppercase, <b>one</b> word in <span class="hot">yellow</span>, more aggressive than the narration. A damaged object is drawn (crossed out in red, broken), the avatar reacts in the first second, and something changes every ~1 s during the first three seconds. Frame 0 serves as the cover.</li>
-      <li><b>Evidence by 20 s</b>: a counter lands on the number and the source appears below.</li>
-      <li><b>The viewer's problem, with absolution</b> ("Não é culpa sua. Ninguém te deu o mapa." [It's not your fault. No one gave you the map.]). The final question is planted here: the options appear in <span class="hot">yellow</span>.</li>
+      <li><b>A hook in frame 0</b>, of one of these types: <b>contrary</b> (tells people to stop doing something everyone does), <b>loss</b> (what if X disappeared?), <b>fear statistic</b> with a source, or <b>someone else's story</b> with a number. Not allowed: a list ("5 things…"), "did you know…", "I did…".</li>
+      <li><b>Frame 0 headline</b> of up to ~6 words, uppercase, <b>one</b> word in <span class="hot">yellow</span>, more aggressive than the spoken line. An object with visible damage (crossed out in red, broken), the avatar reacts in the first second, and something changes about every ~1 s in the first three seconds. Frame 0 becomes the cover.</li>
+      <li><b>Proof by 20 s</b>: a counter lands on the number and the source appears below.</li>
+      <li><b>The viewer's problem, absolving them of blame</b> ("Não é culpa sua. Ninguém te deu o mapa." / "It's not your fault. No one gave you the map."). The final question is introduced here: the options appear in <span class="hot">yellow</span>.</li>
       <li><b>One topic per video</b>, in 2–5 pieces with a visible index and a pill bar at the top; one object per sentence, changing every 2–3 s.</li>
     </ol></div>
     <div class="card"><ol class="esq" start="6">
       <li><b>Every number has a written source</b> on screen (<code>fonte: …</code>).</li>
-      <li><b>An honest spoken caveat</b>, in an alert card (red = problem, green = correct).</li>
-      <li><b>A maxim in antithesis</b>, after 0.8 s of actual silence (voice and soundtrack stop).</li>
-      <li><b>Opinion CTA</b>: Nei states his side and asks a strong question, answered with one word ("comenta DONO ou REFÉM" [comment DONO (OWNER) or REFÉM (HOSTAGE)]). The card shows the question and options; the comment box types an option, posts it, and confirms it. It stays for ~10 s, with no sign-off. <b>Never promise delivery</b> ("I'll send it to you"): no one replies to comments. The link and source stay pinned in the comment.</li>
+      <li><b>An honest spoken caveat</b>, on an alert card (red = problem, green = correct).</li>
+      <li><b>A maxim in antithesis</b>, after 0.8 s of real silence (voice and soundtrack stop). The line is "Ser dono do teu sistema nunca foi saber cada linha. É saber o que segura o quê." (Being the owner of your system was never about knowing every line. It's about knowing what holds what together.)</li>
+      <li><b>An opinion CTA</b>: Nei states his position and asks a strong question that can be answered with one word ("comenta DONO ou REFÉM" / "comment OWNER or DEPENDENT"). The card shows the question and the options; the comment box types an option, posts it, and confirms it. It stays for ~10 s, with no sign-off. <b>Never promise to deliver anything</b> ("I'll send it to you"): nobody replies to comments. The link and source remain visible in the pinned comment.</li>
     </ol></div>
   </div>
   <h3 style="margin:34px 0 12px">Quick glossary</h3>
   <div class="grid g3">
-    <div class="card"><h3>Opinion prompt</h3><p>The closing question, with two one-word options (in the second video, DONO or REFÉM). The tension appears in frame 0, the options are planted early, and only those (plus the headline's hot word) appear in yellow.</p></div>
-    <div class="card"><h3>Maxim</h3><p>The closing summary sentence, in antithesis ("Ser dono do teu sistema nunca foi saber cada linha. É saber o que segura o quê." [Owning your system has never meant knowing every line. It means knowing what holds what together.]). It comes after a short silence.</p></div>
+    <div class="card"><h3>Opinion prompt</h3><p>The closing question, with two one-word options (in the second video, DONO (OWNER) or REFÉM (DEPENDENT)). The tension appears in frame 0, the options are introduced early, and only they (plus the headline's hot word) are yellow.</p></div>
+    <div class="card"><h3>Maxim</h3><p>The closing summary line, in antithesis ("Ser dono do teu sistema nunca foi saber cada linha. É saber o que segura o quê." / "Being the owner of your system was never about knowing every line. It's about knowing what holds what together."). It follows a short silence.</p></div>
     <div class="card"><h3>Stage</h3><p>The <code>motor/palco.html</code> page that draws each scene. The renderer takes a snapshot of it for every frame.</p></div>
-    <div class="card"><h3>Music bed</h3><p>Low soundtrack under the voice; it dips while the voice speaks and stops during the silence before the maxim.</p></div>
-    <div class="card"><h3>LUFS</h3><p>A measure of perceived loudness. −14 LUFS is the loudness level social platforms use as a standard.</p></div>
-    <div class="card"><h3>CTA</h3><p>"Call to action": the video's final request. Here it's always just one thing: an opinion question answered with one word.</p></div>
-    <div class="card"><h3>TTS and lip-sync</h3><p>TTS is a voice generated from text. Lip-sync is when the mouth moves along with the speech; rtexjp doesn't do that. The avatar only changes poses.</p></div>
-    <div class="card"><h3>Whisper and Playwright</h3><p>Whisper transcribes the voice and timestamps every word. Playwright opens the stage in a headless browser and takes a snapshot of every frame.</p></div>
-    <div class="card"><h3>Typography flash</h3><p>A quick screen with large text between pieces, so the video doesn't feel static.</p></div>
+    <div class="card"><h3>Music bed</h3><p>Quiet background music under the voice. It dips when the voice speaks and stops during the silence before the maxim.</p></div>
+    <div class="card"><h3>LUFS</h3><p>A measure of perceived loudness. −14 LUFS is the standard loudness used by social platforms.</p></div>
+    <div class="card"><h3>CTA</h3><p>"Call to action": the video's final request. Here, it's always a single opinion question answered with one word.</p></div>
+    <div class="card"><h3>TTS and lip-sync</h3><p>TTS is a voice generated from text. Lip-sync is mouth movement synchronized with speech; rtexjp doesn't do this—the avatar only changes poses.</p></div>
+    <div class="card"><h3>Whisper and Playwright</h3><p>Whisper transcribes the voice and timestamps each word. Playwright opens the stage in a headless browser and takes a snapshot of every frame.</p></div>
+    <div class="card"><h3>Typography flash</h3><p>A quick screen with only large text between pieces, to keep the video moving.</p></div>
   </div>
 </div></section>
 
 <section id="fluxo"><div class="wrap">
   <span class="chip">How it works</span>
   <h2>Six steps, one command each</h2>
-  <p class="sub"><code>rtexjp.py</code> runs the steps in order. The stage is an HTML page drawn by <code>window.render(t)</code>: the same <code>build/cena.json</code> always produces the same video. The voice doesn't: TTS comes out a little differently each time (that's why the <code>voz</code> step can redo just a few blocks).</p>
+  <p class="sub"><code>rtexjp.py</code> runs the steps in order. The stage is an HTML page drawn by <code>window.render(t)</code>: the same <code>build/cena.json</code> always produces the same video. The voice doesn't: TTS comes out slightly different each time (that's why the <code>voz</code> step can redo just a few blocks).</p>
   <div class="flow">
     <span>roteiro.json</span><span class="arr">→</span>
     <span>checar</span><span class="arr">→</span>
-    <span>voz + Whisper</span><span class="arr">→</span>
-    <span>cena</span><span class="arr">→</span>
+    <span>voice + Whisper</span><span class="arr">→</span>
+    <span>scene</span><span class="arr">→</span>
     <span>render (Playwright, 30 fps)</span><span class="arr">→</span>
     <span>mix (−14 LUFS)</span><span class="arr">→</span>
     <span>qa</span><span class="arr">→</span>
     <span>final.mp4</span>
   </div>
   <div class="grid g3" style="margin-top:26px">
-    <div class="card"><span class="num">1</span><h3>Script and validation</h3><p><code>checar</code> checks the structure using the <code>tipo</code> field: starts with <code>tese</code>, <code>virada</code> before the first <code>metodo</code> (2–5 pieces), <code>ressalva</code> before <code>maxima</code>, and <code>maxima</code> right before <code>cta</code> at the end. The second example uses <code>tese</code> (hook) → <code>autoridade</code> (evidence) → <code>tese</code> (problem + options) → <code>virada</code> → <code>metodo</code> ×3 → <code>ressalva</code> → <code>maxima</code> → <code>cta</code>.</p></div>
-    <div class="card"><span class="num">2</span><h3>Voice and scene</h3><p><code>voz</code> generates one audio file per block, speeds it up to 1.15×, and joins them; <code>cena</code> combines the script with each word's timing.</p></div>
+    <div class="card"><span class="num">1</span><h3>Script and validation</h3><p><code>checar</code> checks the structure using the <code>tipo</code> field: starts with <code>tese</code>, <code>virada</code> before the first <code>metodo</code> (2–5 pieces), <code>ressalva</code> before <code>maxima</code>, and <code>maxima</code> right before the final <code>cta</code>. The second example uses <code>tese</code> (hook) → <code>autoridade</code> (proof) → <code>tese</code> (problem + options) → <code>virada</code> → <code>metodo</code> ×3 → <code>ressalva</code> → <code>maxima</code> → <code>cta</code>.</p></div>
+    <div class="card"><span class="num">2</span><h3>Voice and scene</h3><p><code>voz</code> generates one audio file per block, speeds it up to 1.15×, and joins them; <code>cena</code> combines the script with the timing of each word.</p></div>
     <div class="card"><span class="num">3</span><h3>Render, mix, and QA</h3><p><code>render</code> captures the stage frame by frame; <code>mix</code> adds the soundtrack (which stops during the maxim's silence); <code>qa</code> measures everything.</p></div>
   </div>
 </div></section>
 
 <section id="pre"><div class="wrap">
   <span class="chip">Prerequisites</span>
-  <h2>What you need on your machine</h2>
-  <p class="sub">Everything runs locally. No paid APIs are called. Paths come from environment variables, with Nei's machine defaults; if yours is different, export the variables (table below) and you won't need to change any code.</p>
+  <h2>What needs to be on your machine</h2>
+  <p class="sub">Everything runs locally. No paid API is called. Paths come from environment variables, using Nei's machine as the default; if yours differs, export the variables (table below) and no code needs to change.</p>
   <div class="grid g3">
-    <div class="card"><h3>Voice: inemavox + chatterbox environment</h3><p>The <a href="https://github.com/inematds/inemavox" target="_blank" rel="noopener">inematds/inemavox</a> project cloned to <code>~/projetos/inemavox</code> (the engine calls its <code>tts_direct.py</code> and <code>whisper_daemon.py</code>). Chatterbox TTS and Whisper large-v3 run in a separate Python environment (Nei uses the conda env <code>chatterbox</code> at <code>~/miniconda3/envs/chatterbox</code>); if yours is elsewhere, point the variables below to it. If you clone it elsewhere, export <code>RTEXJP_INEMAVOX</code> with the path. Whisper large-v3 uses about 10 GB of GPU memory (NVIDIA GPU), plus chatterbox. Tested on Linux.</p><pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/inemavox</span> ~/projetos/inemavox
+    <div class="card"><h3>Voice: inemavox + chatterbox environment</h3><p>The <a href="https://github.com/inematds/inemavox" target="_blank" rel="noopener">inematds/inemavox</a> project cloned to <code>~/projetos/inemavox</code> (the engine calls its <code>tts_direct.py</code> and <code>whisper_daemon.py</code>). chatterbox TTS and Whisper large-v3 run in a separate Python environment (on Nei's machine, the conda env <code>chatterbox</code> at <code>~/miniconda3/envs/chatterbox</code>); if yours is elsewhere, point the variables below to it. If you clone it somewhere else, export <code>RTEXJP_INEMAVOX</code> with the path. Whisper large-v3 uses about 10 GB of graphics card memory (NVIDIA GPU), in addition to chatterbox. Tested on Linux.</p><pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/inemavox</span> ~/projetos/inemavox
 <span class="k">cd</span> ~/projetos/inemavox && <span class="k">python3 -m venv</span> venv
 <span class="k">./venv/bin/pip install</span> -r requirements.txt   <span class="c"># rtexjp calls venv/bin/python tts_direct.py</span>
-<span class="c"># chatterbox + faster-whisper in its own environment (see the inemavox README)</span>
+<span class="c"># chatterbox + faster-whisper in a dedicated environment (see the inemavox README)</span>
 <span class="k">export</span> CHATTERBOX_PYTHON=<span class="s">/caminho/do/env/bin/python3</span>   <span class="c"># TTS</span>
 <span class="k">export</span> CS_WHISPER_PY=<span class="s">/caminho/do/env/bin/python3</span>       <span class="c"># Whisper</span>
 </pre></div>
-    <div class="card"><h3>Images: flux2-klein</h3><p>The <a href="https://github.com/inematds/inemaimg" target="_blank" rel="noopener">inematds/inemaimg</a> server with the flux2-klein model (default <code>http://localhost:8000/generate</code>, or the address in <code>RTEXJP_IMG_URL</code>), plus the avatar reference photo (<code>RTEXJP_AVATAR_REF</code>). Only needed for optional steps 4 and 5 (poses and scene images); Nei's six poses are already included.</p></div>
-    <div class="card"><h3>Node, ffmpeg, Python</h3><p>Node 18 or newer, ffmpeg (with ffprobe, which comes with it), and Python 3 with Pillow and numpy.</p><pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/rtexjp</span>
+    <div class="card"><h3>Images: flux2-klein</h3><p>The <a href="https://github.com/inematds/inemaimg" target="_blank" rel="noopener">inematds/inemaimg</a> server with the flux2-klein model (default <code>http://localhost:8000/generate</code>, or the address in <code>RTEXJP_IMG_URL</code>), plus the avatar reference photo (<code>RTEXJP_AVATAR_REF</code>). It's only needed for optional steps 4 and 5 (poses and scene images); Nei's six poses are already included.</p></div>
+    <div class="card"><h3>Node, ffmpeg, Python</h3><p>Node 18 or newer, ffmpeg (including ffprobe, which comes with it), and Python 3 with Pillow and numpy.</p><pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/rtexjp</span>
 <span class="k">cd</span> rtexjp
 <span class="k">npm i</span>
 <span class="k">npx playwright install</span> chromium
@@ -259,74 +259,78 @@
     <tr><td><code>RTEXJP_VOZ_REF</code> · voice reference recording (.wav)</td><td>~/projetos/timesmkt3/media/voice-refs/nei.wav</td></tr>
     <tr><td><code>RTEXJP_IMG_URL</code> · flux2-klein image server</td><td>http://localhost:8000/generate</td></tr>
     <tr><td><code>RTEXJP_AVATAR_REF</code> · avatar reference photo</td><td>~/projetos/inema-referencias/nei-avatar.jpg</td></tr>
+    <tr><td><code>RTEXJP_AVATAR_DESC</code> · character features and clothing in the image prompt (in English)</td><td>black cap, glasses, gray beard, steel-blue T-shirt (Nei)</td></tr>
+    <tr><td><code>RTEXJP_TRILHA</code> · mix music bed</td><td>motor/assets/trilha.mp3</td></tr>
+    <tr><td><code>CS_WHISPER_PY</code> · Python for the environment with faster-whisper (Whisper server and fallback)</td><td>~/miniconda3/envs/chatterbox/bin/python3</td></tr>
   </table>
-<pre><span class="c"># example: everything in different paths, no code edits</span>
+<pre><span class="c"># example: everything at different paths, no code edits needed</span>
 <span class="k">export</span> RTEXJP_INEMAVOX=<span class="s">~/inemavox</span>
 <span class="k">export</span> RTEXJP_VOZ_REF=<span class="s">~/minha-voz.wav</span>
 <span class="k">export</span> RTEXJP_AVATAR_REF=<span class="s">~/minha-foto.jpg</span>
+<span class="k">export</span> RTEXJP_AVATAR_DESC=<span class="s">"same face, short brown hair, no glasses. She wears a plain navy blazer"</span>
 <span class="k">export</span> RTEXJP_IMG_URL=<span class="s">http://outra-maquina:8000/generate</span></pre>
 </div></section>
 
 <section id="guia"><div class="wrap">
   <span class="chip">User guide · step by step</span>
   <h2>From script to final.mp4</h2>
-  <p class="sub">Each edit lives in <code>edicoes/&lt;id&gt;/</code>. The <code>tudo</code> shortcut (step 10) runs checar, voz, cena, render, mix, and qa in one go (without the frame previews from step 7).</p>
+  <p class="sub">Each edit lives in <code>edicoes/&lt;id&gt;/</code>. The <code>tudo</code> shortcut (step 10) runs checar, voz, cena, render, mix, and qa all at once (without the frame preview from step 7).</p>
 
   <div class="step"><div class="b">1</div><div>
     <h3>Set your voice reference <span class="who">you</span></h3>
-    <p>The voice step clones the voice from a short recording. The default points to Nei's recording, which isn't included in the repository; the <code>voz</code> step will fail unless you point it to your own. Record about 10 to 20 seconds of clean speech in WAV format, and export <code>RTEXJP_VOZ_REF</code>. If you're also changing the avatar, export <code>RTEXJP_AVATAR_REF</code> with a photo of yourself and run step 4.</p>
+    <p>The voice step clones the voice from a short recording. By default it points to Nei's recording, which isn't included in the repository; without setting your own, the <code>voz</code> step fails. Record about 10 to 20 seconds of clean speech in WAV format and export <code>RTEXJP_VOZ_REF</code>. If you also want to change the avatar, export <code>RTEXJP_AVATAR_REF</code> with your photo and <code>RTEXJP_AVATAR_DESC</code> with your features and clothing, then run step 4.</p>
 <pre><span class="k">export</span> RTEXJP_VOZ_REF=<span class="s">~/minha-voz.wav</span>
 <span class="k">export</span> RTEXJP_AVATAR_REF=<span class="s">~/minha-foto.jpg</span>   <span class="c"># only if changing the avatar</span></pre>
   </div></div>
 
   <div class="step"><div class="b">2</div><div>
     <h3>Write the script <span class="who">you</span></h3>
-    <p>Copy the example script and replace its content. The format is summarized just below the guide in <a href="#roteiro">"The roteiro.json file"</a>.</p>
+    <p>Copy the example script and replace its content. The format is summarized just below the guide, under <a href="#roteiro">"The roteiro.json file"</a>.</p>
 <pre><span class="k">mkdir -p</span> edicoes/minha-edicao
-<span class="k">cp</span> edicoes/2026-10-28-mapa/roteiro.json edicoes/minha-edicao/   <span class="c"># edit it afterwards</span></pre>
+<span class="k">cp</span> edicoes/2026-10-28-mapa/roteiro.json edicoes/minha-edicao/   <span class="c"># then edit it</span></pre>
   </div></div>
 
   <div class="step"><div class="b">3</div><div>
     <h3>Validate the format rules</h3>
-    <p>No subjectivity, just rules. It rejects: blocks in the wrong order, fewer than 2 or more than 5 pieces, an index that doesn't match the number of pieces, digits or exclamation marks in the narration (spell out numbers), a <code>fonte</code> that doesn't exist in <code>fontes</code>, a <code>destaque_fala</code> or trigger word that isn't in the narration, an on-screen number without a source, or silence before the maxim outside the 0.5–0.9 s range. Hook checks: <code>gancho.tipo</code> not on the list, a list/"did you know"/"I did" hook, a frame 0 headline with more than about 6 words, no uppercase or no hot word, no damaged object, or evidence after the third block. Opinion prompt checks: a question without "?", options that aren't one uppercase word, an option missing from the CTA narration or not planted earlier, Nei's side not stated before the question, a deliverable, or a CTA promising delivery ("I'll send it", "comment X and…"). Older-format scripts (word + deliverable, no hook) pass with a LEGACY warning only.</p>
+    <p>No subjective judgment, just rules. It rejects: blocks in the wrong order, fewer than 2 or more than 5 pieces, an index that differs from the number of pieces, numerals or exclamation marks in speech (spell out numbers), a <code>fonte</code> that doesn't exist in <code>fontes</code>, a <code>destaque_fala</code> word or trigger that isn't in the speech, an on-screen number without a source, or silence before the maxim outside 0.5–0.9 s. Hook: <code>gancho.tipo</code> not in the list, a list/"did you know"/"I did" hook, a frame 0 headline with more than ~6 words, not uppercase or missing the hot word, no damaged object, or proof after the third block. Prompt: question without "?", options that aren't one uppercase word, an option missing from the CTA speech or not introduced earlier, Nei's position not stated before the question, a deliverable, or a CTA promising delivery ("I'll send it", "comment X and…"). An old-format script (word + deliverable, no hook) passes with a LEGACY warning only.</p>
 <pre><span class="k">python3 rtexjp.py checar</span> edicoes/minha-edicao</pre>
   </div></div>
 
   <div class="step"><div class="b">4</div><div>
     <h3>Avatar poses <span class="who">optional</span></h3>
-    <p>Nei's six poses (steel-blue T-shirt) are already in <code>motor/avatar/</code>. Run this only if you changed the reference photo (<code>RTEXJP_AVATAR_REF</code>) or the character's clothes.</p>
+    <p>Nei's six poses (steel-blue T-shirt) are already in <code>motor/avatar/</code>. Run this only if you changed the character: provide a photo (<code>RTEXJP_AVATAR_REF</code>) and a description of features and clothing (<code>RTEXJP_AVATAR_DESC</code>, in English; this goes into the flux2-klein prompt). Check all six poses before continuing: the green background is removed automatically.</p>
 <pre><span class="k">python3 motor/gerar_avatar.py</span></pre>
   </div></div>
 
   <div class="step"><div class="b">5</div><div>
     <h3>Scene images <span class="who">optional</span></h3>
-    <p>One image from local flux2-klein (default size 1152×784). Currently, only the stage's <code>carro</code> component uses an image (<code>motor/assets/carro.png</code>); a new image needs a component that loads it in <code>motor/palco.html</code>.</p>
+    <p>One image generated by local flux2-klein (default size 1152×784). Currently, only the stage's <code>carro</code> component uses an image (<code>motor/assets/carro.png</code>); a new image needs a component that loads it in <code>motor/palco.html</code>.</p>
 <pre><span class="k">python3 motor/gerar_imagem.py</span> motor/assets/x.png <span class="s">"&lt;prompt&gt;"</span></pre>
   </div></div>
 
   <div class="step"><div class="b">6</div><div>
-    <h3>Voice for each block + word timestamps</h3>
-    <p>One audio file per block with Nei's voice; Whisper timestamps each word in <code>build/tempos.json</code>. Pass block names to redo only those. If Whisper fails, the log is at <code>~/.cache/whisper_daemon.log</code>.</p>
+    <h3>Voice for each block + word timing</h3>
+    <p>One audio file per block with Nei's voice; Whisper marks each word in <code>build/tempos.json</code>. Pass block names to redo only those blocks. Whisper runs as the inemavox server (<code>whisper_daemon.py</code>, using the Python from <code>CS_WHISPER_PY</code>); if it doesn't start, the engine uses inemavox's <code>transcrever_v1.py</code> with the same Python. The log is at <code>~/.cache/whisper_daemon.log</code>.</p>
 <pre><span class="k">python3 rtexjp.py voz</span> edicoes/minha-edicao            <span class="c"># all blocks</span>
 <span class="k">python3 rtexjp.py voz</span> edicoes/minha-edicao p2 ressalva  <span class="c"># only these</span></pre>
   </div></div>
 
   <div class="step"><div class="b">7</div><div>
     <h3>Build the scene and check individual frames</h3>
-    <p><code>cena</code> writes <code>build/cena.json</code>. Before the full render, capture a few frames (in seconds) to inspect.</p>
+    <p><code>cena</code> writes <code>build/cena.json</code>. Before the full render, capture a few frames (in seconds) to review.</p>
 <pre><span class="k">python3 rtexjp.py cena</span> edicoes/minha-edicao
 <span class="k">node motor/render.mjs</span> edicoes/minha-edicao/build --quadros 0,10,20   <span class="c"># -> edicoes/minha-edicao/quadros/</span></pre>
   </div></div>
 
   <div class="step"><div class="b">8</div><div>
     <h3>Render at 1080×1920 and 30 fps</h3>
-    <p>Playwright captures the stage frame by frame and ffmpeg combines them into <code>build/video.mp4</code> (without sound).</p>
+    <p>Playwright captures the stage frame by frame, and ffmpeg joins them into <code>build/video.mp4</code> (muted).</p>
 <pre><span class="k">python3 rtexjp.py render</span> edicoes/minha-edicao</pre>
   </div></div>
 
   <div class="step"><div class="b">9</div><div>
-    <h3>Mixing and QA</h3>
-    <p>Voice + low soundtrack (which stops during the maxim's silence), final loudness at −14 LUFS; then QA writes <code>qa.md</code>, <code>build/qa.json</code>, and <code>contact.jpg</code>. Any failed criterion appears with ❌ in <code>qa.md</code>, and the command ends with a Python error (<code>CalledProcessError</code>): that's a failed QA check, not a bug.</p>
+    <h3>Mix and QA</h3>
+    <p>Voice + quiet soundtrack (which stops during the maxim's silence), with final loudness at −14 LUFS. The soundtrack included in <code>motor/assets/trilha.mp3</code> is the music bed for Nei's reels: to publish your own, point <code>RTEXJP_TRILHA</code> to music whose license you understand. Then QA writes <code>qa.md</code>, <code>build/qa.json</code>, and <code>contact.jpg</code>. Any failed criterion appears with ❌ in <code>qa.md</code>, and the command ends with a Python error (<code>CalledProcessError</code>): that means QA failed; it isn't a bug.</p>
 <pre><span class="k">python3 rtexjp.py mix</span> edicoes/minha-edicao   <span class="c"># -> final.mp4</span>
 <span class="k">python3 rtexjp.py qa</span>  edicoes/minha-edicao   <span class="c"># -> qa.md, contact.jpg</span></pre>
   </div></div>
@@ -339,7 +343,7 @@
 
   <div class="step"><div class="b">11</div><div>
     <h3>Review before publishing <span class="who">you</span></h3>
-    <p>Open <code>contact.jpg</code> and watch the video. The title, description (ending with the question), and pinned comment (with the repository link and source, as fixed references rather than a reward) are in the script's <code>publicar</code> block. Publishing takes place outside this repository.</p>
+    <p>Open <code>contact.jpg</code> and watch the video. The title, description (ending with the question), and pinned comment (with the repository link and source, simply shown and not offered as a reward) are in the script's <code>publicar</code> block. Publishing is outside this repository.</p>
   </div></div>
 </div></section>
 
@@ -368,89 +372,89 @@
   <span class="s">"publicar"</span>: { <span class="s">"titulo"</span>: <span class="s">"..."</span>, <span class="s">"descricao"</span>: <span class="s">"... termina na pergunta?"</span>, <span class="s">"comentario_fixado"</span>: <span class="s">"link do repo + fonte"</span> }
 }</pre>
   <div class="grid g2" style="margin-top:18px">
-    <div class="card"><h3>Fields in each block</h3><p><code>tipo</code> (order above) · <code>fala</code> (spell out numbers, no digits) · <code>fala_tts</code> (optional, pronunciation-friendly spelling for TTS) · <code>tela</code> (large text and highlighted word) · <code>cena.comp</code> + <code>cena.params</code> (what the stage draws; <code>params.gatilhos</code> ties a scene change to a word in the narration) · avatar <code>pose</code> · <code>destaque_fala</code> (colored words in captions) · <code>fonte</code> (id in <code>fontes</code>) · <code>rotulo</code> and <code>n</code> (piece number). Only in <code>maxima</code>: <code>silencio_antes_s</code> (0.5–0.9). Only in <code>cta</code>: <code>hold_s</code>, how long the card stays after the last word (5–9 s; with the narration, the whole card lasts about 10 s). At the top level: <code>gancho.tipo</code> (<code>contrario</code>, <code>perda</code>, <code>estatistica</code>, <code>historia</code>) and <code>gancho.objeto</code>; <code>isca</code> with <code>tipo: "opiniao"</code>, <code>pergunta</code>, <code>opcoes</code>, and <code>lado</code>.</p></div>
-    <div class="card"><h3>Stage components (<code>cena.comp</code>)</h3><p>Current format: <code>gancho</code> (frame 0 with a damaged object), <code>contador</code> (supports <code>decimais</code>), <code>duas</code> (problem + opinion prompt options), <code>indice</code>, <code>mapa</code>, <code>explica</code>, <code>impacto</code>, <code>ressalva</code>, <code>flash</code>, <code>opiniao</code> (question card). From the first edition, still on the stage: <code>titulo</code>, <code>frase</code>, <code>pasta</code>, <code>repo</code>, <code>carro</code>, <code>equipe</code>, <code>cta</code> (legacy). The robot mascot is drawn by the stage itself, beside the avatar, and reacts to the scene (question mark, alert, check mark). Poses: <code>bracos</code>, <code>queixo</code>, <code>apontando</code>, <code>segurando</code>, <code>surpreso</code>, <code>mostrando</code>. Each component's parameters are in the examples <code>edicoes/2026-10-28-mapa/roteiro.json</code> and <code>edicoes/2026-10-28-5-coisas/roteiro.json</code>.</p></div>
+    <div class="card"><h3>Fields in each block</h3><p><code>tipo</code> (order above) · <code>fala</code> (spelled out, no numerals) · <code>fala_tts</code> (optional, spelling to help TTS pronounce correctly) · <code>tela</code> (large text and highlighted word) · <code>cena.comp</code> + <code>cena.params</code> (what the stage draws; <code>params.gatilhos</code> links a scene change to a word in the speech) · avatar <code>pose</code> · <code>destaque_fala</code> (colored words in captions) · <code>fonte</code> (id in <code>fontes</code>) · <code>rotulo</code> and <code>n</code> (piece number). Only in <code>maxima</code>: <code>silencio_antes_s</code> (0.5–0.9). Only in <code>cta</code>: <code>hold_s</code>, how long the card stays after the last word (5–9 s; with the speech, the whole card lasts ~10 s). At the top: <code>gancho.tipo</code> (<code>contrario</code>, <code>perda</code>, <code>estatistica</code>, <code>historia</code>) and <code>gancho.objeto</code>; <code>isca</code> with <code>tipo: "opiniao"</code>, <code>pergunta</code>, <code>opcoes</code>, and <code>lado</code>.</p></div>
+    <div class="card"><h3>Stage components (<code>cena.comp</code>)</h3><p>Current format: <code>gancho</code> (frame 0 with damaged object), <code>contador</code> (supports <code>decimais</code>), <code>duas</code> (problem + prompt options), <code>indice</code>, <code>mapa</code>, <code>explica</code>, <code>impacto</code>, <code>ressalva</code>, <code>flash</code>, <code>opiniao</code> (question card). Still on the stage from the first edition: <code>titulo</code>, <code>frase</code>, <code>pasta</code>, <code>repo</code>, <code>carro</code>, <code>equipe</code>, <code>cta</code> (legacy). The stage draws the robot mascot beside the avatar, and it reacts to the scene (question, alert, check mark). Poses: <code>bracos</code>, <code>queixo</code>, <code>apontando</code>, <code>segurando</code>, <code>surpreso</code>, <code>mostrando</code>. Component parameters are shown in <code>edicoes/2026-10-28-mapa/roteiro.json</code> and <code>edicoes/2026-10-28-5-coisas/roteiro.json</code>.</p></div>
   </div>
 </div></section>
 
 <section id="exemplos"><div class="wrap">
   <span class="chip">Real examples</span>
   <h2>Two videos made with the engine</h2>
-  <p class="sub">The second video follows the current format (navy blue, loss hook, opinion prompt). The first, already published, remains as it was: old purple palette, list hook, and a prompt with a deliverable—rules the current format no longer accepts.</p>
+  <p class="sub">The second video follows the current format (navy blue, loss hook, opinion prompt). The first, already published, was left as it was: the old purple palette, list hook, and prompt with a deliverable—rules the current format no longer accepts.</p>
 
-  <h3 style="margin:10px 0 8px">Second video · "O Claude sumiu. E agora?" (Claude disappeared. Now what?) <span class="who">current format</span></h3>
-  <p class="mut" style="margin:0 0 18px">One topic (the Understand Anything plugin), a <b>loss</b> hook, three pieces, and the question DONO (OWNER) or REFÉM (HOSTAGE). Files in <code>edicoes/2026-10-28-mapa/</code> (the script's <code>publicar</code> block contains the title, description, and pinned comment).</p>
+  <h3 style="margin:10px 0 8px">Second video · "O Claude sumiu. E agora?" (Claude is gone. Now what?) <span class="who">current format</span></h3>
+  <p class="mut" style="margin:0 0 18px">One topic (the Understand Anything plugin), a <b>loss</b> hook, three pieces, and the question DONO (OWNER) or REFÉM (DEPENDENT). Files in <code>edicoes/2026-10-28-mapa/</code> (the script's <code>publicar</code> block contains the title, description, and pinned comment).</p>
   <div class="video">
-    <figure style="margin:0 auto;max-width:360px;border-radius:16px;overflow:hidden;border:1px solid var(--line)"><img src="../assets/m-00-0.jpg" width="540" height="960" style="width:100%;height:auto;display:block" alt="Frame 0 of the second video: the headline &quot;O Claude sumiu. E agora?&quot; (Claude disappeared. Now what?), with SUMIU (DISAPPEARED) in yellow and a terminal crossed out in red"></figure>
+    <div class="yt"><video controls playsinline preload="none" poster="../assets/m-00-0.jpg" style="position:absolute;inset:0;width:100%;height:100%;background:#000" aria-label="Second rtexjp reel: O Claude sumiu. E agora?"><source src="../../edicoes/2026-10-28-mapa/final.mp4" type="video/mp4"></video></div>
     <div>
       <h3 style="margin-bottom:.6em">What QA measured</h3>
       <table class="qa">
-        <tr><td>Duration</td><td>71,9 s</td></tr>
+        <tr><td>Duration</td><td>71.9 s</td></tr>
         <tr><td>Resolution</td><td>1080×1920 · 30 fps</td></tr>
         <tr><td>Speech pace</td><td>173 words/min</td></tr>
-        <tr><td>Volume</td><td>−14,0 LUFS</td></tr>
-        <tr><td>Visual changes</td><td>22,5 per minute</td></tr>
-        <tr><td>Evidence (number with source)</td><td>at 5,6 s</td></tr>
-        <tr><td>Prompt options before the CTA</td><td>45,2 s earlier</td></tr>
+        <tr><td>Loudness</td><td>−14.0 LUFS</td></tr>
+        <tr><td>Visual changes</td><td>22.5 per minute</td></tr>
+        <tr><td>Proof (number with source)</td><td>at 5.6 s</td></tr>
+        <tr><td>Prompt options before the CTA</td><td>45.2 s earlier</td></tr>
         <tr><td>CTA with no delivery promise</td><td>yes</td></tr>
-        <tr><td>Silence before the maxim</td><td>0,88 s</td></tr>
-        <tr><td>Final card (speech + 7,5 s hold)</td><td>14,6 s</td></tr>
+        <tr><td>Silence before the maxim</td><td>0.88 s</td></tr>
+        <tr><td>Final card (speech + 7.5 s hold)</td><td>14.6 s</td></tr>
       </table>
-      <p class="mut" style="margin-top:1em">Not published yet: the video and frames below came directly from <code>final.mp4</code>.</p>
+      <p class="mut" style="margin-top:1em">Not published on social media yet: the player loads <code>edicoes/2026-10-28-mapa/final.mp4</code> from the repository. <a href="../../edicoes/2026-10-28-mapa/final.mp4" download>Download final.mp4</a> (7.8 MB)</p>
     </div>
   </div>
 
   <h3 style="margin:40px 0 16px">Frame by frame (second video)</h3>
   <div class="ex">
-    <figure><img src="../assets/m-02-6.jpg" width="540" height="960" loading="lazy" alt="Hook at 2,6 s: red FORA DO AR (OFFLINE) stamp on the terminal and loose files with a question mark"><figcaption>Hook: something changes every ~1 s (stamp, loose files, puzzled robot).</figcaption></figure>
-    <figure><img src="../assets/m-07-5.jpg" width="540" height="960" loading="lazy" alt="GitHub star counter landing at 88,7 thousand, with the source written below"><figcaption>Evidence at 5,6 s: the counter lands on 88,7 thousand, with the source below.</figcaption></figure>
-    <figure><img src="../assets/m-17-5.jpg" width="540" height="960" loading="lazy" alt="&quot;Não é culpa sua. Ninguém te deu o mapa.&quot; (It's not your fault. No one gave you the map.) with two cards, DONO (OWNER) and REFÉM (HOSTAGE), in yellow"><figcaption>The viewer's problem with absolution; the final question's options are already visible.</figcaption></figure>
-    <figure><img src="../assets/m-25-0.jpg" width="540" height="960" loading="lazy" alt="Piece 01: repository card and a map of connected nodes, one tagged checkout.ts"><figcaption>Piece 01: the map draws in, with the 01–03 pill bar at the top.</figcaption></figure>
-    <figure><img src="../assets/m-33-0.jpg" width="540" height="960" loading="lazy" alt="Piece 02: a clicked node on the map and a bubble explaining the file, in English"><figcaption>Piece 02: the click and explanation (in English, as the caveat notes).</figcaption></figure>
-    <figure><img src="../assets/m-40-5.jpg" width="540" height="960" loading="lazy" alt="Piece 03: the change in pagamento.ts and affected files in red, &quot;Atinge 3 arquivos&quot; (Affects 3 files)"><figcaption>Piece 03: everything the change affects, before confirmation.</figcaption></figure>
-    <figure><img src="../assets/m-48-0.jpg" width="540" height="960" loading="lazy" alt="Alert card with two items in red: first read costs tokens, explains in English"><figcaption>The honest caveat, in an alert card.</figcaption></figure>
-    <figure><img src="../assets/m-66-0.jpg" width="540" height="960" loading="lazy" alt="Final card: &quot;E você, hoje: dono ou refém?&quot; (And you, today: owner or hostage?), DONO (OWNER) and REFÉM (HOSTAGE) buttons in yellow, and a comment box with DONO posted"><figcaption>The opinion CTA: question, options, and a box typing one of them.</figcaption></figure>
+    <figure><img src="../assets/m-02-6.jpg" width="540" height="960" loading="lazy" alt="Hook at 2.6 s: red FORA DO AR (OFFLINE) stamp over the terminal and loose files with a question mark"><figcaption>Hook: something changes about every ~1 s (stamp, loose files, puzzled robot).</figcaption></figure>
+    <figure><img src="../assets/m-07-5.jpg" width="540" height="960" loading="lazy" alt="GitHub star counter at 88.7 thousand, with the source written below"><figcaption>Proof at 5.6 s: the counter lands on 88.7 thousand, with the source below.</figcaption></figure>
+    <figure><img src="../assets/m-17-5.jpg" width="540" height="960" loading="lazy" alt="&quot;Não é culpa sua. Ninguém te deu o mapa.&quot; (It's not your fault. No one gave you the map.) with two cards, DONO and REFÉM, in yellow"><figcaption>The problem with blame removed; the options for the final question already appear.</figcaption></figure>
+    <figure><img src="../assets/m-25-0.jpg" width="540" height="960" loading="lazy" alt="Piece 01: repository card and a map of connected points, one labeled checkout.ts"><figcaption>Piece 01: the map draws in, with the 01–03 pill bar at the top.</figcaption></figure>
+    <figure><img src="../assets/m-33-0.jpg" width="540" height="960" loading="lazy" alt="Piece 02: a point clicked on the map and a bubble explaining the file, in English"><figcaption>Piece 02: the click and explanation (in English, as the caveat says).</figcaption></figure>
+    <figure><img src="../assets/m-40-5.jpg" width="540" height="960" loading="lazy" alt="Piece 03: the change in pagamento.ts and the affected files in red, &quot;Atinge 3 arquivos&quot; (Affects 3 files)"><figcaption>Piece 03: everything affected by the change, before confirming.</figcaption></figure>
+    <figure><img src="../assets/m-48-0.jpg" width="540" height="960" loading="lazy" alt="Alert card with two items in red: first read uses a token, explanation is in English"><figcaption>The honest caveat, on an alert card.</figcaption></figure>
+    <figure><img src="../assets/m-66-0.jpg" width="540" height="960" loading="lazy" alt="Final card: &quot;E você, hoje: dono ou refém?&quot; (And you, today: owner or dependent?), DONO and REFÉM buttons in yellow, and the comment box with DONO posted"><figcaption>The opinion CTA: question, options, and the comment box typing one of them.</figcaption></figure>
   </div>
   <h3 style="margin:40px 0 16px">The second video's contact sheet</h3>
   <figure class="wide" style="max-width:760px"><img src="../assets/contact-2.jpg" width="760" height="958" loading="lazy" alt="Contact sheet for the second video: one frame every 2.5 seconds, from the hook to the final card"></figure>
 
-  <h3 style="margin:56px 0 8px">First video · "5 coisas de IA deste mês que quase ninguém percebeu" (5 AI things from this month that almost no one noticed) <span class="who">old purple palette</span></h3>
+  <h3 style="margin:56px 0 8px">First video · "5 coisas de IA deste mês que quase ninguém percebeu" (5 AI things this month that almost no one noticed) <span class="who">old purple palette</span></h3>
   <p class="mut" style="margin:0 0 18px">The first edition, published on YouTube. Old format: purple palette, list hook, and SETUP prompt with a deliverable. Files in <code>edicoes/2026-10-28-5-coisas/</code>.</p>
   <div class="video">
     <div class="yt"><iframe src="https://www.youtube-nocookie.com/embed/AZEZK1YgF98" title="First rtexjp reel on YouTube (old purple palette)" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
     <div>
       <h3 style="margin-bottom:.6em">What QA measured</h3>
       <table class="qa">
-        <tr><td>Duration</td><td>87,5 s</td></tr>
+        <tr><td>Duration</td><td>87.5 s</td></tr>
         <tr><td>Resolution</td><td>1080×1920 · 30 fps</td></tr>
         <tr><td>Speech pace</td><td>164 words/min</td></tr>
-        <tr><td>Volume</td><td>−14,0 LUFS</td></tr>
-        <tr><td>Visual changes</td><td>18,5 per minute</td></tr>
-        <tr><td>Prompt appears before the CTA</td><td>68,5 s earlier</td></tr>
-        <tr><td>Silence before the maxim</td><td>0,83 s</td></tr>
-        <tr><td>Final card</td><td>9,9 s</td></tr>
+        <tr><td>Loudness</td><td>−14.0 LUFS</td></tr>
+        <tr><td>Visual changes</td><td>18.5 per minute</td></tr>
+        <tr><td>Prompt appears before the CTA</td><td>68.5 s earlier</td></tr>
+        <tr><td>Silence before the maxim</td><td>0.83 s</td></tr>
+        <tr><td>Final card</td><td>9.9 s</td></tr>
       </table>
       <p class="mut" style="margin-top:1em"><a href="https://www.youtube.com/watch?v=AZEZK1YgF98" target="_blank" rel="noopener">Open on YouTube</a></p>
     </div>
   </div>
   <h3 style="margin:40px 0 16px">Frame by frame (first video)</h3>
   <div class="ex">
-    <figure><img src="../assets/q-02.jpg" width="540" height="960" loading="lazy" alt="Frame 0 of the first video, in purple: &quot;5 coisas de IA que quase ninguém viu&quot; (5 AI things almost no one saw)"><figcaption>Frame 0 of the old format (list hook, now forbidden).</figcaption></figure>
-    <figure><img src="../assets/q-07.jpg" width="540" height="960" loading="lazy" alt="GitHub star counter landing at 291 thousand, with the source written below"><figcaption>Evidence: the counter lands on the number, with the source below.</figcaption></figure>
-    <figure><img src="../assets/q-22.jpg" width="540" height="960" loading="lazy" alt="Piece 01: a robot and a folder with three items: process, what worked, and checklist"><figcaption>Piece 01, with the 01–05 pill bar at the top.</figcaption></figure>
-    <figure><img src="../assets/q-82.jpg" width="540" height="960" loading="lazy" alt="Final card &quot;Comenta SETUP que eu mando&quot; (Comment SETUP and I'll send it), with a comment box typing SETUP"><figcaption>The old CTA, which promised delivery (now forbidden).</figcaption></figure>
+    <figure><img src="../assets/q-02.jpg" width="540" height="960" loading="lazy" alt="Frame 0 of the first video, in purple: &quot;5 coisas de IA que quase ninguém viu&quot;"><figcaption>Frame 0 of the old format (list hook, now prohibited).</figcaption></figure>
+    <figure><img src="../assets/q-07.jpg" width="540" height="960" loading="lazy" alt="GitHub star counter landing on 291 thousand, with the source written below"><figcaption>Proof: the counter lands on the number, with the source below.</figcaption></figure>
+    <figure><img src="../assets/q-22.jpg" width="540" height="960" loading="lazy" alt="Piece 01: a robot and a folder with three items, process, what worked, and checklist"><figcaption>Piece 01, with the 01–05 pill bar at the top.</figcaption></figure>
+    <figure><img src="../assets/q-82.jpg" width="540" height="960" loading="lazy" alt="Final card &quot;Comenta SETUP que eu mando&quot; (Comment SETUP and I'll send it), with the comment box typing SETUP"><figcaption>The old CTA, which promised to deliver something (now prohibited).</figcaption></figure>
   </div>
 </div></section>
 
 <section id="estado"><div class="wrap">
   <span class="chip">Status</span>
-  <h2>Where the project stands</h2>
-  <p class="sub">What currently exists in the repository.</p>
+  <h2>Project status</h2>
+  <p class="sub">What's currently in the repository.</p>
   <div class="phase"><div class="tag">v1.0.0</div><div class="d"><strong>Complete engine</strong><span>Pipeline: checar · voz · cena · render · mix · qa; stage with scene components, six avatar poses, and automatic QA.</span></div></div>
-  <div class="phase"><div class="tag">First edition</div><div class="d"><strong>"5 coisas de IA" (5 AI things) published</strong><span>87,5 s, old format (purple, list hook, prompt with a deliverable).</span></div></div>
-  <div class="phase"><div class="tag">v1.1.0</div><div class="d"><strong>Navy blue, hook, and opinion prompt</strong><span>Navy + steel-blue palette with yellow as the only warm color, avatar in a steel-blue T-shirt, hook rules in <code>checar</code>, opinion prompt with no deliverable, paths set through environment variables.</span></div></div>
-  <div class="phase"><div class="tag">Second edition</div><div class="d"><strong>"O Claude sumiu. E agora?" (Claude disappeared. Now what?)</strong><span>71,9 s, passed every QA criterion; awaiting publication.</span></div></div>
-  <div class="note" style="margin-top:18px"><b>Rule before publishing:</b> the CTA asks for an opinion and promises nothing to anyone who comments. The link and source stay pinned in the comment and in the description.</div>
+  <div class="phase"><div class="tag">First edition</div><div class="d"><strong>"5 AI things" published</strong><span>87.5 s, old format (purple, list hook, prompt with a deliverable).</span></div></div>
+  <div class="phase"><div class="tag">v1.1.0</div><div class="d"><strong>Navy blue, hook, and opinion prompt</strong><span>Navy + steel-blue palette with yellow as the only warm color, avatar in a steel-blue T-shirt, hook rules in <code>checar</code>, opinion prompt without a deliverable, paths set by environment variables.</span></div></div>
+  <div class="phase"><div class="tag">Second edition</div><div class="d"><strong>"O Claude sumiu. E agora?" (Claude is gone. Now what?)</strong><span>71.9 s, passed every QA criterion; awaiting publication.</span></div></div>
+  <div class="note" style="margin-top:18px"><b>Rule before publishing:</b> the CTA asks for an opinion and promises nothing to anyone who comments. The link and source remain visible in the pinned comment and description.</div>
 </div></section>
 </main>
 

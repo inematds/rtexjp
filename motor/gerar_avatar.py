@@ -11,8 +11,11 @@ from collections import deque
 AQUI = Path(__file__).resolve().parent
 REF = Path(os.environ.get("RTEXJP_AVATAR_REF", Path.home() / "projetos/inema-referencias/nei-avatar.jpg")).expanduser()
 URL = os.environ.get("RTEXJP_IMG_URL", "http://localhost:8000/generate")
-BASE = ("flat 2D vector cartoon illustration of the man from the reference photo: same face, black baseball cap, black rectangular glasses, "
-        "short grey beard, friendly. He wears a plain light steel-blue t-shirt (soft sky blue, like #93c5fd). Waist-up bust, centered, {pose}. Clean flat colors, soft cel shading, "
+# traços e roupa do personagem (troque junto com RTEXJP_AVATAR_REF quando o avatar for outra pessoa)
+PESSOA = os.environ.get("RTEXJP_AVATAR_DESC", "same face, black baseball cap, black rectangular glasses, short grey beard, friendly. "
+                        "He wears a plain light steel-blue t-shirt (soft sky blue, like #93c5fd)")
+BASE = ("flat 2D vector cartoon illustration of the person from the reference photo: " + PESSOA.replace("{", "{{").replace("}", "}}") + ". "
+        "Waist-up bust, centered, {pose}. Clean flat colors, soft cel shading, "
         "smooth outlines, modern explainer-video character style. Solid plain flat bright chroma green background (#00FF00), nothing else, "
         "no text, no letters, no logo.")
 POSES = {

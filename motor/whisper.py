@@ -107,7 +107,7 @@ def transcrever(wav, pasta, palavras=False):
         return [w for s in segs for w in s.get("words", [])] if palavras else segs
     # large-v3 carrega ~10 GB na GPU: entra na fila única da máquina (wifi/scripts/gpu-fila, 20/10/2026)
     fila = os.environ.get("R7X_GPU_FILA", str(HOME / "projetos/wifi/scripts/gpu-fila"))   # sem a fila (VPS), roda direto
-    cmd = ([fila, "r7ex-whisper", "--"] if os.access(fila, os.X_OK) else []) + ["python3", "transcrever_v1.py", "--in", w16, "--outdir", pasta / "t", "--whisper-model", "large-v3",
+    cmd = ([fila, "r7ex-whisper", "--"] if os.access(fila, os.X_OK) else []) + [os.environ.get("CS_WHISPER_PY", "python3"), "transcrever_v1.py", "--in", w16, "--outdir", pasta / "t", "--whisper-model", "large-v3",
            "--src", os.environ.get("CS_LANG", "pt")]  # CS_LANG=es: reel traduzido (REA ES, 13/10/2026)
     if palavras:
         cmd.append("--words")

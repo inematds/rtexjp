@@ -8,7 +8,7 @@
 
 O rtexjp é um motor que monta vídeos curtos verticais (reels) ilustrados, em azul-marinho, a partir de um roteiro escrito num arquivo de texto (`roteiro.json`). É o motor que o Nei usa nos reels do INEMA, aberto para quem quiser estudar ou adaptar: sem gravar a si mesmo e sem pagar serviço de avatar. Ele gera a voz, desenha cada cena quadro a quadro, mistura a trilha e confere sozinho se o vídeo segue o formato. Precisa de um computador com placa de vídeo (GPU), Python, Node, ffmpeg e dois servidores locais: o de voz ([inemavox](https://github.com/inematds/inemavox)) e o de imagem ([inemaimg](https://github.com/inematds/inemaimg), flux2-klein).
 
-Vem configurado com a voz e o avatar do Nei. Para usar os seus, aponte as variáveis de ambiente `RTEXJP_VOZ_REF` (gravação de referência da voz, `.wav`) e `RTEXJP_AVATAR_REF` (foto do avatar) para os seus arquivos e gere as poses de novo (`python3 motor/gerar_avatar.py`); esses dois arquivos não vêm no repositório. Veja **Caminhos e variáveis de ambiente** abaixo.
+Vem configurado com a voz e o avatar do Nei. Para usar os seus, aponte as variáveis de ambiente `RTEXJP_VOZ_REF` (gravação de referência da voz, `.wav`) e `RTEXJP_AVATAR_REF` (foto do avatar) para os seus arquivos, descreva o seu personagem em `RTEXJP_AVATAR_DESC` e gere as poses de novo (`python3 motor/gerar_avatar.py`); esses dois arquivos não vêm no repositório. Veja **Caminhos e variáveis de ambiente** abaixo.
 
 ## 📖 Guia de uso
 
@@ -44,6 +44,9 @@ Visual: fundo azul-marinho `#07111f` (cartões `#0b1a30`/`#12284a`), azul royal 
 | `RTEXJP_VOZ_REF` | gravação de referência da voz (`.wav`) | `~/projetos/timesmkt3/media/voice-refs/nei.wav` |
 | `RTEXJP_IMG_URL` | servidor de imagem flux2-klein (`motor/gerar_avatar.py`, `motor/gerar_imagem.py`) | `http://localhost:8000/generate` |
 | `RTEXJP_AVATAR_REF` | foto de referência do avatar | `~/projetos/inema-referencias/nei-avatar.jpg` |
+| `RTEXJP_AVATAR_DESC` | traços e roupa do personagem no pedido de imagem (em inglês); troque junto com a foto | boné preto, óculos, barba grisalha, camiseta azul-aço (o Nei) |
+| `RTEXJP_TRILHA` | cama musical do mix (para publicar, use uma música cuja licença você conheça) | `motor/assets/trilha.mp3` |
+| `CS_WHISPER_PY` | Python do ambiente com faster-whisper (servidor do Whisper e plano B) | `~/miniconda3/envs/chatterbox/bin/python3` |
 
 Exemplo: `RTEXJP_VOZ_REF=~/minha-voz.wav RTEXJP_INEMAVOX=~/inemavox python3 rtexjp.py voz edicoes/minha-edicao`.
 

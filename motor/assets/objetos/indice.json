@@ -4,6 +4,11 @@
   "prompt": "a big red warning triangle sign with an exclamation shape, in front of a pile of blue coins melting away",
   "seed": 11
  },
+ "balanca_custo": {
+  "data": "2026-10-28",
+  "prompt": "a big old balance scale with a heavy pile of coins on one side and a small glowing chip on the other side",
+  "seed": 11
+ },
  "balao_explica": {
   "data": "2026-10-28",
   "prompt": "a big round white speech bubble floating above an open blue document page, with a small glowing light bulb inside the bubble, simple friendly explanation",
@@ -14,6 +19,11 @@
   "prompt": "a big closed steel padlock wrapped in heavy grey chains",
   "seed": 11
  },
+ "carteira_vazia": {
+  "data": "2026-10-28",
+  "prompt": "an open empty brown leather wallet with a moth flying out of it",
+  "seed": 11
+ },
  "chave_dono": {
   "data": "2026-10-28",
   "prompt": "a big clean shiny steel blue metal key with a round bow, perfectly intact and new, no red, no damage, no stains",
@@ -22,6 +32,21 @@
  "dominos": {
   "data": "2026-10-28",
   "prompt": "a row of tall blue domino tiles falling one after another in a chain reaction, the first one tipped by a hand",
+  "seed": 11
+ },
+ "etiqueta_preco": {
+  "data": "2026-10-28",
+  "prompt": "a big paper price tag on a string, torn, with a huge red arrow shooting upward behind it",
+  "seed": 11
+ },
+ "hd_guardado": {
+  "data": "2026-10-28",
+  "prompt": "a big external hard drive with a blue download arrow going into it, safely stored in an open steel box",
+  "seed": 11
+ },
+ "iceberg_custo": {
+  "data": "2026-10-28",
+  "prompt": "a small iceberg tip above blue water with a huge hidden iceberg mass below the waterline",
   "seed": 11
  },
  "lupa_arquivos": {
@@ -39,14 +64,29 @@
   "prompt": "a folded paper map torn in half with a big red question mark floating above it, lost",
   "seed": 11
  },
+ "medidor_uso": {
+  "data": "2026-10-28",
+  "prompt": "a big round speedometer gauge with the needle in the red zone",
+  "seed": 11
+ },
  "pasta_unica": {
   "data": "2026-10-28",
   "prompt": "one single big clean blue file folder, slightly open with white papers inside, perfectly intact and tidy, no red, no damage, no stains",
   "seed": 31
  },
+ "pc_local": {
+  "data": "2026-10-28",
+  "prompt": "a sturdy desktop computer tower with glowing blue lights next to a monitor on a wooden home desk, owned and private",
+  "seed": 11
+ },
  "terminal_quebrado": {
   "data": "2026-10-28",
   "prompt": "an open laptop whose dark screen shows a terminal window with a big red jagged crack across the glass and a red error cross, small sparks, broken and offline",
+  "seed": 11
+ },
+ "torneira_fechada": {
+  "data": "2026-10-28",
+  "prompt": "a big chrome water faucet turned off with a heavy red padlock on its handle and one last drop of water falling",
   "seed": 11
  }
 }

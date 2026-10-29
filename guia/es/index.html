@@ -152,13 +152,13 @@
     <div>
       <span class="chip">Motor de reels · v1.2.0 · local y gratis</span>
       <h1>Del guion al reel <span class="amb">ilustrado</span>, sin pagar nada</h1>
-      <p class="lead">Escribes un <code>roteiro.json</code>; rtexjp te devuelve un reel vertical de 1080×1920 en azul marino, con un avatar ilustrado de Nei, una mascota robot, la voz de Nei (o la tuya) y una única pregunta de opinión: «comenta <span class="hot">DONO</span> o <span class="hot">REFÉM</span>».</p>
+      <p class="lead">Escribes un <code>roteiro.json</code>; rtexjp te devuelve un reel vertical de 1080×1920 en azul marino, con un avatar ilustrado de Nei, una mascota robot, la voz de Nei (o la tuya) y una única pregunta de opinión: «comenta <span class="hot">PAGO</span> o <span class="hot">LOCAL</span>».</p>
       <div class="cta">
         <a class="btn" href="#guia">Empezar la guía</a>
         <a class="btn ghost" href="#exemplos">Ver los vídeos de ejemplo</a>
       </div>
     </div>
-    <figure><img src="../assets/m-00-0.jpg" width="540" height="960" alt="Cuadro 0 del 2.º reel de ejemplo con el visual v1.2, en azul marino: el titular «O Claude sumiu. E agora?» centrado, con SUMIU en amarillo, un portátil con la pantalla agrietada y, abajo, el avatar grande de Nei con las manos en la cara, asustado"></figure>
+    <figure><img src="../assets/c-2-20.jpg" width="540" height="960" alt="Fotograma 0 del 1.er reel de ejemplo, en azul marino: el titular &quot;¿China cierra el grifo?&quot; con CIERRA EL en amarillo, un grifo con candado rojo y sello LICENCIA y, debajo, el avatar grande de Nei con las manos en la cara, asustado"></figure>
   </div>
 </header>
 
@@ -172,7 +172,7 @@
   <span class="chip">Qué es</span>
   <h2>Un formato fijo, comprobado por un validador</h2>
   <p class="sub">Todos los reels siguen la misma estructura: gancho en el cuadro 0, prueba con fuente, el problema de quien mira, piezas numeradas, una salvedad honesta, una máxima y una pregunta de opinión. El motor dibuja; el validador avisa si algo se sale del formato.</p>
-  <figure class="wide"><img src="../assets/triptico-2.jpg" width="760" height="440" loading="lazy" alt="Tres cuadros del 2.º reel de ejemplo (visual v1.2), uno junto a otro: el gancho con el portátil agrietado, el problema sobre papel azul hielo con la llave, el candado y las opciones DONO y REFÉM en amarillo, y la tarjeta final con el cuadro de comentarios escribiendo DONO"></figure>
+  <figure class="wide"><img src="../assets/triptico-3.jpg" width="760" height="446" loading="lazy" alt="Tres fotogramas de los reels de ejemplo, uno al lado del otro: el gancho del grifo con candado (&quot;¿China cierra el grifo?&quot;), el gancho del iceberg (&quot;Pagas 200. Cuesta hasta 5.000.&quot;) y la tarjeta final con las opciones PAGA y SAI en amarillo"></figure>
   <div class="grid g3">
     <div class="card"><h3>🎨 Ilustrado, sin lip-sync</h3><p>Avatar ilustrado de Nei grande, abajo (≈ 43 % de la altura), en 11 poses vinculadas a la emoción de lo que dice (susto, duda, señala, explica, pulgar arriba…), un dibujo protagonista por escena y una mascota robot. Nadie tiene que grabar nada.</p></div>
     <div class="card"><h3>🎙️ Voz de Nei, local</h3><p>Voz generada con TTS local (inemavox chatterbox), de 160–190 palabras por minuto; Whisper local marca el tiempo de cada palabra para los subtítulos y los disparadores de escena.</p></div>
@@ -196,12 +196,12 @@
       <li><b>Toda cifra tiene su fuente escrita</b> en pantalla (<code>fonte: …</code>).</li>
       <li><b>Salvedad honesta hablada</b>, en una tarjeta de aviso (rojo = problema, verde = correcto).</li>
       <li><b>Máxima en forma de antítesis</b>, después de 0,8 s de silencio real (se detienen la voz y la música).</li>
-      <li><b>CTA de opinión</b>: Nei dice de qué lado está y hace una pregunta contundente que se responde con una palabra («comenta DONO o REFÉM»). La tarjeta muestra la pregunta y las opciones; el cuadro de comentarios escribe una opción, la publica y lo confirma. Permanece ~10 s, sin despedida. <b>Nunca promete entregar nada</b> («te lo mando», «te lo envío»): nadie responde a los comentarios. El enlace y la fuente quedan fijos en el comentario fijado.</li>
+      <li><b>CTA de opinión</b>: Nei dice de qué lado está y hace una pregunta contundente que se responde con una palabra («comenta PAGO o LOCAL»). La tarjeta muestra la pregunta y las opciones; el cuadro de comentarios escribe una opción, la publica y lo confirma. Permanece ~10 s, sin despedida. <b>Nunca promete entregar nada</b> («te lo mando», «te lo envío»): nadie responde a los comentarios. El enlace y la fuente quedan fijos en el comentario fijado.</li>
     </ol></div>
   </div>
   <h3 style="margin:34px 0 12px">Glosario rápido</h3>
   <div class="grid g3">
-    <div class="card"><h3>Pregunta de opinión</h3><p>La pregunta del final, con dos opciones de una palabra (en el 2.º vídeo, DONO o REFÉM). La tensión aparece en el cuadro 0, las opciones se presentan pronto y solo ellas (y la palabra destacada del titular) quedan en amarillo.</p></div>
+    <div class="card"><h3>Pregunta de opinión</h3><p>La pregunta del final, con dos opciones de una palabra (en el 1.er vídeo, PAGO o LOCAL). La tensión aparece en el cuadro 0, las opciones se presentan pronto y solo ellas (y la palabra destacada del titular) quedan en amarillo.</p></div>
     <div class="card"><h3>Máxima</h3><p>La frase que resume el final, en forma de antítesis («Ser dueño de tu sistema nunca fue saber cada línea. Es saber qué sostiene qué»). Va después de un breve silencio.</p></div>
     <div class="card"><h3>Escenario</h3><p>La página <code>motor/palco.html</code> que dibuja cada escena. El render toma una captura de ella por cada cuadro.</p></div>
     <div class="card"><h3>Base musical</h3><p>Música suave que suena por debajo de la voz, baja cuando esta habla y se detiene durante el silencio antes de la máxima.</p></div>
@@ -304,7 +304,7 @@
     <h3>Escribe el guion <span class="who">tú</span></h3>
     <p>Copia el guion del ejemplo y cambia el contenido. El formato se resume justo debajo de la guía, en <a href="#roteiro">«El roteiro.json»</a>.</p>
 <pre><span class="k">mkdir -p</span> edicoes/minha-edicao
-<span class="k">cp</span> edicoes/2026-10-28-mapa/roteiro.json edicoes/minha-edicao/   <span class="c"># después edítalo</span></pre>
+<span class="k">cp</span> edicoes/2026-10-28-china-fecha/roteiro.json edicoes/minha-edicao/   <span class="c"># después edítalo</span></pre>
   </div></div>
 
   <div class="step"><div class="b">3</div><div>
@@ -322,7 +322,7 @@
 
   <div class="step"><div class="b">5</div><div>
     <h3>Dibujos protagonistas y captura de la prueba <span class="who">opcional</span></h3>
-    <p>Cada golpe del guion muestra un objeto ilustrado grande entre el titular y el avatar, con el mismo estilo plano. Se guardan en una biblioteca reutilizable, <code>motor/assets/objetos/&lt;nome&gt;.png</code>, junto con la solicitud y la semilla en <code>indice.json</code>. Ya hay 10 (terminal roto, mapa con chinchetas, mapa rasgado, lupa sobre archivos, globo explicativo, dominós, aviso de coste, carpeta, llave, candado). Para crear otro, describe el objeto en inglés; si sale torcido o manchado, cambia la semilla. La prueba usa una <b>captura real</b> de la página de la fuente, guardada en <code>edicoes/&lt;id&gt;/prova/</code> y citada en el campo <code>print</code> del golpe.</p>
+    <p>Cada golpe del guion muestra un objeto ilustrado grande entre el titular y el avatar, con el mismo estilo plano. Se guardan en una biblioteca reutilizable, <code>motor/assets/objetos/&lt;nome&gt;.png</code>, junto con la solicitud y la semilla en <code>indice.json</code>. Ya incluye 18 objetos (terminal roto, mapa con pines, mapa rasgado, lupa sobre archivos, globo explicativo, dominós, alerta de costo, carpeta, llave, candado, grifo con candado, computadora de escritorio, disco duro guardado, iceberg, etiqueta de precio, medidor, balanza y billetera vacía). Para crear otro, describe el objeto en inglés; si sale torcido o manchado, cambia la semilla. La prueba usa una <b>captura real</b> de la página de la fuente, guardada en <code>edicoes/&lt;id&gt;/prova/</code> y citada en el campo <code>print</code> del golpe.</p>
 <pre><span class="k">python3 motor/gerar_objeto.py</span> foguete <span class="s">"a small blue rocket taking off"</span> 11
 <span class="k">python3 motor/gerar_objeto.py</span> --lista
 <span class="k">node motor/capturar_prova.mjs</span> https://github.com/dono/repo edicoes/minha-edicao/prova/pagina.png
@@ -371,106 +371,116 @@
 <section id="roteiro"><div class="wrap">
   <span class="chip">El roteiro.json</span>
   <h2>El formato del guion, en una pantalla</h2>
-  <p class="sub">Un objeto con <code>id</code>, <code>versao</code>, <code>titulo</code>, <code>gancho</code>, <code>isca</code>, <code>fontes</code>, la lista <code>blocos</code> y el bloque <code>publicar</code>. Fragmento real del 2.º ejemplo, abreviado (las líneas <code>//</code> no son JSON válido; el archivo completo está en <code>edicoes/2026-10-28-mapa/roteiro.json</code>):</p>
+  <p class="sub">Un objeto con <code>id</code>, <code>versao</code>, <code>titulo</code>, <code>gancho</code>, <code>isca</code>, <code>fontes</code>, la lista <code>blocos</code> y el bloque <code>publicar</code>. Fragmento real del 1.er ejemplo, abreviado (las líneas <code>//</code> no son JSON válido; el archivo completo está en <code>edicoes/2026-10-28-china-fecha/roteiro.json</code>):</p>
 <pre>{
-  <span class="s">"id"</span>: <span class="s">"2026-10-28-mapa"</span>, <span class="s">"versao"</span>: <span class="s">"rtexjp/2"</span>,
-  <span class="s">"gancho"</span>: { <span class="s">"tipo"</span>: <span class="s">"perda"</span>, <span class="s">"objeto"</span>: <span class="s">"terminal do Claude Code rachado em vermelho..."</span> },
-  <span class="s">"isca"</span>: { <span class="s">"tipo"</span>: <span class="s">"opiniao"</span>, <span class="s">"pergunta"</span>: <span class="s">"Você é dono ou refém do sistema que a IA montou?"</span>,
-            <span class="s">"opcoes"</span>: [<span class="s">"DONO"</span>, <span class="s">"REFÉM"</span>], <span class="s">"lado"</span>: <span class="s">"Eu quero ser dono do meu"</span> },
-  <span class="s">"fontes"</span>: [ { <span class="s">"id"</span>: <span class="s">"ua"</span>, <span class="s">"valor"</span>: <span class="s">"88,7 mil estrelas"</span>, <span class="s">"linha"</span>: <span class="s">"github.com/Egonex-AI/Understand-Anything · 28/10/2026"</span> } ],
+  <span class="s">"id"</span>: <span class="s">"2026-10-28-china-fecha"</span>, <span class="s">"versao"</span>: <span class="s">"rtexjp/3"</span>,
+  <span class="s">"gancho"</span>: { <span class="s">"tipo"</span>: <span class="s">"perda"</span>, <span class="s">"objeto"</span>: <span class="s">"torneira cromada fechada com cadeado vermelho..."</span> },
+  <span class="s">"isca"</span>: { <span class="s">"tipo"</span>: <span class="s">"opiniao"</span>, <span class="s">"pergunta"</span>: <span class="s">"Se a torneira fechar, você paga ou roda local?"</span>,
+            <span class="s">"opcoes"</span>: [<span class="s">"PAGO"</span>, <span class="s">"LOCAL"</span>], <span class="s">"lado"</span>: <span class="s">"Eu já rodo a minha aqui em casa"</span> },
+  <span class="s">"fontes"</span>: [ { <span class="s">"id"</span>: <span class="s">"mofcom"</span>, <span class="s">"valor"</span>: <span class="s">"pela 1ª vez, modelos grandes de IA na lista de exportação controlada"</span>,
+               <span class="s">"linha"</span>: <span class="s">"Recode China AI · 21/10/2026 · sobre o rascunho de 16/10"</span> } ],
   <span class="s">"blocos"</span>: [
-    { <span class="s">"id"</span>: <span class="s">"tese"</span>, <span class="s">"tipo"</span>: <span class="s">"tese"</span>, <span class="s">"pose"</span>: <span class="s">"surpreso"</span>,
-      <span class="s">"fala"</span>: <span class="s">"Se o Claude Code sumisse amanhã, você saberia mexer no sistema que ele montou pra você?"</span>,
-      <span class="s">"fala_tts"</span>: <span class="s">"Se o Clôud Côud sumisse amanhã, ..."</span>,
-      <span class="s">"tela"</span>: { <span class="s">"texto"</span>: <span class="s">"O CLAUDE SUMIU. E AGORA?"</span>, <span class="s">"destaque"</span>: <span class="s">"SUMIU"</span> },
-      <span class="s">"cena"</span>: { <span class="s">"comp"</span>: <span class="s">"gancho"</span>, <span class="s">"params"</span>: { <span class="s">"carimbo"</span>: <span class="s">"FORA DO AR"</span>, <span class="c">...</span> } } },
-    <span class="c">// ... autoridade (prova), tese (problema + opções), virada, metodo ×3, ressalva ...</span>
-    { <span class="s">"id"</span>: <span class="s">"maxima"</span>, <span class="s">"tipo"</span>: <span class="s">"maxima"</span>, <span class="s">"silencio_antes_s"</span>: 0.8, <span class="s">"cena"</span>: { <span class="s">"comp"</span>: <span class="s">"flash"</span> },
-      <span class="s">"fala"</span>: <span class="s">"Ser dono do teu sistema nunca foi saber cada linha. É saber o que segura o quê."</span> },
-    { <span class="s">"id"</span>: <span class="s">"cta"</span>, <span class="s">"tipo"</span>: <span class="s">"cta"</span>, <span class="s">"hold_s"</span>: 7.5, <span class="s">"cena"</span>: { <span class="s">"comp"</span>: <span class="s">"opiniao"</span>, <span class="s">"params"</span>: { <span class="s">"digita"</span>: <span class="s">"DONO"</span> } },
-      <span class="s">"fala"</span>: <span class="s">"Eu quero ser dono do meu. E você, hoje: dono ou refém do sistema que a IA montou? Comenta DONO ou REFÉM."</span> }
+    { <span class="s">"id"</span>: <span class="s">"tese"</span>, <span class="s">"tipo"</span>: <span class="s">"tese"</span>, <span class="s">"pose"</span>: <span class="s">"susto"</span>,
+      <span class="s">"fala"</span>: <span class="s">"E se a China fechar a torneira da IA grátis? O modelo barato que você usa hoje pode sumir."</span>,
+      <span class="s">"tela"</span>: { <span class="s">"texto"</span>: <span class="s">"A CHINA FECHA A TORNEIRA?"</span>, <span class="s">"destaque"</span>: <span class="s">"FECHA"</span> },
+      <span class="s">"cena"</span>: { <span class="s">"comp"</span>: <span class="s">"quadro"</span>, <span class="s">"params"</span>: { <span class="s">"beats"</span>: [
+        { <span class="s">"manchete"</span>: [<span class="s">"A CHINA"</span>, <span class="s">"FECHA A"</span>, <span class="s">"TORNEIRA?"</span>], <span class="s">"destaque"</span>: <span class="s">"FECHA A"</span>,
+          <span class="s">"objeto"</span>: <span class="s">"torneira_fechada"</span>, <span class="s">"carimbo"</span>: <span class="s">"LICENÇA"</span>, <span class="s">"pose"</span>: <span class="s">"susto"</span> },
+        { <span class="s">"em"</span>: <span class="s">"sumir"</span>, <span class="s">"manchete"</span>: [<span class="s">"PODE"</span>, <span class="s">"SUMIR"</span>], <span class="s">"objeto"</span>: <span class="s">"carteira_vazia"</span>, <span class="c">...</span> } ] } } },
+    <span class="c">// ... autoridade (prova com print), tese (problema + opções), virada, metodo ×3, ressalva ...</span>
+    { <span class="s">"id"</span>: <span class="s">"maxima"</span>, <span class="s">"tipo"</span>: <span class="s">"maxima"</span>, <span class="s">"silencio_antes_s"</span>: 0.8, <span class="s">"cena"</span>: { <span class="s">"comp"</span>: <span class="s">"maxima"</span>, <span class="c">...</span> },
+      <span class="s">"fala"</span>: <span class="s">"IA grátis nunca foi sua. Era emprestada. Sua é a que roda na sua máquina."</span> },
+    { <span class="s">"id"</span>: <span class="s">"cta"</span>, <span class="s">"tipo"</span>: <span class="s">"cta"</span>, <span class="s">"hold_s"</span>: 7.5, <span class="s">"cena"</span>: { <span class="s">"comp"</span>: <span class="s">"opiniao"</span>, <span class="s">"params"</span>: { <span class="s">"digita"</span>: <span class="s">"LOCAL"</span> } },
+      <span class="s">"fala"</span>: <span class="s">"Eu já rodo a minha aqui em casa. E você, se a torneira fechar: paga ou roda local? Comenta PAGO ou LOCAL."</span> }
   ],
-  <span class="s">"publicar"</span>: { <span class="s">"titulo"</span>: <span class="s">"..."</span>, <span class="s">"descricao"</span>: <span class="s">"... termina na pergunta?"</span>, <span class="s">"comentario_fixado"</span>: <span class="s">"link do repo + fonte"</span> }
+  <span class="s">"publicar"</span>: { <span class="s">"titulo"</span>: <span class="s">"..."</span>, <span class="s">"descricao"</span>: <span class="s">"... termina na pergunta?"</span>, <span class="s">"comentario_fixado"</span>: <span class="s">"fonte + pergunta"</span> }
 }</pre>
   <div class="grid g2" style="margin-top:18px">
     <div class="card"><h3>Campos de cada bloque</h3><p><code>tipo</code> (orden anterior) · <code>fala</code> (escrito con letras, sin cifras) · <code>fala_tts</code> (opcional, grafía para que el TTS lo pronuncie correctamente) · <code>tela</code> (texto grande y palabra resaltada) · <code>cena.comp</code> + <code>cena.params</code> (lo que dibuja el escenario; <code>params.gatilhos</code> vincula un cambio de escena a una palabra de lo que se dice) · <code>pose</code> del avatar · <code>destaque_fala</code> (palabras coloreadas en los subtítulos) · <code>fonte</code> (id en <code>fontes</code>) · <code>rotulo</code> y <code>n</code> (número de la pieza). Solo en <code>maxima</code>: <code>silencio_antes_s</code> (0,5–0,9). Solo en <code>cta</code>: <code>hold_s</code>, cuánto permanece la tarjeta después de la última palabra (5–9 s; con la voz, la tarjeta completa dura ~10 s). Arriba: <code>gancho.tipo</code> (<code>contrario</code>, <code>perda</code>, <code>estatistica</code>, <code>historia</code>) y <code>gancho.objeto</code>; <code>isca</code> con <code>tipo: "opiniao"</code>, <code>pergunta</code>, <code>opcoes</code> y <code>lado</code>.</p></div>
-    <div class="card"><h3>Componentes del escenario (<code>cena.comp</code>)</h3><p>Formato actual: <code>gancho</code> (cuadro 0 con objeto dañado), <code>contador</code> (acepta <code>decimais</code>), <code>duas</code> (problema + opciones de la pregunta), <code>indice</code>, <code>mapa</code>, <code>explica</code>, <code>impacto</code>, <code>ressalva</code>, <code>flash</code>, <code>opiniao</code> (tarjeta de la pregunta). De la 1.ª edición, aún disponibles en el escenario: <code>titulo</code>, <code>frase</code>, <code>pasta</code>, <code>repo</code>, <code>carro</code>, <code>equipe</code>, <code>cta</code> (legado). La mascota robot la dibuja el propio escenario, junto al avatar, y reacciona a la escena (interrogación, alerta, visto bueno). Poses: <code>bracos</code>, <code>queixo</code>, <code>apontando</code>, <code>segurando</code>, <code>surpreso</code>, <code>mostrando</code>. Los parámetros de cada componente están en los ejemplos <code>edicoes/2026-10-28-mapa/roteiro.json</code> y <code>edicoes/2026-10-28-5-coisas/roteiro.json</code>.</p></div>
+    <div class="card"><h3>Componentes del escenario (<code>cena.comp</code>)</h3><p>Formato actual: <code>gancho</code> (cuadro 0 con objeto dañado), <code>contador</code> (acepta <code>decimais</code>), <code>duas</code> (problema + opciones de la pregunta), <code>indice</code>, <code>mapa</code>, <code>explica</code>, <code>impacto</code>, <code>ressalva</code>, <code>flash</code>, <code>opiniao</code> (tarjeta de la pregunta). De la 1.ª edición, aún disponibles en el escenario: <code>titulo</code>, <code>frase</code>, <code>pasta</code>, <code>repo</code>, <code>carro</code>, <code>equipe</code>, <code>cta</code> (legado). La mascota robot la dibuja el propio escenario, junto al avatar, y reacciona a la escena (interrogación, alerta, visto bueno). Poses: <code>bracos</code>, <code>queixo</code>, <code>apontando</code>, <code>segurando</code>, <code>surpreso</code>, <code>mostrando</code>. Los parámetros de cada componente están en los ejemplos <code>edicoes/2026-10-28-china-fecha/roteiro.json</code> y <code>edicoes/2026-10-28-paga-200/roteiro.json</code>.</p></div>
   </div>
 </div></section>
 
 <section id="exemplos"><div class="wrap">
   <span class="chip">Ejemplos reales</span>
-  <h2>Dos vídeos hechos con el motor</h2>
-  <p class="sub">El 2.º vídeo sigue el formato actual (azul marino, gancho de pérdida, pregunta de opinión) y se rehízo con el visual v1.2. El 1.º, ya publicado, se mantuvo como estaba: paleta morada antigua, gancho de lista y pregunta con algo prometido, reglas que el formato actual ya no acepta.</p>
+  <h2>Dos videos hechos con el motor</h2>
+  <p class="sub">Un tema en dos partes: <b>¿y si China deja de ofrecer IA gratis y la IA paga sube de US$ 200 a US$ 5.000?</b> El 1.º video se centra en China; el 2.º, en el precio. Ambos siguen el formato actual (azul marino, visual v1.2, gancho, prueba con captura real de la fuente, salvedad honesta y pregunta de opinión). Las cifras se presentan como un escenario: el borrador chino todavía no es ley y los US$ 5.000 son una estimación; cada video lo aclara en la parte honesta.</p>
 
-  <h3 style="margin:10px 0 8px">2.º vídeo · «O Claude sumiu. E agora?» <span class="who">visual v1.2</span></h3>
-  <p class="mut" style="margin:0 0 18px">Un solo tema (el plugin Understand Anything), gancho de <b>pérdida</b>, tres piezas y la pregunta <span class="hot">DONO</span> o <span class="hot">REFÉM</span>. Los archivos están en <code>edicoes/2026-10-28-mapa-v2/</code> (el bloque <code>publicar</code> del guion incluye el título, la descripción y el comentario fijado). La versión anterior, con el visual v1.1, está en <code>edicoes/2026-10-28-mapa/</code> para comparar.</p>
+  <h3 style="margin:10px 0 8px">1.º video · "E se a China fechar a torneira da IA grátis?" (¿Y si China cierra el grifo de la IA gratis?) <span class="who">gancho de pérdida</span></h3>
+  <p class="mut" style="margin:0 0 18px">La prueba es el borrador de control de exportaciones publicado por China el 16/10/2026: por primera vez, los grandes modelos de IA entran en la lista de lo que solo puede salir del país con una licencia. Tres pasos (descarga, ejecuta, separa) y la pregunta <span class="hot">PAGO</span> o <span class="hot">LOCAL</span>. Archivos en <code>edicoes/2026-10-28-china-fecha/</code> (el bloque <code>publicar</code> del guion incluye el título, la descripción y el comentario fijado).</p>
   <div class="video">
-    <div class="yt"><video controls playsinline preload="none" poster="../assets/m-00-0.jpg" style="position:absolute;inset:0;width:100%;height:100%;background:#000" aria-label="2.º reel de rtexjp con el visual v1.2: O Claude sumiu. E agora?"><source src="../../edicoes/2026-10-28-mapa-v2/final.mp4" type="video/mp4"></video></div>
+    <div class="yt"><video controls playsinline preload="none" poster="../assets/c-2-20.jpg" style="position:absolute;inset:0;width:100%;height:100%;background:#000" aria-label="1.er reel de ejemplo de rtexjp: ¿Y si China cierra el grifo de la IA gratis?"><source src="../../edicoes/2026-10-28-china-fecha/final.mp4" type="video/mp4"></video></div>
     <div>
       <h3 style="margin-bottom:.6em">Qué midió el QA</h3>
       <table class="qa">
-        <tr><td>Duración</td><td>71,9 s</td></tr>
+        <tr><td>Duración</td><td>79,7 s</td></tr>
         <tr><td>Resolución</td><td>1080×1920 · 30 fps</td></tr>
-        <tr><td>Ritmo del habla</td><td>173 palabras/min</td></tr>
+        <tr><td>Ritmo del habla</td><td>174 palabras/min</td></tr>
         <tr><td>Volumen</td><td>−14,0 LUFS</td></tr>
-        <tr><td>Cambios visuales</td><td>25,9 por minuto</td></tr>
+        <tr><td>Cambios visuales</td><td>24,8 por minuto</td></tr>
         <tr><td>Titular / texto más pequeño</td><td>≥ 98 px / ≥ 30 px</td></tr>
         <tr><td>Área ocupada / avatar</td><td>≥ 55 % / 43 % de la altura</td></tr>
         <tr><td>Contraste del texto</td><td>≥ 5,2:1</td></tr>
-        <tr><td>Prueba (cifra con fuente)</td><td>a los 5,6 s</td></tr>
-        <tr><td>Opciones de la pregunta antes de la CTA</td><td>45,2 s antes</td></tr>
+        <tr><td>Prueba (hecho con fuente)</td><td>a los 6,6 s</td></tr>
+        <tr><td>Opciones del anzuelo antes del CTA</td><td>47,7 s antes</td></tr>
         <tr><td>CTA sin promesa de entrega</td><td>sí</td></tr>
-        <tr><td>Silencio antes de la máxima</td><td>0,88 s</td></tr>
-        <tr><td>Tarjeta final (voz + 7,5 s fija)</td><td>14,6 s</td></tr>
+        <tr><td>Silencio antes de la frase contundente</td><td>0,85 s</td></tr>
+        <tr><td>Tarjeta final (habla + 7,5 s en pantalla)</td><td>14,6 s</td></tr>
       </table>
-      <p class="mut" style="margin-top:1em">Aún no publicado en redes: el reproductor reproduce el archivo <code>edicoes/2026-10-28-mapa-v2/final.mp4</code> del repositorio. <a href="../../edicoes/2026-10-28-mapa-v2/final.mp4" download>Descargar final.mp4</a> (20 MB) · <a href="../../edicoes/2026-10-28-mapa/final.mp4" download>versión v1.1</a> (7,8 MB)</p>
+      <p class="mut" style="margin-top:1em">El reproductor reproduce el archivo <code>edicoes/2026-10-28-china-fecha/final.mp4</code> del repositorio. <a href="../../edicoes/2026-10-28-china-fecha/final.mp4" download>Descargar el final.mp4</a> (21 MB)</p>
     </div>
   </div>
-
-  <h3 style="margin:40px 0 16px">Antes y después: v1.1 arriba, v1.2 abajo</h3>
-  <figure class="wide" style="max-width:760px"><img src="../assets/comparativo.jpg" width="760" height="665" loading="lazy" alt="Comparación de cuatro cuadros del 2.º vídeo (gancho, prueba, método y tarjeta final): arriba, v1.1, con el avatar pequeño en una esquina, el titular estrecho a la izquierda y tarjetas finas; abajo, v1.2, con el titular centrado, un dibujo grande en el medio, una captura real de GitHub y el avatar grande abajo"></figure>
-
-  <h3 style="margin:40px 0 16px">Cuadro a cuadro (2.º vídeo, v1.2)</h3>
+  <h3 style="margin:40px 0 16px">Fotograma a fotograma (1.er video)</h3>
   <div class="ex">
-    <figure><img src="../assets/m-02-6.jpg" width="540" height="960" loading="lazy" alt="Gancho a los 2,6 s: «¿Sabrías manejarlo?», el portátil agrietado, archivos sueltos con signos de interrogación y el avatar con gesto de duda"><figcaption>Gancho: algo cambia cada ~1 s (sello, archivos sueltos, nuevo titular, pose de duda).</figcaption></figure>
-    <figure><img src="../assets/m-07-5.jpg" width="540" height="960" loading="lazy" alt="Prueba: titular de 88,8 mil estrellas y captura real del repositorio en GitHub con el botón Star 88.8k; debajo aparece la fuente escrita"></figure><figcaption>Prueba a los 5,6 s: captura real de la página y luego el recorte del contador; el titular cuenta hasta 88,8 mil.</figcaption></figure>
-    <figure><img src="../assets/m-17-5.jpg" width="540" height="960" loading="lazy" alt="Sobre papel azul hielo: «¿Dueño o rehén?», una llave y un candado con las opciones DONO y REFÉM en amarillo, y el avatar con gesto de duda"><figcaption>El problema con absolución, sobre papel azul hielo; las opciones de la pregunta final ya aparecen.</figcaption></figure>
-    <figure><img src="../assets/m-25-0.jpg" width="540" height="960" loading="lazy" alt="Pieza 01: «Cada archivo, un punto». y un mapa ilustrado con puntos azules conectados"><figcaption>Pieza 01: el mapa, con las píldoras 01–03 arriba.</figcaption></figure>
-    <figure><img src="../assets/m-33-0.jpg" width="540" height="960" loading="lazy" alt="Pieza 02 sobre papel azul hielo: «Qué hace el archivo», una lupa sobre archivos y el avatar señalando"><figcaption>Pieza 02: el clic y la explicación de cada archivo.</figcaption></figure>
-    <figure><img src="../assets/m-40-5.jpg" width="540" height="960" loading="lazy" alt="Pieza 03: «Antes de romperse». el portátil agrietado y el avatar asustado"><figcaption>Pieza 03: todo lo que afecta el cambio, antes de romperse.</figcaption></figure>
-    <figure><img src="../assets/m-48-0.jpg" width="540" height="960" loading="lazy" alt="Salvedad: «La explicación sale en inglés», un globo con una bombilla sobre un libro abierto y el avatar explicando"><figcaption>La salvedad honesta, un golpe por frase.</figcaption></figure>
-    <figure><img src="../assets/m-66-0.jpg" width="540" height="960" loading="lazy" alt="Tarjeta final: «Y tú, hoy: ¿dueño o rehén?», llave y candado, botones DONO y REFÉM en amarillo y el cuadro de comentarios con DONO publicado"><figcaption>La CTA de opinión: pregunta, opciones que se alternan y el cuadro escribiendo una de ellas.</figcaption></figure>
+    <figure><img src="../assets/c-2-20.jpg" width="540" height="960" loading="lazy" alt="Gancho: &quot;¿China cierra el grifo?&quot; con CIERRA EL en amarillo, un grifo con candado rojo y sello LICENCIA, chips DeepSeek, Qwen y Kimi con signos de interrogación y el avatar asustado con las manos en la cara"><figcaption>Gancho de pérdida: el grifo con candado, el sello y los modelos con signos de interrogación aparecen en menos de 2 s.</figcaption></figure>
+    <figure><img src="../assets/c-13-00.jpg" width="540" height="960" loading="lazy" alt="Prueba: &quot;Por 1.ª vez&quot; y el recorte real del artículo con el fragmento sobre la licencia de exportación y la fuente escrita debajo"><figcaption>Prueba a los 6,6 s: el recorte de la fuente con el fragmento «por primera vez… licencia».</figcaption></figure>
+    <figure><img src="../assets/c-25-00.jpg" width="540" height="960" loading="lazy" alt="En papel azul hielo: &quot;¿Pago o local?&quot;, una etiqueta de precio con una flecha roja y una computadora de escritorio, con las opciones PAGO y LOCAL en amarillo"><figcaption>El problema con absolución; ya aparecen las opciones de la pregunta final.</figcaption></figure>
+    <figure><img src="../assets/c-32-50.jpg" width="540" height="960" loading="lazy" alt="Pieza 01: &quot;Descarga hoy&quot;, un disco duro externo que recibe una flecha azul dentro de una caja de acero"><figcaption>Pieza 01: descarga hoy lo que usas.</figcaption></figure>
+    <figure><img src="../assets/c-40-00.jpg" width="540" height="960" loading="lazy" alt="Pieza 02 en papel azul hielo: &quot;Ejecútalo en tu máquina&quot;, una computadora de escritorio con monitor"><figcaption>Pieza 02: ejecuta un modelo en tu máquina.</figcaption></figure>
+    <figure><img src="../assets/c-52-00.jpg" width="540" height="960" loading="lazy" alt="Salvedad: &quot;Aún es un borrador&quot;, una lupa sobre documentos y el avatar explicando"><figcaption>La salvedad honesta: todavía es un borrador y el modelo local no iguala a los mejores.</figcaption></figure>
+    <figure><img src="../assets/c-61-50.jpg" width="540" height="960" loading="lazy" alt="Frase contundente: &quot;La IA gratis nunca fue tuya.&quot;, el grifo cerrado y el avatar con los brazos cruzados"><figcaption>La frase contundente, después de 0,85 s de silencio.</figcaption></figure>
+    <figure><img src="../assets/c-70-00.jpg" width="540" height="960" loading="lazy" alt="Tarjeta final: &quot;Y tú: ¿pago o local?&quot; con los botones PAGO y LOCAL en amarillo"><figcaption>El CTA de opinión: pregunta, opciones y el cuadro escribiendo una de ellas.</figcaption></figure>
   </div>
-  <h3 style="margin:40px 0 16px">La hoja de contacto del 2.º vídeo</h3>
-  <figure class="wide" style="max-width:760px"><img src="../assets/contact-2.jpg" width="760" height="957" loading="lazy" alt="Hoja de contacto del 2.º vídeo: un cuadro cada 2,5 segundos, desde el gancho hasta la tarjeta final"></figure>
+  <h3 style="margin:40px 0 16px">La hoja de contacto del 1.er video</h3>
+  <figure class="wide" style="max-width:760px"><img src="../assets/contact-china.jpg" width="760" height="957" loading="lazy" alt="Hoja de contacto del 1.er video: un fotograma cada 2,5 segundos, desde el gancho hasta la tarjeta final"></figure>
 
-  <h3 style="margin:56px 0 8px">1.º vídeo · «5 cosas de IA de este mes que casi nadie notó» <span class="who">paleta morada antigua</span></h3>
-  <p class="mut" style="margin:0 0 18px">La primera edición, publicada en YouTube. Formato antiguo: paleta morada, gancho de lista y pregunta SETUP con algo prometido. Los archivos están en <code>edicoes/2026-10-28-5-coisas/</code>.</p>
+  <h3 style="margin:56px 0 8px">2.º video · "Você paga 200 dólares. A IA custa até 5 mil." (Pagas 200 dólares. La IA cuesta hasta 5.000.) <span class="who">gancho numérico</span></h3>
+  <p class="mut" style="margin:0 0 18px">La prueba es un análisis interno de Cursor, publicado por Forbes y resumido por the-decoder el 07/03/2026: el plan de US$ 200 de Claude Code puede consumir hasta US$ 5.000 en computación al mes. Tres pasos (mide, separa, plan B) y la pregunta <span class="hot">PAGA</span> (pagas) o <span class="hot">SAI</span> (te vas). Archivos en <code>edicoes/2026-10-28-paga-200/</code>.</p>
   <div class="video">
-    <div class="yt"><iframe src="https://www.youtube-nocookie.com/embed/AZEZK1YgF98" title="1.º reel de rtexjp en YouTube (paleta morada antigua)" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+    <div class="yt"><video controls playsinline preload="none" poster="../assets/p-1-80.jpg" style="position:absolute;inset:0;width:100%;height:100%;background:#000" aria-label="2.º reel de ejemplo de rtexjp: Pagas 200 dólares. La IA cuesta hasta 5.000."><source src="../../edicoes/2026-10-28-paga-200/final.mp4" type="video/mp4"></video></div>
     <div>
       <h3 style="margin-bottom:.6em">Qué midió el QA</h3>
       <table class="qa">
-        <tr><td>Duración</td><td>87,5 s</td></tr>
+        <tr><td>Duración</td><td>74,2 s</td></tr>
         <tr><td>Resolución</td><td>1080×1920 · 30 fps</td></tr>
-        <tr><td>Ritmo del habla</td><td>164 palabras/min</td></tr>
+        <tr><td>Ritmo del habla</td><td>175 palabras/min</td></tr>
         <tr><td>Volumen</td><td>−14,0 LUFS</td></tr>
-        <tr><td>Cambios visuales</td><td>18,5 por minuto</td></tr>
-        <tr><td>La pregunta aparece antes de la CTA</td><td>68,5 s antes</td></tr>
-        <tr><td>Silencio antes de la máxima</td><td>0,83 s</td></tr>
-        <tr><td>Tarjeta final</td><td>9,9 s</td></tr>
+        <tr><td>Cambios visuales</td><td>22,7 por minuto</td></tr>
+        <tr><td>Titular / texto más pequeño</td><td>≥ 96 px / ≥ 30 px</td></tr>
+        <tr><td>Área ocupada / avatar</td><td>≥ 56 % / 43 % de la altura</td></tr>
+        <tr><td>Contraste del texto</td><td>≥ 5,2:1</td></tr>
+        <tr><td>Prueba (cifra con fuente)</td><td>a los 6,0 s</td></tr>
+        <tr><td>Opciones del anzuelo antes del CTA</td><td>59,7 s antes</td></tr>
+        <tr><td>CTA sin promesa de entrega</td><td>sí</td></tr>
+        <tr><td>Silencio antes de la frase contundente</td><td>0,84 s</td></tr>
+        <tr><td>Tarjeta final (habla + 7,5 s en pantalla)</td><td>14,6 s</td></tr>
       </table>
-      <p class="mut" style="margin-top:1em"><a href="https://www.youtube.com/watch?v=AZEZK1YgF98" target="_blank" rel="noopener">Abrir en YouTube</a></p>
+      <p class="mut" style="margin-top:1em">El reproductor reproduce el archivo <code>edicoes/2026-10-28-paga-200/final.mp4</code> del repositorio. <a href="../../edicoes/2026-10-28-paga-200/final.mp4" download>Descargar el final.mp4</a> (20 MB)</p>
     </div>
   </div>
-  <h3 style="margin:40px 0 16px">Cuadro a cuadro (1.º vídeo)</h3>
+  <h3 style="margin:40px 0 16px">Fotograma a fotograma (2.º video)</h3>
   <div class="ex">
-    <figure><img src="../assets/q-02.jpg" width="540" height="960" loading="lazy" alt="Cuadro 0 del 1.º vídeo, en morado: «5 cosas de IA que casi nadie vio»"><figcaption>Cuadro 0 del formato antiguo (gancho de lista, ahora prohibido).</figcaption></figure>
-    <figure><img src="../assets/q-07.jpg" width="540" height="960" loading="lazy" alt="Contador de estrellas de GitHub que llega a 291 mil, con la fuente escrita debajo"><figcaption>Prueba: el contador llega a la cifra, con la fuente debajo.</figcaption></figure>
-    <figure><img src="../assets/q-22.jpg" width="540" height="960" loading="lazy" alt="Pieza 01: un robot y una carpeta con tres elementos: proceso, qué salió bien y lista de comprobación"><figcaption>Pieza 01, con la barra de píldoras 01–05 arriba.</figcaption></figure>
-    <figure><img src="../assets/q-82.jpg" width="540" height="960" loading="lazy" alt="Tarjeta final «Comenta SETUP que te lo mando», con el cuadro de comentarios escribiendo SETUP"><figcaption>La CTA antigua, que prometía entregar algo (ahora prohibida).</figcaption></figure>
+    <figure><img src="../assets/p-1-80.jpg" width="540" height="960" loading="lazy" alt="Gancho: &quot;Pagas 200. Cuesta hasta 5.000.&quot; con 5 MIL en amarillo, un iceberg con una parte oculta enorme, sello SUBSIDIADO y el avatar asustado"><figcaption>Gancho numérico: el iceberg muestra el costo que queda oculto.</figcaption></figure>
+    <figure><img src="../assets/p-8-50.jpg" width="540" height="960" loading="lazy" alt="Prueba: &quot;El costo oculto&quot; y el recorte real del titular de the-decoder sobre el plan de 200 dólares que consume hasta 5.000, con la fuente debajo"><figcaption>Prueba a los 6 s: el recorte real del titular, con la fuente escrita.</figcaption></figure>
+    <figure><img src="../assets/p-22-50.jpg" width="540" height="960" loading="lazy" alt="En papel azul hielo: &quot;Sin China, ¿quién lo sostiene?&quot; y el grifo con candado"><figcaption>El problema conecta los dos videos: sin la alternativa china barata, ¿quién sostiene el precio?</figcaption></figure>
+    <figure><img src="../assets/p-28-00.jpg" width="540" height="960" loading="lazy" alt="Índice: &quot;3 pasos ahora&quot; con las cápsulas 01 Mide, 02 Separa, 03 Plan B"><figcaption>El giro: el índice de los tres pasos.</figcaption></figure>
+    <figure><img src="../assets/p-39-00.jpg" width="540" height="960" loading="lazy" alt="Pieza 02 en papel azul hielo: &quot;Lo mejor, solo para lo difícil&quot;, una balanza con monedas de un lado y un chip del otro"><figcaption>Pieza 02: el modelo caro solo para lo difícil.</figcaption></figure>
+    <figure><img src="../assets/p-45-00.jpg" width="540" height="960" loading="lazy" alt="Pieza 03: &quot;Antes del aumento&quot;, un disco duro guardado en una caja de acero"><figcaption>Pieza 03: el plan B listo antes del aumento.</figcaption></figure>
+    <figure><img src="../assets/p-57-80.jpg" width="540" height="960" loading="lazy" alt="Frase contundente: &quot;Pagas el precio que otros eligen.&quot; y una etiqueta de precio con una flecha roja hacia arriba"><figcaption>La frase contundente, escrita igual que en el audio.</figcaption></figure>
+    <figure><img src="../assets/p-70-00.jpg" width="540" height="960" loading="lazy" alt="Tarjeta final: &quot;Y tú: ¿pagas o sales?&quot; con los botones PAGA y SAI en amarillo y el cuadro de comentarios"><figcaption>El CTA de opinión, sin promesa de entrega.</figcaption></figure>
   </div>
+  <h3 style="margin:40px 0 16px">La hoja de contacto del 2.º video</h3>
+  <figure class="wide" style="max-width:760px"><img src="../assets/contact-paga.jpg" width="760" height="957" loading="lazy" alt="Hoja de contacto del 2.º video: un fotograma cada 2,5 segundos, desde el gancho hasta la tarjeta final"></figure>
 </div></section>
 
 <section id="estado"><div class="wrap">
@@ -478,10 +488,9 @@
   <h2>En qué punto está el proyecto</h2>
   <p class="sub">Lo que hay ahora en el repositorio.</p>
   <div class="phase"><div class="tag">v1.0.0</div><div class="d"><strong>Motor completo</strong><span>Flujo checar · voz · cena · render · mix · qa, escenario con componentes de escena, seis poses del avatar y QA automático.</span></div></div>
-  <div class="phase"><div class="tag">1.ª edición</div><div class="d"><strong>«5 cosas de IA», publicada</strong><span>87,5 s, formato antiguo (morado, gancho de lista, pregunta con algo prometido).</span></div></div>
-  <div class="phase"><div class="tag">v1.1.0</div><div class="d"><strong>Azul marino, gancho y pregunta de opinión</strong><span>Paleta azul marino + azul acero con amarillo como único color cálido, avatar con camiseta azul acero, reglas para el gancho en <code>checar</code>, pregunta de opinión sin promesa de entrega y rutas mediante variables de entorno.</span></div></div>
-  <div class="phase"><div class="tag">2.ª edición</div><div class="d"><strong>«O Claude sumiu. E agora?»</strong><span>71,9 s, aprobada en todos los criterios del QA; pendiente de publicación.</span></div></div>
-  <div class="phase"><div class="tag">v1.2.0</div><div class="d"><strong>Nuevo visual</strong><span>Avatar grande abajo en 11 poses, dibujo protagonista por golpe (biblioteca <code>motor/assets/objetos/</code>), captura real para la prueba, titular Sora centrado, subtítulos tipo karaoke, papel azul hielo alternado con azul marino, granulado y foco de luz, y control visual en el QA. La 2.ª edición se rehizo con este visual (<code>edicoes/2026-10-28-mapa-v2/</code>).</span></div></div>
+    <div class="phase"><div class="tag">v1.1.0</div><div class="d"><strong>Azul marino, gancho y pregunta de opinión</strong><span>Paleta azul marino + azul acero con amarillo como único color cálido, avatar con camiseta azul acero, reglas para el gancho en <code>checar</code>, pregunta de opinión sin promesa de entrega y rutas mediante variables de entorno.</span></div></div>
+    <div class="phase"><div class="tag">v1.2.0</div><div class="d"><strong>Nuevo visual</strong><span>Avatar grande abajo en 11 poses, dibujo protagonista por golpe (biblioteca <code>motor/assets/objetos/</code>), captura real para la prueba, titular Sora centrado, subtítulos tipo karaoke, papel azul hielo alternado con azul marino, granulado y foco de luz, y control visual en el QA.</span></div></div>
+  <div class="phase"><div class="tag">ejemplos</div><div class="d"><strong>"¿Y si China cierra el grifo de la IA gratis?" y "Pagas 200 dólares. La IA cuesta hasta 5.000."</strong><span>79,7 s y 74,2 s, aprobados según todos los criterios del QA y por la revisión independiente (calificaciones de 7 y 7,5).</span></div></div>
   <div class="note" style="margin-top:18px"><b>Regla antes de publicar:</b> la CTA pide una opinión y no promete nada a quien comente. El enlace y la fuente quedan fijos en el comentario fijado y en la descripción.</div>
 </div></section>
 </main>

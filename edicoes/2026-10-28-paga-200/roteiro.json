@@ -1,0 +1,497 @@
+{
+ "id": "2026-10-28-paga-200",
+ "versao": "rtexjp/3",
+ "titulo": "Você paga 200 dólares. A IA custa até 5 mil.",
+ "gancho": {
+  "tipo": "estatistica",
+  "objeto": "iceberg com a ponta pequena acima da água e a massa enorme escondida embaixo, carimbo SUBSIDIADO; o avatar se assusta"
+ },
+ "isca": {
+  "tipo": "opiniao",
+  "pergunta": "Se o plano subir para cinco mil, você paga ou sai?",
+  "opcoes": [
+   "PAGA",
+   "SAI"
+  ],
+  "lado": "Eu saio antes de virar refém"
+ },
+ "fontes": [
+  {
+   "id": "cursor",
+   "valor": "até US$ 5 mil de computação por mês no plano de US$ 200",
+   "linha": "Forbes (análise do Cursor) via the-decoder.com · 07/03/2026",
+   "verificado_em": "2026-10-28"
+  }
+ ],
+ "blocos": [
+  {
+   "id": "tese",
+   "tipo": "tese",
+   "rotulo": null,
+   "fala": "Você paga duzentos dólares por mês na IA. Pra quem te vende, ela pode custar cinco mil.",
+   "tela": {
+    "texto": "PAGA 200. CUSTA ATÉ 5 MIL.",
+    "destaque": "5 MIL."
+   },
+   "fonte": "cursor",
+   "cena": {
+    "comp": "quadro",
+    "params": {
+     "beats": [
+      {
+       "manchete": [
+        "PAGA 200.",
+        "CUSTA ATÉ",
+        "5 MIL."
+       ],
+       "destaque": "5 MIL.",
+       "objeto": "iceberg_custo",
+       "carimbo": "SUBSIDIADO",
+       "carimbo_em": 0.9,
+       "pose": "susto"
+      },
+      {
+       "em": "custar",
+       "manchete": [
+        "QUEM PAGA A",
+        "DIFERENÇA?"
+       ],
+       "destaque": "DIFERENÇA?",
+       "objeto": "iceberg_custo",
+       "pose": "duvida"
+      }
+     ]
+    }
+   },
+   "pose": "susto",
+   "destaque_fala": [
+    "duzentos",
+    "vende",
+    "cinco"
+   ]
+  },
+  {
+   "id": "prova",
+   "tipo": "autoridade",
+   "rotulo": "00 / A CONTA",
+   "fonte": "cursor",
+   "fala": "Uma análise interna do Cursor, contada pela Forbes: o plano de duzentos dólares do Claude Code consegue gastar até cinco mil dólares de computação por mês.",
+   "fala_tts": "Uma análise interna do Kérssor, contada pela Fórbis: o plano de duzentos dólares do Clód Côud consegue gastar até cinco mil dólares de computação por mês.",
+   "cena": {
+    "comp": "quadro",
+    "params": {
+     "beats": [
+      {
+       "manchete": [
+        "O CUSTO",
+        "ESCONDIDO"
+       ],
+       "destaque": "ESCONDIDO",
+       "print": "prova/manchete-2026-10-28.png",
+       "fonte": "cursor",
+       "pose": "olha",
+       "foco": "50% 50%"
+      },
+      {
+       "em": "cinco",
+       "manchete": [
+        "US$ 5 MIL",
+        "POR MÊS"
+       ],
+       "destaque": "US$ 5 MIL",
+       "print": "prova/manchete-2026-10-28.png",
+       "fonte": "cursor",
+       "pose": "apontando",
+       "foco": "50% 50%"
+      }
+     ]
+    }
+   },
+   "pose": "apontando",
+   "destaque_fala": [
+    "interna",
+    "duzentos",
+    "cinco",
+    "computação"
+   ]
+  },
+  {
+   "id": "problema",
+   "tipo": "tese",
+   "rotulo": "00 / O PROBLEMA",
+   "fala": "E não é culpa sua: preço baixo é subsídio, e subsídio acaba. Se a IA chinesa barata fechar, ninguém segura o preço. Aí é pagar ou sair.",
+   "fala_tts": "E não é culpa sua: preço baixo é subsídio, e subsídio acaba. Se a i-á chinesa barata fechar, ninguém segura o preço. Aí é pagar ou sair.",
+   "tela": {
+    "texto": "PAGA OU SAI?",
+    "destaque": "SAI"
+   },
+   "cena": {
+    "comp": "quadro",
+    "params": {
+     "beats": [
+      {
+       "manchete": [
+        "NÃO É",
+        "CULPA SUA."
+       ],
+       "destaque": "CULPA SUA.",
+       "objeto": "iceberg_custo",
+       "pose": "explica"
+      },
+      {
+       "em": "subsídio",
+       "manchete": [
+        "SUBSÍDIO",
+        "ACABA."
+       ],
+       "destaque": "ACABA.",
+       "objeto": "etiqueta_preco",
+       "pose": "queixo"
+      },
+      {
+       "em": "chinesa",
+       "manchete": [
+        "SEM A CHINA,",
+        "QUEM SEGURA?"
+       ],
+       "destaque": "QUEM SEGURA?",
+       "objeto": "torneira_fechada",
+       "pose": "duvida"
+      },
+      {
+       "em": "pagar",
+       "manchete": [
+        "PAGA",
+        "OU SAI?"
+       ],
+       "destaque": "SAI?",
+       "objetos": [
+        "etiqueta_preco",
+        "pc_local"
+       ],
+       "opcoes": [
+        "PAGA",
+        "SAI"
+       ],
+       "pose": "duvida"
+      }
+     ]
+    },
+    "tema": "claro"
+   },
+   "pose": "queixo",
+   "destaque_fala": [
+    "culpa",
+    "subsídio",
+    "preço",
+    "sair"
+   ]
+  },
+  {
+   "id": "virada",
+   "tipo": "virada",
+   "rotulo": "00 / ANTES DO AUMENTO",
+   "fala": "Então se prepara em três passos.",
+   "cena": {
+    "comp": "quadro",
+    "params": {
+     "beats": [
+      {
+       "manchete": [
+        "3 PASSOS",
+        "AGORA"
+       ],
+       "destaque": "3 PASSOS",
+       "itens": [
+        "MEÇA",
+        "SEPARE",
+        "PLANO B"
+       ],
+       "pose": "apontando"
+      }
+     ]
+    }
+   },
+   "pose": "segurando",
+   "destaque_fala": [
+    "três"
+   ]
+  },
+  {
+   "id": "p1",
+   "tipo": "metodo",
+   "n": 1,
+   "rotulo": "01 / MEÇA",
+   "fala": "Um. Meça quanto você usa de verdade. Sem esse número, você nem sabe se o aumento te pega.",
+   "cena": {
+    "comp": "quadro",
+    "params": {
+     "beats": [
+      {
+       "manchete": [
+        "MEÇA O",
+        "SEU USO"
+       ],
+       "destaque": "SEU USO",
+       "objeto": "medidor_uso",
+       "pose": "explica"
+      },
+      {
+       "em": "número",
+       "manchete": [
+        "SEM NÚMERO,",
+        "NO ESCURO"
+       ],
+       "destaque": "NO ESCURO",
+       "objeto": "medidor_uso",
+       "pose": "duvida"
+      }
+     ]
+    }
+   },
+   "destaque_fala": [
+    "meça",
+    "verdade",
+    "aumento"
+   ],
+   "pose": "explica"
+  },
+  {
+   "id": "p2",
+   "tipo": "metodo",
+   "n": 2,
+   "rotulo": "02 / SEPARE",
+   "fala": "Dois. Separe o difícil do fácil. Modelo topo só no difícil. O resto vai num modelo barato.",
+   "cena": {
+    "comp": "quadro",
+    "params": {
+     "beats": [
+      {
+       "manchete": [
+        "DIFÍCIL",
+        "OU FÁCIL?"
+       ],
+       "destaque": "FÁCIL?",
+       "objeto": "balanca_custo",
+       "pose": "queixo"
+      },
+      {
+       "em": "topo",
+       "manchete": [
+        "O TOPO SÓ",
+        "NO DIFÍCIL"
+       ],
+       "destaque": "NO DIFÍCIL",
+       "objeto": "balanca_custo",
+       "pose": "apontando"
+      },
+      {
+       "em": "resto",
+       "manchete": [
+        "O RESTO,",
+        "NO BARATO"
+       ],
+       "destaque": "NO BARATO",
+       "objeto": "pc_local",
+       "pose": "polegar"
+      }
+     ]
+    },
+    "tema": "claro"
+   },
+   "destaque_fala": [
+    "difícil",
+    "topo",
+    "barato"
+   ],
+   "pose": "queixo"
+  },
+  {
+   "id": "p3",
+   "tipo": "metodo",
+   "n": 3,
+   "rotulo": "03 / PLANO B",
+   "fala": "Três. Monte um plano B na sua máquina, pronto antes do aumento, não depois.",
+   "cena": {
+    "comp": "quadro",
+    "params": {
+     "beats": [
+      {
+       "manchete": [
+        "PLANO B NA",
+        "SUA MÁQUINA"
+       ],
+       "destaque": "SUA MÁQUINA",
+       "objeto": "pc_local",
+       "pose": "explica"
+      },
+      {
+       "em": "antes",
+       "manchete": [
+        "ANTES DO",
+        "AUMENTO"
+       ],
+       "destaque": "ANTES",
+       "objeto": "hd_guardado",
+       "pose": "apontando"
+      }
+     ]
+    }
+   },
+   "destaque_fala": [
+    "plano",
+    "máquina",
+    "antes"
+   ],
+   "pose": "explica"
+  },
+  {
+   "id": "ressalva",
+   "tipo": "ressalva",
+   "rotulo": "04 / A PARTE HONESTA",
+   "fonte": "cursor",
+   "fala": "A parte honesta: cinco mil é estimativa de uso no preço de tabela, não o que a empresa paga. E ninguém anunciou plano de cinco mil. Ainda.",
+   "cena": {
+    "comp": "quadro",
+    "params": {
+     "beats": [
+      {
+       "manchete": [
+        "A PARTE",
+        "HONESTA"
+       ],
+       "destaque": "HONESTA",
+       "objeto": "iceberg_custo",
+       "pose": "queixo"
+      },
+      {
+       "em": "estimativa",
+       "manchete": [
+        "É",
+        "ESTIMATIVA"
+       ],
+       "destaque": "ESTIMATIVA",
+       "objeto": "lupa_arquivos",
+       "pose": "explica"
+      },
+      {
+       "em": "ninguém",
+       "manchete": [
+        "NINGUÉM ANUNCIOU.",
+        "AINDA."
+       ],
+       "destaque": "AINDA.",
+       "objeto": "iceberg_custo",
+       "pose": "olha"
+      }
+     ]
+    }
+   },
+   "pose": "queixo",
+   "destaque_fala": [
+    "honesta",
+    "estimativa",
+    "anunciou"
+   ]
+  },
+  {
+   "id": "maxima",
+   "tipo": "maxima",
+   "rotulo": null,
+   "silencio_antes_s": 0.8,
+   "fala": "Quem não sabe o próprio custo paga o preço que os outros escolhem.",
+   "cena": {
+    "comp": "maxima",
+    "params": {
+     "beats": [
+      {
+       "manchete": [
+        "QUEM NÃO",
+        "SABE O CUSTO"
+       ],
+       "destaque": "O CUSTO",
+       "pose": "bracos",
+       "objeto": "medidor_uso"
+      },
+      {
+       "em": "paga",
+       "manchete": [
+        "PAGA O PREÇO QUE",
+        "OS OUTROS",
+        "ESCOLHEM."
+       ],
+       "destaque": "ESCOLHEM.",
+       "pose": "apontando",
+       "objeto": "etiqueta_preco"
+      }
+     ]
+    }
+   },
+   "destaque_fala": [
+    "custo",
+    "preço",
+    "outros"
+   ],
+   "pose_silencio": "queixo",
+   "pose": "bracos"
+  },
+  {
+   "id": "cta",
+   "tipo": "cta",
+   "rotulo": null,
+   "hold_s": 7.5,
+   "fala": "Eu saio antes de virar refém. E você, se o plano subir para cinco mil: paga ou sai? Comenta PAGA ou SAI.",
+   "fala_tts": "Eu saio antes de virar refém. E você, se o plano subir para cinco mil: paga ou sai? Comenta paga, ou sai.",
+   "tela": {
+    "texto": "E VOCÊ: PAGA OU SAI?",
+    "destaque": "SAI"
+   },
+   "cena": {
+    "comp": "opiniao",
+    "params": {
+     "titulo": "E VOCÊ:|PAGA OU SAI?",
+     "destaque": "PAGA OU SAI?",
+     "digita": "SAI",
+     "confirmacao": "comentado",
+     "beats": [
+      {
+       "pose": "bracos"
+      },
+      {
+       "em": "você",
+       "pose": "duvida"
+      },
+      {
+       "em": "comenta",
+       "pose": "mostrando"
+      }
+     ],
+     "objetos": [
+      "etiqueta_preco",
+      "pc_local"
+     ]
+    }
+   },
+   "fonte": "cursor",
+   "pose": "mostrando",
+   "destaque_fala": [
+    "refém",
+    "subir",
+    "PAGA",
+    "SAI"
+   ]
+  }
+ ],
+ "publicar": {
+  "titulo": "Você paga 200 dólares. A IA custa até 5 mil.",
+  "descricao": "Você paga 200 dólares por mês na IA. Pra quem te vende, ela pode custar 5 mil. Uma análise interna do Cursor, contada pela Forbes, diz que o plano de 200 dólares do Claude Code consegue gastar até 5 mil dólares de computação por mês. Preço baixo é subsídio, e subsídio acaba; se a IA chinesa barata fechar, ninguém segura o preço. Três passos antes do aumento: meça quanto você usa de verdade, separe o difícil do fácil (modelo topo só no difícil) e monte um plano B na sua máquina. A parte honesta: 5 mil é estimativa de uso no preço de tabela, não o que a empresa paga, e ninguém anunciou plano de 5 mil. Ainda. Quem não sabe o próprio custo paga o preço que os outros escolhem. E você: paga ou sai?",
+  "comentario_fixado": "Fonte: análise interna do Cursor publicada pela Forbes (05/03/2026) e resumida pelo the-decoder.com (07/03/2026): o plano de US$ 200 do Claude Code pode consumir até US$ 5 mil de computação por mês. É estimativa, não preço anunciado. E você: PAGA ou SAI?",
+  "tags": [
+   "inteligência artificial",
+   "claude code",
+   "preço da ia",
+   "ia local",
+   "inema"
+  ]
+ }
+}

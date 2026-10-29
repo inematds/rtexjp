@@ -1,0 +1,528 @@
+{
+ "id": "2026-10-28-china-fecha",
+ "versao": "rtexjp/3",
+ "titulo": "E se a China fechar a torneira da IA grátis?",
+ "gancho": {
+  "tipo": "perda",
+  "objeto": "torneira cromada fechada com cadeado vermelho e a última gota caindo, carimbo SÓ COM LICENÇA; o avatar leva um susto"
+ },
+ "isca": {
+  "tipo": "opiniao",
+  "pergunta": "Se a torneira fechar, você paga ou roda local?",
+  "opcoes": [
+   "PAGO",
+   "LOCAL"
+  ],
+  "lado": "Eu já rodo a minha aqui em casa"
+ },
+ "fontes": [
+  {
+   "id": "mofcom",
+   "valor": "pela 1ª vez, modelos grandes de IA na lista de exportação controlada",
+   "linha": "Recode China AI · 21/10/2026 · sobre o rascunho de 16/10",
+   "verificado_em": "2026-10-28"
+  }
+ ],
+ "blocos": [
+  {
+   "id": "tese",
+   "tipo": "tese",
+   "rotulo": null,
+   "fala": "E se a China fechar a torneira da IA grátis? O modelo barato que você usa hoje pode sumir.",
+   "tela": {
+    "texto": "A CHINA FECHA A TORNEIRA?",
+    "destaque": "FECHA"
+   },
+   "cena": {
+    "comp": "quadro",
+    "params": {
+     "beats": [
+      {
+       "manchete": [
+        "A CHINA",
+        "FECHA A",
+        "TORNEIRA?"
+       ],
+       "destaque": "FECHA A",
+       "objeto": "torneira_fechada",
+       "carimbo": "LICENÇA",
+       "carimbo_em": 0.9,
+       "chips": [
+        "DeepSeek",
+        "Qwen",
+        "Kimi",
+        "GLM"
+       ],
+       "chips_em": 1.9,
+       "pose": "susto"
+      },
+      {
+       "em": "barato",
+       "manchete": [
+        "O BARATO",
+        "QUE VOCÊ USA"
+       ],
+       "destaque": "BARATO",
+       "objeto": "torneira_fechada",
+       "pose": "duvida"
+      },
+      {
+       "em": "sumir",
+       "manchete": [
+        "PODE",
+        "SUMIR"
+       ],
+       "destaque": "SUMIR",
+       "objeto": "carteira_vazia",
+       "pose": "susto"
+      }
+     ]
+    }
+   },
+   "pose": "susto",
+   "destaque_fala": [
+    "torneira",
+    "grátis",
+    "sumir"
+   ]
+  },
+  {
+   "id": "prova",
+   "tipo": "autoridade",
+   "rotulo": "00 / A REGRA",
+   "fonte": "mofcom",
+   "fala": "Não é teoria. Em dezesseis de outubro, Pequim publicou um rascunho: pela primeira vez, modelo grande de IA entra na lista do que só sai do país com licença.",
+   "fala_tts": "Não é teoria. Em dezesseis de outubro, Pequim publicou um rascunho: pela primeira vez, modelo grande de i-á entra na lista do que só sai do país com licença.",
+   "cena": {
+    "comp": "quadro",
+    "params": {
+     "beats": [
+      {
+       "manchete": [
+        "RASCUNHO DE",
+        "16 DE OUTUBRO"
+       ],
+       "destaque": "16 DE OUTUBRO",
+       "print": "prova/licenca-2026-10-28.png",
+       "fonte": "mofcom",
+       "pose": "olha",
+       "foco": "50% 50%"
+      },
+      {
+       "em": "primeira",
+       "manchete": [
+        "PELA",
+        "1ª VEZ"
+       ],
+       "destaque": "1ª VEZ",
+       "print": "prova/licenca-2026-10-28.png",
+       "fonte": "mofcom",
+       "pose": "apontando",
+       "foco": "20% 30%"
+      },
+      {
+       "em": "licença",
+       "manchete": [
+        "SÓ SAI COM",
+        "LICENÇA"
+       ],
+       "destaque": "LICENÇA",
+       "print": "prova/licenca-2026-10-28.png",
+       "fonte": "mofcom",
+       "pose": "explica",
+       "foco": "60% 80%"
+      }
+     ]
+    }
+   },
+   "pose": "apontando",
+   "destaque_fala": [
+    "teoria",
+    "rascunho",
+    "primeira",
+    "licença"
+   ]
+  },
+  {
+   "id": "problema",
+   "tipo": "tese",
+   "rotulo": "00 / O PROBLEMA",
+   "fala": "E não é culpa sua: a IA chinesa aberta virou o plano B de todo mundo. Se ela para de vir, sobra pagar caro ou rodar a sua.",
+   "fala_tts": "E não é culpa sua: a i-á chinesa aberta virou o plano B de todo mundo. Se ela para de vir, sobra pagar caro ou rodar a sua.",
+   "tela": {
+    "texto": "PAGO OU LOCAL?",
+    "destaque": "LOCAL"
+   },
+   "cena": {
+    "comp": "quadro",
+    "params": {
+     "beats": [
+      {
+       "manchete": [
+        "NÃO É",
+        "CULPA SUA."
+       ],
+       "destaque": "CULPA SUA.",
+       "objeto": "torneira_fechada",
+       "pose": "explica"
+      },
+      {
+       "em": "plano",
+       "manchete": [
+        "ERA O PLANO B",
+        "DE TODO MUNDO"
+       ],
+       "destaque": "PLANO B",
+       "objeto": "hd_guardado",
+       "pose": "duvida"
+      },
+      {
+       "em": "pagar",
+       "manchete": [
+        "PAGO",
+        "OU LOCAL?"
+       ],
+       "destaque": "LOCAL?",
+       "objetos": [
+        "etiqueta_preco",
+        "pc_local"
+       ],
+       "opcoes": [
+        "PAGO",
+        "LOCAL"
+       ],
+       "pose": "duvida"
+      }
+     ]
+    },
+    "tema": "claro"
+   },
+   "pose": "queixo",
+   "destaque_fala": [
+    "culpa",
+    "plano",
+    "caro",
+    "sua"
+   ]
+  },
+  {
+   "id": "virada",
+   "tipo": "virada",
+   "rotulo": "00 / COMO SE PROTEGER",
+   "fala": "Dá pra se proteger em três passos.",
+   "cena": {
+    "comp": "quadro",
+    "params": {
+     "beats": [
+      {
+       "manchete": [
+        "3 PASSOS",
+        "PRA SE PROTEGER"
+       ],
+       "destaque": "3 PASSOS",
+       "itens": [
+        "BAIXE",
+        "RODE",
+        "SEPARE"
+       ],
+       "pose": "apontando"
+      }
+     ]
+    }
+   },
+   "pose": "segurando",
+   "destaque_fala": [
+    "três"
+   ]
+  },
+  {
+   "id": "p1",
+   "tipo": "metodo",
+   "n": 1,
+   "rotulo": "01 / BAIXE",
+   "fonte": "mofcom",
+   "fala": "Um. Baixe hoje os modelos abertos que você usa. O que já foi publicado fica fora da regra.",
+   "cena": {
+    "comp": "quadro",
+    "params": {
+     "beats": [
+      {
+       "manchete": [
+        "BAIXE",
+        "HOJE"
+       ],
+       "destaque": "HOJE",
+       "objeto": "hd_guardado",
+       "pose": "apontando"
+      },
+      {
+       "em": "publicado",
+       "manchete": [
+        "O QUE SAIU",
+        "FICA FORA"
+       ],
+       "destaque": "FICA FORA",
+       "objeto": "hd_guardado",
+       "pose": "polegar"
+      }
+     ]
+    }
+   },
+   "destaque_fala": [
+    "hoje",
+    "abertos",
+    "fora"
+   ],
+   "pose": "apontando"
+  },
+  {
+   "id": "p2",
+   "tipo": "metodo",
+   "n": 2,
+   "rotulo": "02 / RODE",
+   "fala": "Dois. Rode um deles na sua máquina. Um modelo médio já dá conta de resumo, texto e código simples.",
+   "cena": {
+    "comp": "quadro",
+    "params": {
+     "beats": [
+      {
+       "manchete": [
+        "RODE NA",
+        "SUA MÁQUINA"
+       ],
+       "destaque": "SUA MÁQUINA",
+       "objeto": "pc_local",
+       "pose": "explica"
+      },
+      {
+       "em": "médio",
+       "manchete": [
+        "RESUMO, TEXTO",
+        "E CÓDIGO"
+       ],
+       "destaque": "CÓDIGO",
+       "objeto": "pc_local",
+       "pose": "polegar"
+      }
+     ]
+    },
+    "tema": "claro"
+   },
+   "destaque_fala": [
+    "máquina",
+    "médio",
+    "simples"
+   ],
+   "pose": "explica"
+  },
+  {
+   "id": "p3",
+   "tipo": "metodo",
+   "n": 3,
+   "rotulo": "03 / SEPARE",
+   "fala": "Três. Deixe o modelo caro só para o que é difícil de verdade. O resto vai no seu.",
+   "cena": {
+    "comp": "quadro",
+    "params": {
+     "beats": [
+      {
+       "manchete": [
+        "O CARO SÓ",
+        "NO DIFÍCIL"
+       ],
+       "destaque": "DIFÍCIL",
+       "objeto": "balanca_custo",
+       "pose": "queixo"
+      },
+      {
+       "em": "resto",
+       "manchete": [
+        "O RESTO",
+        "VAI NO SEU"
+       ],
+       "destaque": "NO SEU",
+       "objeto": "pc_local",
+       "pose": "apontando"
+      }
+     ]
+    }
+   },
+   "destaque_fala": [
+    "caro",
+    "difícil",
+    "resto"
+   ],
+   "pose": "queixo"
+  },
+  {
+   "id": "ressalva",
+   "tipo": "ressalva",
+   "rotulo": "04 / A PARTE HONESTA",
+   "fonte": "mofcom",
+   "fala": "A parte honesta: ainda é rascunho, com consulta até quinze de novembro, e a DeepSeek seguiu lançando modelo aberto. E modelo local ainda não iguala o topo.",
+   "fala_tts": "A parte honesta: ainda é rascunho, com consulta até quinze de novembro, e a Dip-síque seguiu lançando modelo aberto. E modelo local ainda não iguala o topo.",
+   "cena": {
+    "comp": "quadro",
+    "params": {
+     "beats": [
+      {
+       "manchete": [
+        "A PARTE",
+        "HONESTA"
+       ],
+       "destaque": "HONESTA",
+       "objeto": "torneira_fechada",
+       "pose": "queixo"
+      },
+      {
+       "em": "rascunho",
+       "manchete": [
+        "AINDA É",
+        "RASCUNHO"
+       ],
+       "destaque": "RASCUNHO",
+       "objeto": "lupa_arquivos",
+       "pose": "explica"
+      },
+      {
+       "em": "DeepSeek",
+       "manchete": [
+        "E O ABERTO",
+        "SEGUE SAINDO"
+       ],
+       "destaque": "SEGUE",
+       "objeto": "hd_guardado",
+       "pose": "olha"
+      },
+      {
+       "em": "local",
+       "manchete": [
+        "LOCAL NÃO",
+        "IGUALA O TOPO"
+       ],
+       "destaque": "TOPO",
+       "objeto": "balanca_custo",
+       "pose": "duvida"
+      }
+     ]
+    }
+   },
+   "pose": "queixo",
+   "destaque_fala": [
+    "honesta",
+    "rascunho",
+    "aberto",
+    "topo"
+   ]
+  },
+  {
+   "id": "maxima",
+   "tipo": "maxima",
+   "rotulo": null,
+   "silencio_antes_s": 0.8,
+   "fala": "IA grátis nunca foi sua. Era emprestada. Sua é a que roda na sua máquina.",
+   "fala_tts": "I-á grátis nunca foi sua. Era emprestada. Sua é a que roda na sua máquina.",
+   "cena": {
+    "comp": "maxima",
+    "params": {
+     "beats": [
+      {
+       "manchete": [
+        "IA GRÁTIS",
+        "NUNCA FOI",
+        "SUA."
+       ],
+       "destaque": "SUA.",
+       "pose": "bracos",
+       "objeto": "torneira_fechada"
+      },
+      {
+       "em": "emprestada",
+       "manchete": [
+        "ERA",
+        "EMPRESTADA."
+       ],
+       "destaque": "EMPRESTADA.",
+       "pose": "queixo",
+       "objeto": "carteira_vazia"
+      },
+      {
+       "em": "roda",
+       "manchete": [
+        "SUA É A QUE",
+        "RODA AÍ."
+       ],
+       "destaque": "RODA AÍ.",
+       "pose": "apontando",
+       "objeto": "pc_local"
+      }
+     ]
+    }
+   },
+   "destaque_fala": [
+    "grátis",
+    "emprestada",
+    "roda"
+   ],
+   "pose_silencio": "queixo",
+   "pose": "bracos"
+  },
+  {
+   "id": "cta",
+   "tipo": "cta",
+   "rotulo": null,
+   "hold_s": 7.5,
+   "fala": "Eu já rodo a minha aqui em casa. E você, se a torneira fechar: paga ou roda local? Comenta PAGO ou LOCAL.",
+   "fala_tts": "Eu já rodo a minha aqui em casa. E você, se a torneira fechar: paga ou roda local? Comenta pago, ou local.",
+   "tela": {
+    "texto": "E VOCÊ: PAGO OU LOCAL?",
+    "destaque": "LOCAL"
+   },
+   "cena": {
+    "comp": "opiniao",
+    "params": {
+     "titulo": "E VOCÊ:|PAGO OU LOCAL?",
+     "destaque": "PAGO OU LOCAL?",
+     "digita": "LOCAL",
+     "confirmacao": "comentado",
+     "beats": [
+      {
+       "pose": "bracos"
+      },
+      {
+       "em": "você",
+       "pose": "duvida"
+      },
+      {
+       "em": "comenta",
+       "pose": "mostrando"
+      }
+     ],
+     "objetos": [
+      "etiqueta_preco",
+      "pc_local"
+     ]
+    }
+   },
+   "pose": "mostrando",
+   "destaque_fala": [
+    "casa",
+    "fechar",
+    "PAGO",
+    "LOCAL"
+   ]
+  }
+ ],
+ "publicar": {
+  "titulo": "E se a China fechar a torneira da IA grátis?",
+  "descricao": "E se a China fechar a torneira da IA grátis? Em 16 de outubro de 2026, Pequim publicou um rascunho de controle de exportação (Ministério do Comércio e Ministério da Ciência): pela primeira vez, modelos grandes de inteligência artificial entram na lista do que só sai do país com licença, ou nem sai. A IA chinesa aberta virou o plano B de muita gente; se ela parar de vir, sobra pagar caro ou rodar a sua. Três passos: baixe hoje os modelos abertos que você usa (o que já foi publicado fica fora da regra), rode um deles na sua máquina e deixe o modelo caro só para o que é difícil de verdade. A parte honesta: ainda é rascunho, com consulta até 15 de novembro, a DeepSeek seguiu lançando modelo aberto, e modelo local ainda não iguala o topo. IA grátis nunca foi sua. Era emprestada. E você: paga ou roda local?",
+  "comentario_fixado": "Fonte: rascunho do Ministério do Comércio (MOFCOM) e do Ministério da Ciência e Tecnologia (MOST) da China, publicado em 16/10/2026, consulta pública até 15/11/2026. Ainda é proposta, não lei. E você: PAGO ou LOCAL?",
+  "tags": [
+   "inteligência artificial",
+   "china",
+   "deepseek",
+   "ia local",
+   "inema"
+  ]
+ }
+}

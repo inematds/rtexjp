@@ -1,0 +1,10 @@
+[Unit]
+Description=Produção do rtexjp: monta (voz local + palco), revisa (claude -p) e põe na fila do canal
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/projetos/rtexjp
+Environment=PATH=%h/.npm-global/bin:%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/usr/bin/python3 %h/projetos/rtexjp/producao/producao.py
+TimeoutStartSec=4h
+MemoryMax=12G

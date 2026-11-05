@@ -14,7 +14,7 @@ Vem configurado com a voz e o avatar do Nei. Para usar os seus, aponte as variá
 
 Guia completo (landing + passo a passo): **https://inematds.github.io/rtexjp/guia/** · 1º vídeo (paleta antiga, roxa): https://www.youtube.com/watch?v=AZEZK1YgF98
 
-**v1.2.0** · motor local e grátis que transforma um `roteiro.json` num reel vertical 1080×1920 no **padrão rtexjp**: um reel ilustrado em azul-marinho (com trocas para um papel azul-gelo), avatar ilustrado do Nei **grande** (≈ 43 % da altura, em 11 poses ligadas à emoção da fala, sem lip-sync), um **desenho-herói** por cena, **print real** como prova, manchete Sora centrada, legenda karaokê, mascote robô e um único CTA de **opinião** (uma pergunta com lado, respondida com uma palavra: "comenta DONO ou REFÉM").
+**v1.3.0** (05/11/2026: `/rtexjp` no inemaccbot + produção sem sessão) · motor local e grátis que transforma um `roteiro.json` num reel vertical 1080×1920 no **padrão rtexjp**: um reel ilustrado em azul-marinho (com trocas para um papel azul-gelo), avatar ilustrado do Nei **grande** (≈ 43 % da altura, em 11 poses ligadas à emoção da fala, sem lip-sync), um **desenho-herói** por cena, **print real** como prova, manchete Sora centrada, legenda karaokê, mascote robô e um único CTA de **opinião** (uma pergunta com lado, respondida com uma palavra: "comenta DONO ou REFÉM").
 
 ## O formato (padrão rtexjp)
 
@@ -94,9 +94,20 @@ edicoes/<id>/          roteiro.json · final.mp4 · contact.jpg · qa.md · prov
 | 11 | Mixagem (cama para no silêncio da máxima, −14 LUFS) | `python3 rtexjp.py mix edicoes/<id>` | ⚙️ |
 | 12 | QA automático + portão de beleza + contact sheet | `python3 rtexjp.py qa edicoes/<id>` → `qa.md`, `contact.jpg` | ⚙️ |
 | 13 | Olhar o `contact.jpg` e o vídeo; revisor independente (`claude -p`, lista fixa no `CLAUDE.md`, nota 0–10 de "pararia de rolar?" por quadro-chave) | — | 🧠 / 🤖 |
-| 14 | Publicar (fila do canal / v3 / Telegram) com o bloco `publicar` do roteiro | fora deste repo | orquestrador |
+| 14 | Publicar: v3 + fila do canal (`publicar.fila`) pela produção (`producao/producao.py`, abaixo); Telegram e outros destinos ficam com quem pediu | `python3 producao/producao.py --add edicoes/<id>` | ⚙️ |
 
 Atalho: `python3 rtexjp.py tudo edicoes/<id>` roda 3 → 7 → 8 → 10 → 11 → 12.
+
+**Pelo bot, sem sessão nenhuma (05/11/2026): `/rtexjp <tema>` no inemaccbot** (prefixo `RJ`).
+
+| # | Passo | Comando / o que acontece | Quem |
+|---|---|---|---|
+| B1 | Pedido | `/rtexjp <tema ou tese>` no Telegram (canal e "agora" no texto; sem canal → lives11) | Nei |
+| B2 | Roteiro | fase `ficha` (`prompts/bot-ficha.md`): passos 1, 2, 3, 6 e 6b (desenhos que faltarem, print real da prova), `checar`, `medir.py --grep`, `producao/producao.py --add`; mostra o `BOT-RESUMO.md` | 🤖 |
+| B3 | Produção | timer `rtexjp-producao` (5 em 5 min, uma montagem por rodada): `rtexjp.py tudo` (passos 7–12 + portão de beleza) → revisor `claude -p` (`producao/revisor.md`, a lista fixa) → v3 + fila do canal (a fila com timer do r7ex); reprovou/falhou → `parado` + "Falhou" no v3; depois de corrigir: `producao.py --retomar <pasta>` | ⚙️ + 🤖 |
+| B4 | Fim no bot | fase `producao`: `producao/esperar.py <pasta>` espera `na_fila` e mostra o `BOT-FIM.md` | ⚙️ |
+
+Teste da produção sem render nem Telegram: `python3 producao/teste_producao.py`. Estado: `python3 producao/producao.py --status`.
 
 ## Requisitos
 

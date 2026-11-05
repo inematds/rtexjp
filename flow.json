@@ -1,0 +1,48 @@
+{
+  "nome": "rtexjp",
+  "prefixo": "RJ",
+  "versao_def": 1,
+  "alvos": {
+    "unico": {
+      "gatilho": "o Nei manda /rtexjp com o tema ou a tese do reel ilustrado, e o canal se quiser"
+    }
+  },
+  "fases": [
+    {
+      "id": "ficha",
+      "escopo": "fluxo",
+      "fila": "texto",
+      "kind": "agent",
+      "tarefa": "fluxo-agente",
+      "prompt": "prompts/bot-ficha.md",
+      "max_tentativas": 1,
+      "perfil": {
+        "modelo": "topo",
+        "esforco": "high"
+      },
+      "portao": {
+        "mostrar": [
+          "{{artefato:resumo}}"
+        ]
+      }
+    },
+    {
+      "id": "producao",
+      "escopo": "fluxo",
+      "fila": "io",
+      "kind": "function",
+      "tarefa": "cli.rodar",
+      "comando": "python3 {{repo}}/producao/esperar.py {{anterior:pasta}}",
+      "max_tentativas": 1,
+      "espera": {
+        "intervalo": 60,
+        "timeout": 36000
+      },
+      "portao": {
+        "mostrar": [
+          "{{artefato:fim}}"
+        ]
+      }
+    }
+  ]
+}

@@ -6,3 +6,11 @@ edicoes/*/quadros/
 __pycache__/
 motor/avatar/brutos/
 motor/assets/objetos/brutos/
+producao/estado.json
+producao/estado.tmp
+producao/producao.log
+producao/.estado.lock
+producao/.rodada.lock
+producao/__pycache__/
+edicoes/*/BOT-*.md
+edicoes/*/producao.log

@@ -1,0 +1,10 @@
+[Unit]
+Description=Produção do rtexjp a cada 5 min (a rodada pula se a anterior ainda trabalha)
+
+[Timer]
+OnBootSec=3min
+OnUnitInactiveSec=5min
+Persistent=false
+
+[Install]
+WantedBy=timers.target

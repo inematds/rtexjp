@@ -14,3 +14,7 @@ producao/.rodada.lock
 producao/__pycache__/
 edicoes/*/BOT-*.md
 edicoes/*/producao.log
+
+# Executor por etapa: telemetria local, sem credenciais
+**/ia-execucoes.jsonl
+producao/ia.lock

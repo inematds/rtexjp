@@ -23,6 +23,8 @@ import fcntl, json, os, subprocess, sys, time
 from datetime import datetime
 from pathlib import Path
 
+from ia_motor import executar
+
 AQUI = Path(__file__).resolve().parent
 R = AQUI.parent
 ESTADO = AQUI / "estado.json"
@@ -113,11 +115,16 @@ def na_fila(p):
 def revisar(p):
     """agente (claude -p, assinatura) lê roteiro + folha de contato + qa e devolve {veredito, motivo}"""
     try:
-        r = subprocess.run(["claude", "-p", "--output-format", "json", "--allowedTools", "Read", "--", REVISOR.read_text()],
-                           cwd=p, capture_output=True, text=True, timeout=900, stdin=subprocess.DEVNULL)
-        res = json.loads(r.stdout)["result"].strip()
+        arquivos = [p / 'roteiro.json']
+        arquivos += [q for q in (p / 'build/qa.json', p / 'qa.md') if q.exists()]
+        folha = p / 'contact.jpg'
+        if not folha.is_file():
+            raise ValueError('Folha de quadros ausente; revisão visual não pode aprovar sem imagem')
+        res = executar('revisao_visual', REVISOR.read_text(), p,
+                       arquivos=arquivos, imagens=[folha])
         v = json.loads(res[res.index("{"): res.rindex("}") + 1])
-        assert v.get("veredito") in ("aprovado", "reprovado")
+        if v.get("veredito") not in ("aprovado", "reprovado"):
+            raise ValueError("Veredito inválido")
         v["sugestoes"] = [str(x) for x in (v.get("sugestoes") or []) if str(x).strip()]
         if int(v.get("impacto", 10)) < 7 and not any("impacto" in x.lower() for x in v["sugestoes"]):
             v["sugestoes"].append(f"impacto {v['impacto']}/10")

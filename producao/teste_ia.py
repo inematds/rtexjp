@@ -11,7 +11,7 @@ class Teste(unittest.TestCase):
   self.tmp=tempfile.TemporaryDirectory(); self.addCleanup(self.tmp.cleanup)
   self.out=Path(self.tmp.name); self.cfg=copy.deepcopy(ia.carregar())
   self.file=self.out/'ia.yaml'; self.save()
-  self.env=patch.dict(os.environ,INEMA_IA_CONFIG=str(self.file)); self.env.start(); self.addCleanup(self.env.stop)
+  self.env=patch.dict(os.environ,{ia.CONFIG_ENV:str(self.file)}); self.env.start(); self.addCleanup(self.env.stop)
  def save(self): self.file.write_text(yaml.safe_dump(self.cfg))
  def test_modelo_esforco_imagem_e_sem_chaves(self):
   pic=self.out/'quadro.jpg'; pic.write_bytes(b'jpg')

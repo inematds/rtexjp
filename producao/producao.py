@@ -23,7 +23,7 @@ import fcntl, json, os, subprocess, sys, time
 from datetime import datetime
 from pathlib import Path
 
-from ia_motor import executar
+from ia_motor import executar, CotaEsgotada
 
 AQUI = Path(__file__).resolve().parent
 R = AQUI.parent
@@ -129,6 +129,8 @@ def revisar(p):
         if int(v.get("impacto", 10)) < 7 and not any("impacto" in x.lower() for x in v["sugestoes"]):
             v["sugestoes"].append(f"impacto {v['impacto']}/10")
         return v
+    except CotaEsgotada as e:
+        return {"veredito": "espera", "motivo": str(e)}   # sem cota: espera a volta, não conta como erro do revisor
     except Exception as e:
         return {"veredito": "erro", "motivo": f"revisor não respondeu direito: {str(e)[:200]}"}
 
@@ -166,6 +168,12 @@ def passo(pasta, it, feito):
         muda(pasta, "revisao"); return True
     if st == "revisao":
         v = revisar(p)
+        if v["veredito"] == "espera":
+            if it.get("aviso_cota") != v["motivo"]:        # uma linha por bloqueio, não uma por ciclo de 5 min
+                log(f"{p.name}: revisão esperando cota — {v['motivo']}")
+                with Estado() as d:
+                    d[pasta]["aviso_cota"] = v["motivo"]
+            return False
         with open(logp, "a") as f:
             f.write(f"\n=== {datetime.now():%Y-%m-%d %H:%M:%S} revisor: {json.dumps(v, ensure_ascii=False)}\n")
         if v["veredito"] == "erro" and it.get("erros_revisor", 0) < 3:

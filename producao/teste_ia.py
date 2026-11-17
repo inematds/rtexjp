@@ -11,7 +11,7 @@ class Teste(unittest.TestCase):
   self.tmp=tempfile.TemporaryDirectory(); self.addCleanup(self.tmp.cleanup)
   self.out=Path(self.tmp.name); self.cfg=copy.deepcopy(ia.carregar())
   self.file=self.out/'ia.yaml'; self.save()
-  self.env=patch.dict(os.environ,{ia.CONFIG_ENV:str(self.file)}); self.env.start(); self.addCleanup(self.env.stop)
+  self.env=patch.dict(os.environ,{ia.CONFIG_ENV:str(self.file),ia.COTA_DB_ENV:str(self.out/'cota.sqlite')}); self.env.start(); self.addCleanup(self.env.stop)
  def save(self): self.file.write_text(yaml.safe_dump(self.cfg))
  def test_modelo_esforco_imagem_e_sem_chaves(self):
   pic=self.out/'quadro.jpg'; pic.write_bytes(b'jpg')
@@ -43,4 +43,34 @@ class Teste(unittest.TestCase):
    q=self.out/f; q.parent.mkdir(parents=True,exist_ok=True); q.write_text('{}')
   with patch.object(p,'executar',return_value='{"veredito":"talvez"}'):
    self.assertEqual(p.revisar(self.out)['veredito'],'erro')
+
+# Recusa REAL do Claude Code (16/11/2026; ids de conta removidos).
+RECUSA_CLAUDE=json.dumps({"type":"result","subtype":"success","is_error":True,"api_error_status":429,
+ "api_error_type":"rate_limit_error","api_error_origin":"first_party","api_error":"usage_limit_reached",
+ "result":"You've hit your weekly limit · resets 9pm (America/Sao_Paulo)","num_turns":1,"terminal_reason":"api_error"})
+
+class Trava(unittest.TestCase):
+ def setUp(self):
+  self.tmp=tempfile.TemporaryDirectory(); self.addCleanup(self.tmp.cleanup)
+  self.out=Path(self.tmp.name); self.file=self.out/'ia.yaml'; self.cfg=copy.deepcopy(ia.carregar())
+  self.cfg['etapas']['revisao_visual'].update(motor='claude',modelo='claude-opus-5-5',esforco='medium'); self.file.write_text(yaml.safe_dump(self.cfg))
+  self.env=patch.dict(os.environ,{ia.CONFIG_ENV:str(self.file),ia.COTA_DB_ENV:str(self.out/'cota.sqlite')}); self.env.start(); self.addCleanup(self.env.stop)
+  self.chamadas=[]
+ def fake(self,stdout,rc):
+  def run(cmd,**kw):
+   self.chamadas.append(cmd[0]); return subprocess.CompletedProcess(cmd,rc,stdout,'')
+  return patch.object(ia.subprocess,'run',side_effect=run)
+ def test_trava_grava_e_proxima_nao_abre_programa(self):
+  with self.fake(RECUSA_CLAUDE,1):
+   for _ in range(2):
+    with self.assertRaises(ia.CotaEsgotada): ia.executar('revisao_visual','x',self.out)
+  self.assertEqual(len(self.chamadas),1)
+ def test_revisor_espera_sem_contar_erro(self):
+  for f in ['build/folha.jpg','contact.jpg','ficha.yaml','roteiro.json']:
+   q=self.out/f; q.parent.mkdir(parents=True,exist_ok=True); q.write_text('{}')
+  with patch.object(p,'executar',side_effect=ia.CotaEsgotada('claude',1e10)):
+   self.assertEqual(p.revisar(self.out)['veredito'],'espera')
+ def test_claude_sem_sessao_no_disco(self):
+  self.assertIn('--no-session-persistence',ia.comando(dict(self.cfg['etapas']['revisao_visual'])))
+
 if __name__=='__main__': unittest.main()

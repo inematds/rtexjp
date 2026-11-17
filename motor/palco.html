@@ -143,7 +143,7 @@ function avatar(pose, t, b, { x = 90, alt = 400 } = {}) {
   const im = IMG[pose]; if (!im || !im.naturalWidth) return '';
   const h = alt, w = h * im.naturalWidth / im.naturalHeight;
   const p = b.ini > 0 ? ap(t, b.ini, .3) : 1;
-  const resp = 1 + Math.sin(t * 2.1) * .006 + (b.tipo === 'tese' && b.ini === 0 && t < 1 ? .03 * Math.sin(t * 30) * (1 - t) : 0);
+  const resp = 1;  // 1.5.1 (Nei 16/11/2026): sem respiração nem tremor de abertura (cresce/encolhe = tela tremida)
   return `<img class="ab" src="${im.src}" style="left:${x}px;top:${1394 - h}px;height:${h}px;width:${w}px;transform-origin:50% 100%;
     transform:scale(${resp}) translateY(${(1 - p) * 30}px);opacity:${p};filter:drop-shadow(0 18px 30px rgba(0,0,0,.5))">`;
 }
@@ -371,7 +371,7 @@ const COMP = {
     const P = b.cena.params, T = b.tela;
     const linhas = (P.linhas || [T.texto]).map(l => esc(l).replace(T.destaque, `<span class="isca">${T.destaque}</span>`)).join('<br>');
     const f1 = ap(t, .9, .3), f2 = ap(t, 1.9, .35), f3 = ap(t, 2.9, .35);
-    const trem = t < 1.2 ? Math.sin(t * 40) * 5 * (1.2 - t) : 0;
+    const trem = 0;  // 1.5.1: terminal sem tremer
     const term = `<div class="term" style="left:110px;top:660px;width:780px;height:300px;transform:translateX(${trem}px) rotate(${-2 * f1}deg);opacity:${1 - .55 * f2};filter:grayscale(${f1})">
         <div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i>
         <span class="mono" style="font-size:26px;color:var(--cinza);margin-left:18px">${esc(P.janela || 'claude code')}</span></div>
@@ -582,7 +582,7 @@ function heroi(bt, b, t) {
 function avatar2(pose, t, b) {
   const im = IMG[pose] || IMG.bracos; if (!im || !im.naturalWidth) return '';
   const H = L.avH, W = H * im.naturalWidth / im.naturalHeight;
-  const resp = 1 + Math.sin(t * 2.1) * .006 + (b.ini === 0 && t < 1 ? .03 * Math.sin(t * 30) * (1 - t) : 0);
+  const resp = 1;  // 1.5.1 (Nei 16/11/2026): sem respiração nem tremor de abertura
   return `<img class="ab av" data-area="1" src="${im.src}" style="left:${540 - W / 2}px;top:${L.avBase - H}px;height:${H}px;width:${W}px;transform-origin:50% 100%;
     transform:scale(${resp});filter:drop-shadow(0 18px 30px rgba(0,0,0,.45))">`;
 }

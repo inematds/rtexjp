@@ -425,6 +425,10 @@ def mix(pasta):
 
 def qa(pasta):
     sh(sys.executable, R / "medir.py", pasta)
+    # 1.5.1: tremida de câmera (aproxima/afasta rápido na mesma imagem) reprova; medidor comum aos motores
+    trem = Path.home() / "projetos/explicavideos/engine/v2/tremida.py"
+    if trem.exists() and (pasta / "final.mp4").exists():
+        sh(sys.executable, trem, pasta / "final.mp4", "--max=4")
 
 
 if __name__ == "__main__":

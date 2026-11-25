@@ -17,7 +17,7 @@ class Teste(unittest.TestCase):
   pic=self.out/'quadro.jpg'; pic.write_bytes(b'jpg')
   with patch.dict(os.environ,ANTHROPIC_API_KEY='segredo',OPENAI_API_KEY='segredo'):
    def run(cmd,**kw):
-    self.assertIn('-i',cmd); self.assertIn(str(pic),cmd); self.assertIn('gpt-6.1-sol',cmd)
+    self.assertIn('-i',cmd); self.assertIn(str(pic),cmd); self.assertIn(ia._modelos_env()['INEMA_CODEX_EXECUTOR'],cmd)
     self.assertIn('model_reasoning_effort="medium"',cmd); self.assertNotIn('OPENAI_API_KEY',kw['env'])
     self.assertNotIn('ANTHROPIC_API_KEY',kw['env']); self.assertIn('read-only',cmd)
     Path(cmd[cmd.index('-o')+1]).write_text('{"ok":true}')
